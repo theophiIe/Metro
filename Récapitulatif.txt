@@ -1,0 +1,17 @@
+Le fichier récapitulatif permet de noter des idées ou des informations concernant le projet
+
+Coordonées des stations de métro trams et bus : https://www.data.gouv.fr/fr/datasets/positions-geographiques-des-stations-du-reseau-ratp-ratp/
+Idée d'utilisation toutes le cordonnés resembla à : 48.851531362655635, 2.63775356846836, on peut en lever tout ce qui se trouve avant la virgule et garder trois chiffre après pour avoir des coordonné de la forme : x = 851, y = 637
+
+Exemple de création de graphe en python avec des matrices d'adjacence et des listes d'adjacence : 
+https://developpement-informatique.com/article/178/introduction-et-representations-de-graphes
+
+Exemple en python de parcours de graphe en largeur et en longeur : https://developpement-informatique.com/article/179/algorithmes-de-parcours-dun-graphe
+
+Exemple en python d'algo de plus court chemin avec DIJKSTRA : https://developpement-informatique.com/article/180/algorithme-de-chemin-le-plus-court-de-dijkstra
+
+Exemple en python d'algo de plus court chemin avec BELLMAN-FORD : https://developpement-informatique.com/article/181/algorithme-de-chemin-le-plus-court-de-bellman-ford
+
+Exemple en python d'algo de plus court chemin avec FLOYD-WARSHALL : https://developpement-informatique.com/article/182/algorithme-floyd-warshall-plus-courts-chemins
+
+Choisir entre ses trois méthodes celle à utiliser
