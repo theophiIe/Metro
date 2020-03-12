@@ -15,3 +15,5 @@ Exemple en python d'algo de plus court chemin avec BELLMAN-FORD : https://develo
 Exemple en python d'algo de plus court chemin avec FLOYD-WARSHALL : https://developpement-informatique.com/article/182/algorithme-floyd-warshall-plus-courts-chemins
 
 Choisir entre ses trois méthodes celle à utiliser
+
+utiliser un fichier xml au lieu de metro.txt, exemple d'utilisation d'un fichier de config xml : https://deusyss.developpez.com/tutoriels/Python/les-modules-de-configuration/
