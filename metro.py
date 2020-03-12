@@ -14,7 +14,7 @@
 # file.close()
 
 def create_graph(oriente = False, pondere = True) :
-	graphe = { 'noeud': {}, 'arete': {}, 'nbre_arete': 0, 'poid_arete': 0, 'oriente': oriente, 'pondere': pondere, 'abscisse': 0, 'ordonnée': 0 }
+	graphe = { 'noeud': {}, 'arete': {}, 'nbre_arete': 0, 'poid_arete': 0, 'oriente': oriente, 'pondere': pondere, 'abscisse': 0, 'ordonnee': 0 }
 	return graphe
 
 def add_node(g, noeud):
