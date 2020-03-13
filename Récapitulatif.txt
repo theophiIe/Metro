@@ -23,3 +23,5 @@ Exemple de création de dictionnaire pour fair un graphe : http://www.mabs.ups-t
 Utilisation d'un fichier xml au lieu du fichier metro.txt, exemple de l'implémentation d'un XML dans un dictionnaire : 
 https://python-guide-pt-br.readthedocs.io/fr/latest/scenarios/xml.html
 https://docs.python.org/3.4/library/xml.etree.elementtree.html
+https://www.calazan.com/easily-convert-xml-data-to-a-python-dict-with-xmltodict/
+https://www.guru99.com/manipulating-xml-with-python.html
