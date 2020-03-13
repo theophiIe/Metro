@@ -20,4 +20,6 @@ utiliser un fichier xml au lieu de metro.txt, exemple d'utilisation d'un fichier
 
 Exemple de création de dictionnaire pour fair un graphe : http://www.mabs.ups-tlse.fr/p/M1_BBS_Graphes_TP_Librairie_-_Parcours_de_graphes
 
-Utilisation d'un fichier xml au lieu du fichier metro.txt
+Utilisation d'un fichier xml au lieu du fichier metro.txt, exemple de l'implémentation d'un XML dans un dictionnaire : 
+https://python-guide-pt-br.readthedocs.io/fr/latest/scenarios/xml.html
+https://docs.python.org/3.4/library/xml.etree.elementtree.html
