@@ -19,3 +19,5 @@ Choisir entre ses trois méthodes celle à utiliser
 utiliser un fichier xml au lieu de metro.txt, exemple d'utilisation d'un fichier de config xml : https://deusyss.developpez.com/tutoriels/Python/les-modules-de-configuration/
 
 Exemple de création de dictionnaire pour fair un graphe : http://www.mabs.ups-tlse.fr/p/M1_BBS_Graphes_TP_Librairie_-_Parcours_de_graphes
+
+Utilisation d'un fichier xml au lieu du fichier metro.txt
