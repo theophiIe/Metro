@@ -14,7 +14,7 @@
 # print(json.dumps(Graphe, indent = 1))
 # file.close()
 
-
+####################################################################
 
 # ##### Exemple d'init d'un graphe ####
 
@@ -49,15 +49,66 @@
 # 			row = f.readline().rstrip() # read next line
 # 	return graphe # return graph
 
+####################################################################
+
 #### Test d'utilistion du XML ####
 
-#Utilisation de xmltodict our l'installer : python3 -m pip install xmltodict
-import xmltodict 
+#Utilisation de xmltodict pour l'installer : python3 -m pip install xmltodict
+# import xmltodict 
 
-with open('data.xml') as fd:
-    doc = xmltodict.parse(fd.read())
+# with open('data.xml') as fd:
+#     doc = xmltodict.parse(fd.read())
 
-print (doc['mydocument']['@has']) # == u'an attribute'
-print (doc['mydocument']['and']['many']) # == [u'elements', u'more elements']
-print (doc['mydocument']['plus']['@a']) # == u'complex'
-print (doc['mydocument']['plus']['#text']) # == u'element as well'
+# print (doc['mydocument']['@has']) # == u'an attribute'
+# print (doc['mydocument']['and']['many']) # == [u'elements', u'more elements']
+# print (doc['mydocument']['plus']['@a']) # == u'complex'
+# print (doc['mydocument']['plus']['#text']) # == u'element as well'
+
+####################################################################
+
+# représentation d'un graphe à l'aide de liste d'adjacence
+class Graphe:
+    def __init__(self):
+        # créer un dictionnaire pour stocker la liste d'adjacence
+        self.Liste = {}
+ 
+    # Ajouter une arête entre deux sommets
+    def addArete(self, u, v):
+        if v not in self.Liste:
+            self.Liste[v] = []
+ 
+        if u not in self.Liste:
+            self.Liste[u] = []
+ 
+        self.Liste[u].append(v)
+ 
+    # Parcours en profondeur
+    def Parcours_profondeur(self, s, visited):
+ 
+        # Marquer le noeud courant comme visité et l'afficher
+        visited[s-1] = True
+        print(s, end=" ")
+ 
+        # recommencer avec tous les noeuds voisins
+        for i in self.Liste[s]:
+            if visited[i-1] == False:
+                self.Parcours_profondeur(i, visited)
+ 
+ 
+g = Graphe()
+g.addArete(1, 3)
+g.addArete(1, 4)
+g.addArete(1, 5)
+g.addArete(1, 6)
+g.addArete(2, 3)
+g.addArete(3, 1)
+g.addArete(3, 2)
+g.addArete(4, 1)
+g.addArete(4, 5)
+g.addArete(5, 1)
+g.addArete(5, 4)
+g.addArete(6, 1)
+ 
+visited = [False] * (len(g.Liste))
+print("Parcours en profondeur à partir du sommet 1")
+g.Parcours_profondeur(1, visited) 
