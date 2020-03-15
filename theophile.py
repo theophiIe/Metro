@@ -112,3 +112,41 @@ g.addArete(6, 1)
 visited = [False] * (len(g.Liste))
 print("Parcours en profondeur à partir du sommet 1")
 g.Parcours_profondeur(1, visited) 
+
+### tester avec une matrice d'ajacence
+import math
+ 
+class Graphe2():
+ 
+    def __init__(self, noeuds):
+        self.matriceAdj = noeuds.copy()
+ 
+    def Afficher(self, res):
+        print("les chemins les plus courts allant de  est : ")
+        n = len(res)
+        for i in range(n):
+            print("les chemins les plus courts allant de ", i+1, " est : ")
+            for j in range(n):
+                print(res[i][j], end=" ")
+            print("")
+ 
+    def FloydWarshal(self):
+        res = self.matriceAdj.copy()
+        n = len(self.matriceAdj)
+ 
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    res[i][j] = min(res[i][j], res[i][k]+res[k][j])
+ 
+        self.Afficher(res)
+ 
+ 
+# Test
+matriceAdj = [[0, 3, math.inf, 7],
+              [8, 0, 2, math.inf],
+              [5, math.inf, 0, 1],
+              [2, math.inf, math.inf, 0],
+              ]
+g = Graphe2(matriceAdj)
+g.FloydWarshal()
