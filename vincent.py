@@ -8,17 +8,26 @@ class Graphe:
 
     #'fichier' = fichier contenant les sommets et la pondération
     def __init__(self,fichier):
-        self.sommets = None
-        self.aretes = None
+        self.sommets = []
+        self.aretes = []
         self.fichier = fichier
     
-    def init_sommets(self):
+    def init_aretes(self):
         f = open(self.fichier,"r")
-        chaine = f.readline()
+        while(1):
+            chaine = f.readline()
+            chaine = chaine.replace("\n","")
+            #On stoppe à la fin du fichier
+            if (chaine == ""):
+                break
+            #On sépare la chaine grâce aux espaces
+            arete = chaine.split(" ")
+            #On ajoute [s1, s2, poid] à la liste des aretes
+            (self.aretes).append(arete)
+            print chaine
         f.close()
-        print chaine[:]
 
-    #def init_aretes(self):
+    #def init_sommets(self):
 
     #sommet1 = départ   sommet2 = arrivée
     #def dijk(self,sommet1,sommet2):
@@ -26,4 +35,5 @@ class Graphe:
 
 
 G = Graphe("metro_test.txt")
-G.init_sommets()
+G.init_aretes()
+print G.aretes
