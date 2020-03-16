@@ -72,7 +72,7 @@ class Graphe:
 
         file.close()
 
-    def dijkstra(self):
+    def dijkstra(self, start, end):
         print ("Début de l'algo de Dikjstra")
         
 
