@@ -17,6 +17,7 @@ class Graphe:
         while(1):
             chaine = f.readline()
             chaine = chaine.replace("\n","")
+            chaine = chaine.replace("E ","")
             #On stoppe à la fin du fichier
             if (chaine == ""):
                 break
@@ -37,3 +38,10 @@ class Graphe:
 G = Graphe("metro_test.txt")
 G.init_aretes()
 print G.aretes
+
+#Exemple pour lire un poid :
+print ""
+print "Voici les 2 premier poids : "
+print G.aretes[0][2]
+print G.aretes[1][2]
+#etc,etc...
