@@ -95,7 +95,7 @@ cmpt = 0
 
 start = input("Station de depart : ")
 while (cmpt < len(G.sommets)) :
-    if (start == (G.sommets[cmpt][2])):
+    if (start == (G.sommets[cmpt][1])):
         print ("Le sommet {0} exite".format(start))
         break
     cmpt = cmpt+1
@@ -105,7 +105,7 @@ cmpt = 0
 
 end = input("Station d'arrivee : ")
 while (cmpt <= len(G.sommets)) :
-    if (start == (G.sommets[cmpt][2])):
+    if (start == (G.sommets[cmpt][1])):
          print ("Le sommet {0} exite".format(start))
          break
     cmpt = cmpt+1
