@@ -1,12 +1,29 @@
-######## Simple exemple de l'oriente objet chez python ##########
+# coding: utf-8
 
-class truc:
-    def __init__(self,a,b):
-        self.a = a
-        self.b = b
+class Graphe:
 
-    def somme(self):
-        print("Somme : "+str(self.a+self.b)+"\n")
+    sommets = []
+    aretes = []
+    fichier = ""
 
-mon_truc = truc(4,2)
-mon_truc.somme()
+    #'fichier' = fichier contenant les sommets et la pondération
+    def __init__(self,fichier):
+        self.sommets = None
+        self.aretes = None
+        self.fichier = fichier
+    
+    def init_sommets(self):
+        f = open(self.fichier,"r")
+        chaine = f.readline()
+        f.close()
+        print chaine[:]
+
+    #def init_aretes(self):
+
+    #sommet1 = départ   sommet2 = arrivée
+    #def dijk(self,sommet1,sommet2):
+
+
+
+G = Graphe("metro_test.txt")
+G.init_sommets()
