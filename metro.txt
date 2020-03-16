@@ -2,72 +2,72 @@
 # format : V num sommet nom_sommet
 #          E num_sommet1 num_sommet1 temps_en_secondes
 V 0000 Abbesses
-V 0001 Alexandre Dumas
-V 0002 Alma Marceau
+V 0001 Alexandre_Dumas
+V 0002 Alma_Marceau
 V 0003 Alésia
-V 0004 Anatole France
+V 0004 Anatole_France
 V 0005 Anvers
 V 0006 Argentine
-V 0007 Arts et Métiers
-V 0008 Arts et Métiers
-V 0009 Assemblée Nationale
-V 0010 Aubervilliers-Pantin, Quatre Chemins
-V 0011 Avenue Émile Zola
+V 0007 Arts_et_Métiers
+V 0008 Arts_et_Métiers
+V 0009 Assemblée_Nationale
+V 0010 Aubervilliers-Pantin,_Quatre_Chemins
+V 0011 Avenue_Émile_Zola
 V 0012 Avron
-V 0013 Barbès Rochechouart
-V 0014 Barbès Rochechouart
-V 0015 Basilique de Saint-Denis
+V 0013 Barbès_Rochechouart
+V 0014 Barbès_Rochechouart
+V 0015 Basilique_de_Saint-Denis
 V 0016 Bastille
 V 0017 Bastille
 V 0018 Bastille
-V 0019 Bel Air
+V 0019 Bel_Air
 V 0020 Belleville
 V 0021 Belleville
 V 0022 Bercy
 V 0023 Bercy
-V 0024 Bibliothèque François Mitterand
+V 0024 Bibliothèque_François_Mitterand
 V 0025 Billancourt
 V 0026 Bir-Hakeim
 V 0027 Blanche
-V 0028 Bobigny, Pablo Picasso
-V 0029 Bobigny-Pantin, Raymond Queneau
+V 0028 Bobigny,_Pablo_Picasso
+V 0029 Bobigny-Pantin,_Raymond_Queneau
 V 0030 Boissière
 V 0031 Bolivar
-V 0032 Bonne Nouvelle
-V 0033 Bonne Nouvelle
+V 0032 Bonne_Nouvelle
+V 0033 Bonne_Nouvelle
 V 0034 Botzaris
 V 0035 Boucicaut
-V 0036 Boulogne, Jean Jaurès
-V 0037 Boulogne, Pont de Saint-Cloud, Rond Point Rhin et Danube
+V 0036 Boulogne,_Jean_Jaurès
+V 0037 Boulogne,_Pont_de_Saint-Cloud,_Rond_Point_Rhin_et_Danube
 V 0038 Bourse
 V 0039 Brochant
 V 0040 Bréguet-Sabin
-V 0041 Buttes Chaumont
+V 0041 Buttes_Chaumont
 V 0042 Buzenval
 V 0043 Bérault
 V 0044 Cadet
 V 0045 Cambronne
 V 0046 Campo-Formio
-V 0047 Cardinal Lemoine
-V 0048 Carrefour Pleyel
-V 0049 Censier Daubenton
-V 0050 Champs Élysées, Clémenceau
-V 0051 Champs Élysées, Clémenceau
-V 0052 Chardon Lagâche
+V 0047 Cardinal_Lemoine
+V 0048 Carrefour_Pleyel
+V 0049 Censier_Daubenton
+V 0050 Champs_Élysées,_Clémenceau
+V 0051 Champs_Élysées,_Clémenceau
+V 0052 Chardon_Lagâche
 V 0053 Charenton-Écoles
-V 0054 Charles Michels
-V 0055 Charles de Gaulle, Étoile
-V 0056 Charles de Gaulle, Étoile
-V 0057 Charles de Gaulle, Étoile
+V 0054 Charles_Michels
+V 0055 Charles_de_Gaulle,_Étoile
+V 0056 Charles_de_Gaulle,_Étoile
+V 0057 Charles_de_Gaulle,_Étoile
 V 0058 Charonne
-V 0059 Chaussée d'Antin, La Fayette
-V 0060 Chaussée d'Antin, La Fayette
-V 0061 Chemin Vert
+V 0059 Chaussée_d'Antin,_La_Fayette
+V 0060 Chaussée_d'Antin,_La_Fayette
+V 0061 Chemin_Vert
 V 0062 Chevaleret
-V 0063 Château Landon
-V 0064 Château Rouge
-V 0065 Château d'Eau
-V 0066 Château de Vincennes
+V 0063 Château_Landon
+V 0064 Château_Rouge
+V 0065 Château_d'Eau
+V 0066 Château_de Vincennes
 V 0067 Châtelet
 V 0068 Châtelet
 V 0069 Châtelet
@@ -75,142 +75,142 @@ V 0070 Châtelet
 V 0071 Châtelet
 V 0072 Châtillon-Montrouge
 V 0073 Cité
-V 0074 Cluny, La Sorbonne
-V 0075 Colonel Fabien
+V 0074 Cluny,_La_Sorbonne
+V 0075 Colonel_Fabien
 V 0076 Commerce
 V 0077 Concorde
 V 0078 Concorde
 V 0079 Concorde
 V 0080 Convention
-V 0081 Corentin Celton
+V 0081 Corentin_Celton
 V 0082 Corentin-Cariou
 V 0083 Corvisart
-V 0084 Cour Saint-Émilion
+V 0084 Cour_Saint-Émilion
 V 0085 Courcelles
 V 0086 Couronnes
 V 0087 Crimée
-V 0088 Croix de Chavaux
+V 0088 Croix_de_Chavaux
 V 0089 Créteil-Préfecture
 V 0090 Créteil-Université
-V 0091 Créteil-l'Echat, Hôpital Henri Mondor
+V 0091 Créteil-l'Echat,_Hôpital_Henri_Mondor
 V 0092 Danube
 V 0093 Daumesnil
 V 0094 Daumesnil
-V 0095 Denfert Rochereau
-V 0096 Denfert Rochereau
+V 0095 Denfert_Rochereau
+V 0096 Denfert_Rochereau
 V 0097 Dugommier
 V 0098 Dupleix
 V 0099 Duroc
 V 0100 Duroc
-V 0101 Edgar Quinet
-V 0102 Esplanade de la Défense
+V 0101 Edgar_Quinet
+V 0102 Esplanade_de_la_Défense
 V 0103 Europe
 V 0104 Exelmans
 V 0105 Faidherbe-Chaligny
 V 0106 Falguière
-V 0107 Filles du Calvaire
-V 0108 Fort d'Aubervilliers
-V 0109 Franklin D. Roosevelt
-V 0110 Franklin D. Roosevelt
-V 0111 Félix Faure
-V 0112 Gabriel Péri, Asnières-Gennevilliers
+V 0107 Filles_du_Calvaire
+V 0108 Fort_d'Aubervilliers
+V 0109 Franklin_D._Roosevelt
+V 0110 Franklin_D._Roosevelt
+V 0111 Félix_Faure
+V 0112 Gabriel_Péri,_Asnières-Gennevilliers
 V 0113 Gaité
 V 0114 Galliéni
 V 0115 Gambetta
 V 0116 Gambetta
-V 0117 Gare d'Austerlitz
-V 0118 Gare d'Austerlitz
-V 0119 Gare de Lyon
-V 0120 Gare de Lyon
-V 0121 Gare de l'Est
-V 0122 Gare de l'Est
-V 0123 Gare de l'Est
-V 0124 Gare du Nord
-V 0125 Gare du Nord
+V 0118 Gare_d'Austerlitz
+V 0117 Gare_d'Austerlitz
+V 0119 Gare_de_Lyon
+V 0120 Gare_de_Lyon
+V 0121 Gare_de_l'Est
+V 0122 Gare_de_l'Est
+V 0123 Gare_de_l'Est
+V 0124 Gare_du_Nord
+V 0125 Gare_du_Nord
 V 0126 Garibaldi
-V 0127 George V
+V 0127 George_V
 V 0128 Glacière
 V 0129 Goncourt
-V 0130 Grande Arche de la Défense
-V 0131 Guy Môquet
-V 0132 Havre Caumartin
-V 0133 Havre Caumartin
+V 0130 Grande_Arche_de_la_Défense
+V 0131 Guy_Môquet
+V 0132 Havre_Caumartin
+V 0133 Havre_Caumartin
 V 0134 Hoche
-V 0135 Hôtel de Ville
-V 0136 Hôtel de Ville
+V 0135 Hôtel_de_Ville
+V 0136 Hôtel_de_Ville
 V 0137 Invalides
 V 0138 Invalides
 V 0139 Iéna
-V 0140 Jacques Bonsergent
+V 0140 Jacques_Bonsergent
 V 0141 Jasmin
 V 0142 Jaurès
 V 0143 Jaurès
 V 0144 Jaurès
 V 0145 Javel
 V 0146 Jourdain
-V 0147 Jules Joffrin
+V 0147 Jules_Joffrin
 V 0148 Jussieu
 V 0149 Jussieu
 V 0150 Kléber
-V 0151 La Chapelle
-V 0152 La Courneuve, 8 Mai 1945
-V 0153 La Fourche
-V 0154 La Motte Picquet, Grenelle
-V 0155 La Motte Picquet, Grenelle
-V 0156 La Motte Picquet, Grenelle
-V 0157 La Muette
-V 0158 La Tour-Maubourg
-V 0159 Lamarck Caulaincourt
+V 0151 La_Chapelle
+V 0152 La_Courneuve,_8_Mai_1945
+V 0153 La_Fourche
+V 0154 La_Motte Picquet,_Grenelle
+V 0155 La_Motte Picquet,_Grenelle
+V 0156 La_Motte Picquet,_Grenelle
+V 0157 La_Muette
+V 0158 La_Tour-Maubourg
+V 0159 Lamarck_Caulaincourt
 V 0160 Laumière
-V 0161 Le Kremlin-Bicêtre
-V 0162 Le Peletier
-V 0163 Ledru Rollin
-V 0164 Les Gobelins
-V 0165 Les Halles
-V 0166 Les Sablons
+V 0161 Le_Kremlin-Bicêtre
+V 0162 Le_Peletier
+V 0163 Ledru_Rollin
+V 0164 Les_Gobelins
+V 0165 Les_Halles
+V 0166 Les_Sablons
 V 0167 Liberté
 V 0168 Liège
-V 0169 Louis Blanc
-V 0170 Louis Blanc
-V 0171 Louise Michel
+V 0169 Louis_Blanc
+V 0170 Louis_Blanc
+V 0171 Louise_Michel
 V 0172 Lourmel
-V 0173 Louvre, Rivoli
+V 0173 Louvre,_Rivoli
 V 0174 Mabillon
 V 0175 Madeleine
 V 0176 Madeleine
 V 0177 Madeleine
-V 0178 Mairie d'Issy
-V 0179 Mairie d'Ivry
-V 0180 Mairie de Clichy
-V 0181 Mairie de Montreuil
-V 0182 Mairie de Saint-Ouen
-V 0183 Mairie des Lilas
-V 0184 Maison Blanche
-V 0185 Maisons-Alfort les Juilliottes
-V 0186 Maisons-Alfort, Stade
-V 0187 Malakoff-Plateau de Vanves
-V 0188 Malakoff-Rue Étienne Dolet
+V 0178 Mairie_d'Issy
+V 0179 Mairie_d'Ivry
+V 0180 Mairie_de_Clichy
+V 0181 Mairie_de_Montreuil
+V 0182 Mairie_de_Saint-Ouen
+V 0183 Mairie_des_Lilas
+V 0184 Maison_Blanche
+V 0185 Maisons-Alfort_les_Juilliottes
+V 0186 Maisons-Alfort,_Stade
+V 0187 Malakoff-Plateau_de_Vanves
+V 0188 Malakoff-Rue_Étienne_Dolet
 V 0189 Malesherbes
 V 0190 Maraîchers
-V 0191 Marcadet Poissonniers
-V 0192 Marcadet Poissonniers
-V 0193 Marcel Sembat
-V 0194 Marx Dormoy
-V 0195 Maubert Mutualité
-V 0196 Michel Ange Auteuil
-V 0197 Michel Ange Auteuil
-V 0198 Michel Ange Molitor
-V 0199 Michel Ange Molitor
-V 0200 Michel Bizot
+V 0191 Marcadet_Poissonniers
+V 0192 Marcadet_Poissonniers
+V 0193 Marcel_Sembat
+V 0194 Marx_Dormoy
+V 0195 Maubert_Mutualité
+V 0196 Michel_Ange_Auteuil
+V 0197 Michel_Ange_Auteuil
+V 0198 Michel_Ange_Molitor
+V 0199 Michel_Ange_Molitor
+V 0200 Michel_Bizot
 V 0201 Mirabeau
 V 0202 Miromesnil
 V 0203 Miromesnil
 V 0204 Monceau
 V 0205 Montgallet
-V 0206 Montparnasse Bienvenue
-V 0207 Montparnasse Bienvenue
-V 0208 Montparnasse Bienvenue
-V 0209 Montparnasse Bienvenue
+V 0206 Montparnasse_Bienvenue
+V 0207 Montparnasse_Bienvenue
+V 0208 Montparnasse_Bienvenue
+V 0209 Montparnasse_Bienvenue
 V 0210 Mouton-Duvernet
 V 0211 Ménilmontant
 V 0212 Nation
@@ -218,7 +218,7 @@ V 0213 Nation
 V 0214 Nation
 V 0215 Nation
 V 0216 Nationale
-V 0217 Notre Dame de Lorette
+V 0217 Notre_Dame_de_Lorette
 V 0218 Notre-Dame-des-Champs
 V 0219 Oberkampf
 V 0220 Oberkampf
@@ -228,8 +228,8 @@ V 0223 Opéra
 V 0224 Opéra
 V 0225 Opéra
 V 0226 Ourcq
-V 0227 Palais Royal, Musée du Louvre
-V 0228 Palais Royal, Musée du Louvre
+V 0227 Palais_Royal,_Musée_du_Louvre
+V 0228 Palais_Royal,_Musée_du_Louvre
 V 0229 Parmentier
 V 0230 Passy
 V 0231 Pasteur
@@ -238,80 +238,80 @@ V 0233 Pelleport
 V 0234 Pernety
 V 0235 Philippe-Auguste
 V 0236 Picpus
-V 0237 Pierre Curie
+V 0237 Pierre_Curie
 V 0238 Pigalle
 V 0239 Pigalle
-V 0240 Place Balard
-V 0241 Place Monge
-V 0242 Place d'Italie
-V 0243 Place d'Italie
-V 0244 Place d'Italie
-V 0245 Place de Clichy
-V 0246 Place de Clichy
-V 0247 Place des Fêtes
-V 0248 Place des Fêtes
+V 0240 Place_Balard
+V 0241 Place_Monge
+V 0242 Place_d'Italie
+V 0243 Place_d'Italie
+V 0244 Place_d'Italie
+V 0245 Place_de_Clichy
+V 0246 Place_de_Clichy
+V 0247 Place_des_Fêtes
+V 0248 Place_des_Fêtes
 V 0249 Plaisance
 V 0250 Poissonnière
-V 0251 Pont de Levallois, Bécon
-V 0252 Pont de Neuilly
-V 0253 Pont de Sèvres
+V 0251 Pont_de_Levallois,_Bécon
+V 0252 Pont_de_Neuilly
+V 0253 Pont_de_Sèvres
 V 0254 Pont-Marie
 V 0255 Pont-Neuf
-V 0256 Porte Dauphine
-V 0257 Porte Dorée
-V 0258 Porte Maillot
-V 0259 Porte d'Auteuil
-V 0260 Porte d'Italie
-V 0261 Porte d'Ivry
-V 0262 Porte d'Orléans
-V 0263 Porte de Bagnolet
-V 0264 Porte de Champerret
-V 0265 Porte de Charenton
-V 0266 Porte de Choisy
-V 0267 Porte de Clichy
-V 0268 Porte de Clignancourt
-V 0269 Porte de Montreuil
-V 0270 Porte de Pantin
-V 0271 Porte de Saint-Cloud
-V 0272 Porte de Saint-Ouen
-V 0273 Porte de Vanves
-V 0274 Porte de Versailles
-V 0275 Porte de Vincennes
-V 0276 Porte de la Chapelle
-V 0277 Porte de la Villette
-V 0278 Porte des Lilas
-V 0279 Porte des Lilas
+V 0256 Porte_Dauphine
+V 0257 Porte_Dorée
+V 0258 Porte_Maillot
+V 0259 Porte_d'Auteuil
+V 0260 Porte_d'Italie
+V 0261 Porte_d'Ivry
+V 0262 Porte_d'Orléans
+V 0263 Porte_de_Bagnolet
+V 0264 Porte_de_Champerret
+V 0265 Porte_de_Charenton
+V 0266 Porte_de_Choisy
+V 0267 Porte_de_Clichy
+V 0268 Porte_de_Clignancourt
+V 0269 Porte_de_Montreuil
+V 0270 Porte_de_Pantin
+V 0271 Porte_de_Saint-Cloud
+V 0272 Porte_de_Saint-Ouen
+V 0273 Porte_de_Vanves
+V 0274 Porte_de_Versailles
+V 0275 Porte_de_Vincennes
+V 0276 Porte_de_la_Chapelle
+V 0277 Porte_de_la_Villette
+V 0278 Porte_des_Lilas
+V 0279 Porte_des_Lilas
 V 0280 Pré-Saint-Gervais
 V 0281 Pyramides
 V 0282 Pyramides
 V 0283 Pyrénées
-V 0284 Père Lachaise
-V 0285 Père Lachaise
+V 0284 Père_Lachaise
+V 0285 Père_Lachaise
 V 0286 Péreire
-V 0287 Quai de la Gare
-V 0288 Quai de la Rapée
-V 0289 Quatre Septembre
+V 0287 Quai_de_la_Gare
+V 0288 Quai_de_la_Rapée
+V 0289 Quatre_Septembre
 V 0290 Rambuteau
 V 0291 Ranelagh
 V 0292 Raspail
 V 0293 Raspail
 V 0294 Rennes
-V 0295 Reuilly Diderot
-V 0296 Reuilly Diderot
-V 0297 Richard Lenoir
-V 0298 Richelieu Drouot
-V 0299 Richelieu Drouot
+V 0295 Reuilly_Diderot
+V 0296 Reuilly_Diderot
+V 0297 Richard_Lenoir
+V 0298 Richelieu_Drouot
+V 0299 Richelieu_Drouot
 V 0300 Riquet
 V 0301 Robespierre
 V 0302 Rome
-V 0303 Rue Montmartre, Grands Boulevards
-V 0304 Rue Montmartre, Grands Boulevards
-V 0305 Rue Saint-Maur
-V 0306 Rue de la Pompe
-V 0307 Rue des Boulets
-V 0308 Rue du Bac
-V 0309 Réaumur Sébastopol
-V 0310 Réaumur Sébastopol
+V 0303 Rue_Montmartre,_Grands_Boulevards
+V 0304 Rue_Montmartre,_Grands_Boulevards
+V 0305 Rue_Saint-Maur
+V 0306 Rue_de_la_Pompe
+V 0307 Rue_des_Boulets
+V 0308 Rue_du_Bac
+V 0309 Réaumur_Sébastopol
+V 0310 Réaumur_Sébastopol
 V 0311 République
 V 0312 République
 V 0313 République
@@ -319,21 +319,21 @@ V 0314 République
 V 0315 République
 V 0316 Saint-Ambroise
 V 0317 Saint-Augustin
-V 0318 Saint-Denis-Porte de Paris
+V 0318 Saint-Denis-Porte_de_Paris
 V 0319 Saint-Denis-Université
 V 0320 Saint-Fargeau
-V 0321 Saint-Francois Xavier
+V 0321 Saint-Francois_Xavier
 V 0322 Saint-Georges
 V 0323 Saint-Germain-des-Prés
 V 0324 Saint-Jacques
 V 0325 Saint-Lazare
 V 0326 Saint-Lazare
 V 0327 Saint-Lazare
-V 0328 Saint-Mandé, Tourelle
+V 0328 Saint-Mandé,_Tourelle
 V 0329 Saint-Marcel
 V 0330 Saint-Michel
-V 0331 Saint-Paul, Le Marais
-V 0332 Saint-Philippe du Roule
+V 0331 Saint-Paul,_Le_Marais
+V 0332 Saint-Philippe_du_Roule
 V 0333 Saint-Placide
 V 0334 Saint-Sulpice
 V 0335 Saint-Sébastien-Froissart
@@ -343,18 +343,18 @@ V 0338 Solférino
 V 0339 Stalingrad
 V 0340 Stalingrad
 V 0341 Stalingrad
-V 0342 Strasbourg Saint-Denis
-V 0343 Strasbourg Saint-Denis
-V 0344 Strasbourg Saint-Denis
-V 0345 Sully Morland
-V 0346 Sèvres Babylone
-V 0347 Sèvres Babylone
-V 0348 Sèvres Lecourbe
+V 0342 Strasbourg_Saint-Denis
+V 0343 Strasbourg_Saint-Denis
+V 0344 Strasbourg_Saint-Denis
+V 0345 Sully_Morland
+V 0346 Sèvres_Babylone
+V 0347 Sèvres_Babylone
+V 0348 Sèvres_Lecourbe
 V 0349 Ségur
 V 0350 Temple
 V 0351 Ternes
 V 0352 Tolbiac
-V 0353 Trinité d'Estienne d'Orves
+V 0353 Trinité_d'Estienne_d'Orves
 V 0354 Trocadéro
 V 0355 Trocadéro
 V 0356 Tuileries
@@ -363,20 +363,20 @@ V 0358 Vaneau
 V 0359 Varenne
 V 0360 Vaugirard
 V 0361 Vavin
-V 0362 Victor Hugo
-V 0363 Villejuif, Louis Aragon
-V 0364 Villejuif, Léo Lagrange
-V 0365 Villejuif, P. Vaillant Couturier
+V 0362 Victor_Hugo
+V 0363 Villejuif,_Louis_Aragon
+V 0364 Villejuif,_Léo_Lagrange
+V 0365 Villejuif,_P._Vaillant_Couturier
 V 0366 Villiers
 V 0367 Villiers
 V 0368 Volontaires
 V 0369 Voltaire
 V 0370 Wagram
-V 0371 École Militaire
-V 0372 École Vétérinaire de Maisons-Alfort
-V 0373 Église d'Auteuil
-V 0374 Église de Pantin
-V 0375 Étienne Marcel
+V 0371 École_Militaire
+V 0372 École_Vétérinaire_de_Maisons-Alfort
+V 0373 Église_d'Auteuil
+V 0374 Église_de_Pantin
+V 0375 Étienne_Marcel
 E 0 238 41
 E 0 159 46
 E 1 12 36
