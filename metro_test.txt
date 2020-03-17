@@ -1,3 +1,12 @@
+V un
+V deux
+V trois
+V quatre
+V cinq
+V six
+V sept
+V huit
+V neuf
 E 1 2 50
 E 1 5 20
 E 1 9 50
