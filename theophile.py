@@ -125,20 +125,34 @@ print (G.aretes[1][2])
 
 def recherche(position):
     cmpt = 0
-    existe = False
 
-    while existe != True :
-        position = position.replace(" ","_")
-        while (cmpt < len(G.sommets)) :
-            if (position == (G.sommets[cmpt][1])):
-                print ("Le sommet {0} exite".format(position))
-                existe = True
-                break
-            cmpt = cmpt+1
-            
+    position = position.replace(" ","_")
+    while (cmpt < len(G.sommets)) :
+        if (position == (G.sommets[cmpt][1])):
+            print ("Le sommet {0} exite".format(position))
+            return True
+        cmpt = cmpt+1
 
-start = input("Station de depart : ")
-recherche(start)
+    return False
 
-end = input("Station d'arrivee : ")
-recherche(end)
+#Station de départ
+while 1 :
+    start = input("Station de depart : ")
+    resultat = recherche(start)
+    if resultat == True:
+        break
+    else:
+        print("La station n'existe pas réessayé")
+
+#Station d'arrivée'
+while 1 :
+    end = input("Station d'arrivee : ")
+    resultat = recherche(end)
+    if (resultat == True) and (start != end) :
+        break
+    
+    elif end == start:
+        print("La station d'arrivé doit être différente de la stion de départ")
+
+    else:
+        print("La station n'existe pas réessayé")
