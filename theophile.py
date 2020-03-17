@@ -12,33 +12,33 @@ class Graphe:
         self.aretes = []
         self.fichier = fichier
 
-    def init_sommets(self):
-        file = open(self.fichier,"r")
+    # def init_sommets(self):
+    #     file = open(self.fichier,"r")
 
-        for chaine in file :
-            if chaine[0:1] == "V" :
-                chaine = chaine.replace("\n","")
-                chaine = chaine.replace("V ","")
+    #     for chaine in file :
+    #         if chaine[0:1] == "V" :
+    #             chaine = chaine.replace("\n","")
+    #             chaine = chaine.replace("V ","")
             
-                #On sépare la chaine grâce aux espaces
-                infoSommet = chaine.split(" ")
-                #On ajoute [numSommet, numLigne, nom] à la liste des sommets
-                (self.sommets).append(infoSommet)
-        file.close()
+    #             #On sépare la chaine grâce aux espaces
+    #             infoSommet = chaine.split(" ")
+    #             #On ajoute [numSommet, numLigne, nom] à la liste des sommets
+    #             (self.sommets).append(infoSommet)
+    #     file.close()
 
-    def init_aretes(self):
-        file = open(self.fichier,"r")
+    # def init_aretes(self):
+    #     file = open(self.fichier,"r")
 
-        for chaine in file :
-            if chaine[0:1] == "E" :
-                chaine = chaine.replace("\n","")
-                chaine = chaine.replace("E ","")
+    #     for chaine in file :
+    #         if chaine[0:1] == "E" :
+    #             chaine = chaine.replace("\n","")
+    #             chaine = chaine.replace("E ","")
             
-                #On sépare la chaine grâce aux espaces
-                arete = chaine.split(" ")
-                #On ajoute [s1, s2, poid] à la liste des aretes
-                (self.aretes).append(arete)
-        file.close()
+    #             #On sépare la chaine grâce aux espaces
+    #             arete = chaine.split(" ")
+    #             #On ajoute [s1, s2, poid] à la liste des aretes
+    #             (self.aretes).append(arete)
+    #     file.close()
 
     #fusion des deux fonctions du dessus pour eviter de lire plusieur fois le fichiers car lourd en execution
     #Possible de fusionner les deux if car beaucoup d'action en commun
@@ -90,30 +90,55 @@ print (G.aretes[1][2])
 #etc,etc...
 
 
+
+#Ecrire un focntion recherche pour éviter d'écrire deux fois la meme chose 
 #Point de depart
-cmpt = 0
-startExit = False
+# cmpt = 0
+# startExit = False
 
-while startExit != True :
-    start = input("Station de depart : ")
-    start = start.replace(" ","_")
-    while (cmpt < len(G.sommets)) :
-        if (start == (G.sommets[cmpt][1])):
-            print ("Le sommet {0} exite".format(start))
-            startExit = True
-            break
-        cmpt = cmpt+1
+# while startExit != True :
+#     start = input("Station de depart : ")
+#     start = start.replace(" ","_")
+#     while (cmpt < len(G.sommets)) :
+#         if (start == (G.sommets[cmpt][1])):
+#             print ("Le sommet {0} exite".format(start))
+#             startExit = True
+#             break
+#         cmpt = cmpt+1
 
-#Point d'arrivee
-cmpt = 0
-endExit = False
+# #Point d'arrivee
+# cmpt = 0
+# endExit = False
 
-while endExit != True :
-    end = input("Station d'arrivee : ")
-    end = end.replace(" ","_")
-    while (cmpt <= len(G.sommets)) :
-        if (end == (G.sommets[cmpt][1])):
-            print ("Le sommet {0} exite".format(end))
-            endExit = True
-            break
-        cmpt = cmpt+1
+# while endExit != True :
+#     end = input("Station d'arrivee : ")
+#     end = end.replace(" ","_")
+#     while (cmpt <= len(G.sommets)) :
+#         if (end == (G.sommets[cmpt][1])):
+#             print ("Le sommet {0} exite".format(end))
+#             endExit = True
+#             break
+#         cmpt = cmpt+1
+
+
+#Test de la fonction recherche
+
+def recherche(position):
+    cmpt = 0
+    existe = False
+
+    while existe != True :
+        position = position.replace(" ","_")
+        while (cmpt < len(G.sommets)) :
+            if (position == (G.sommets[cmpt][1])):
+                print ("Le sommet {0} exite".format(position))
+                existe = True
+                break
+            cmpt = cmpt+1
+            
+
+start = input("Station de depart : ")
+recherche(start)
+
+end = input("Station d'arrivee : ")
+recherche(end)
