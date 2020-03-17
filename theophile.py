@@ -92,22 +92,28 @@ print (G.aretes[1][2])
 
 #Point de depart
 cmpt = 0
+startExit = False
 
-start = input("Station de depart : ")
-start = start.replace(" ","_")
-while (cmpt < len(G.sommets)) :
-    if (start == (G.sommets[cmpt][1])):
-        print ("Le sommet {0} exite".format(start))
-        break
-    cmpt = cmpt+1
+while startExit != True :
+    start = input("Station de depart : ")
+    start = start.replace(" ","_")
+    while (cmpt < len(G.sommets)) :
+        if (start == (G.sommets[cmpt][1])):
+            print ("Le sommet {0} exite".format(start))
+            startExit = True
+            break
+        cmpt = cmpt+1
 
 #Point d'arrivee
 cmpt = 0
+endExit = False
 
-end = input("Station d'arrivee : ")
-end = end.replace(" ","_")
-while (cmpt <= len(G.sommets)) :
-    if (end == (G.sommets[cmpt][1])):
-         print ("Le sommet {0} exite".format(end))
-         break
-    cmpt = cmpt+1
+while endExit != True :
+    end = input("Station d'arrivee : ")
+    end = end.replace(" ","_")
+    while (cmpt <= len(G.sommets)) :
+        if (end == (G.sommets[cmpt][1])):
+            print ("Le sommet {0} exite".format(end))
+            endExit = True
+            break
+        cmpt = cmpt+1
