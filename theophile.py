@@ -128,7 +128,7 @@ def recherche(position):
 
     position = position.replace(" ","_")
     while (cmpt < len(G.sommets)) :
-        if (position == (G.sommets[cmpt][1])):
+        if (position == (G.sommets[cmpt][3])):
             print ("Le sommet {0} exite".format(position))
             return True
         cmpt = cmpt+1
@@ -156,3 +156,52 @@ while 1 :
 
     else:
         print("La station n'existe pas réessayé")
+
+
+#Création du graphique 
+
+from tkinter import * 
+
+#Creation de la fonction graphique (Faire une classe graphique?)
+def graphique():
+    #init de la fenetre 
+    fenetre = Tk()
+
+    #init de la toile en 1000 par 1000
+    canvas = Canvas(fenetre, width=1000, height=1000, background='white')
+    
+    cmptSommets = 0
+
+    #init du rayon des cercles
+    r = 3
+
+    while (cmptSommets < len(G.sommets)) :
+        x = G.sommets[cmptSommets][1]
+        y = G.sommets[cmptSommets][2]
+        canvas.create_oval(x-r,y-r,x+r,y+r, fill="black")
+        cmptSommets = cmptSommets + 1
+    
+    cmptSommets = 0
+    cmptAretes = 0
+
+    while (cmptAretes < len(G.aretes)) :
+        sommet1 = G.aretes[cmptAretes][0]
+        sommet2 = G.aretes[cmptAretes][1]
+        while (cmptSommets < len(G.sommets)) :
+            if sommet1 == G.sommets[cmptSommets][0] :
+                x1 = G.sommets[cmptSommets][1]
+                y1 = G.sommets[cmptSommets][2]
+
+            elif sommet2 == G.sommets[cmptSommets][0] :
+                x2 = G.sommets[cmptSommets][1]
+                y2 = G.sommets[cmptSommets][2]
+            
+            cmptSommets = cmptSommets + 1
+
+        canvas.create_line(x1, y1, x2, y2)
+        cmptAretes = cmptAretes + 1
+
+    canvas.pack()
+    fenetre.mainloop()
+
+
