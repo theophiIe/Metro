@@ -136,26 +136,26 @@ def recherche(position):
     return False
 
 #Station de départ
-while 1 :
-    start = input("Station de depart : ")
-    resultat = recherche(start)
-    if resultat == True:
-        break
-    else:
-        print("La station n'existe pas réessayé")
+# while 1 :
+#     start = input("Station de depart : ")
+#     resultat = recherche(start)
+#     if resultat == True:
+#         break
+#     else:
+#         print("La station n'existe pas réessayé")
 
-#Station d'arrivée'
-while 1 :
-    end = input("Station d'arrivee : ")
-    resultat = recherche(end)
-    if (resultat == True) and (start != end) :
-        break
+# #Station d'arrivée'
+# while 1 :
+#     end = input("Station d'arrivee : ")
+#     resultat = recherche(end)
+#     if (resultat == True) and (start != end) :
+#         break
     
-    elif end == start:
-        print("La station d'arrivé doit être différente de la stion de départ")
+#     elif end == start:
+#         print("La station d'arrivé doit être différente de la stion de départ")
 
-    else:
-        print("La station n'existe pas réessayé")
+#     else:
+#         print("La station n'existe pas réessayé")
 
 
 #Création du graphique 
@@ -173,12 +173,14 @@ def graphique():
     cmptSommets = 0
 
     #init du rayon des cercles
-    r = 3
+    r = 1
 
     while (cmptSommets < len(G.sommets)) :
-        x = G.sommets[cmptSommets][1]
-        y = G.sommets[cmptSommets][2]
-        canvas.create_oval(x-r,y-r,x+r,y+r, fill="black")
+        testx = G.sommets[cmptSommets][1]
+        x = int(testx)
+        testy = G.sommets[cmptSommets][2]
+        y = int(testy) 
+        canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
     
     cmptSommets = 0
@@ -189,12 +191,23 @@ def graphique():
         sommet2 = G.aretes[cmptAretes][1]
         while (cmptSommets < len(G.sommets)) :
             if sommet1 == G.sommets[cmptSommets][0] :
-                x1 = G.sommets[cmptSommets][1]
-                y1 = G.sommets[cmptSommets][2]
+                testx1 = G.sommets[cmptSommets][1]
+                x1 = int(testx1)
+                testy1 = G.sommets[cmptSommets][2]
+                y1 = int(testy1)
+                cmptSommets = 0
+                break
 
-            elif sommet2 == G.sommets[cmptSommets][0] :
-                x2 = G.sommets[cmptSommets][1]
-                y2 = G.sommets[cmptSommets][2]
+            cmptSommets = cmptSommets + 1
+
+        while (cmptSommets < len(G.sommets)) :
+            if sommet2 == G.sommets[cmptSommets][0] :
+                testx2 = G.sommets[cmptSommets][1]
+                x2 = int(testx2)
+                testy2 = G.sommets[cmptSommets][2]
+                y2 = int(testy2)
+                cmptSommets = 0
+                break
             
             cmptSommets = cmptSommets + 1
 
@@ -204,4 +217,8 @@ def graphique():
     canvas.pack()
     fenetre.mainloop()
 
+graphique()
+
+#Fonction qui permet de recuperer la position du clic de la souris pour chosir une station
+#def selection() :
 
