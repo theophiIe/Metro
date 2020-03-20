@@ -177,9 +177,9 @@ def graphique():
 
     while (cmptSommets < len(G.sommets)) :
         testx = G.sommets[cmptSommets][1]
-        x = int(testx)
+        x = (int(testx)-700)*3.5
         testy = G.sommets[cmptSommets][2]
-        y = int(testy) 
+        y = int(testy) * 1.3
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
     
@@ -192,9 +192,9 @@ def graphique():
         while (cmptSommets < len(G.sommets)) :
             if sommet1 == G.sommets[cmptSommets][0] :
                 testx1 = G.sommets[cmptSommets][1]
-                x1 = int(testx1)
+                x1 = (int(testx1)-700)*3.5
                 testy1 = G.sommets[cmptSommets][2]
-                y1 = int(testy1)
+                y1 = int(testy1) * 1.3
                 cmptSommets = 0
                 break
 
@@ -203,9 +203,9 @@ def graphique():
         while (cmptSommets < len(G.sommets)) :
             if sommet2 == G.sommets[cmptSommets][0] :
                 testx2 = G.sommets[cmptSommets][1]
-                x2 = int(testx2)
+                x2 = (int(testx2)-700)*3.5
                 testy2 = G.sommets[cmptSommets][2]
-                y2 = int(testy2)
+                y2 = int(testy2) * 1.3
                 cmptSommets = 0
                 break
             
