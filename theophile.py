@@ -218,20 +218,8 @@ def graphique():
 
     #init de la toile en 1000 par 1000
     canvas = Canvas(fenetre, width=1000, height=1000, background='white')
-    
-    cmptSommets = 0
 
-    #init du rayon des cercles
     r = 1
-
-    while (cmptSommets < len(G.sommets)) :
-        testx = G.sommets[cmptSommets][1]
-        x = chgX(testx)
-        testy = G.sommets[cmptSommets][2]
-        y = chgY(testy)
-        canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
-        cmptSommets = cmptSommets + 1
-    
     cmptSommets = 0
     cmptAretes = 0
 
@@ -263,6 +251,17 @@ def graphique():
 
         canvas.create_line(x1, y1, x2, y2, fill=couleur)
         cmptAretes = cmptAretes + 1
+
+        #init du rayon des cercles
+    
+    cmptSommets = 0
+    while (cmptSommets < len(G.sommets)) :
+        testx = G.sommets[cmptSommets][1]
+        x = chgX(testx)
+        testy = G.sommets[cmptSommets][2]
+        y = chgY(testy)
+        canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
+        cmptSommets = cmptSommets + 1
 
     canvas.pack()
     fenetre.mainloop()
