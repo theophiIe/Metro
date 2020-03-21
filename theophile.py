@@ -129,7 +129,7 @@ def recherche(position):
 
     position = position.replace(" ","_")
     while (cmpt < len(G.sommets)) :
-        if (position == (G.sommets[cmpt][3])):
+        if (position == (G.sommets[cmpt][4])):
             print ("Le sommet {0} exite".format(position))
             return True
         cmpt = cmpt+1
@@ -166,6 +166,49 @@ def chgX(x):
 
 def chgY(y):
     return int(y) * 1.3
+
+def chgCoul(num_coul):
+    if num_coul == "01" :
+        return "#FFCD00"
+
+    elif num_coul == "02" :
+        return "#003CA6"
+
+    elif num_coul == "03" :
+        return "#837902"
+
+    elif num_coul == "04" :
+        return "#CF009E"
+
+    elif num_coul == "05" :
+        return "#FF7E2E"
+
+    elif num_coul == "06" and num_coul == "7b" :
+        return "#6ECA97"
+
+    elif num_coul == "07" :
+        return "#FA9ABA"
+
+    elif num_coul == "08" :
+        return "#E19BDF"
+
+    elif num_coul == "09" :
+        return "#B6BD00"
+
+    elif num_coul == "10" :
+        return "#C9910D"
+
+    elif num_coul == "11" :
+        return "#704B1C"
+
+    elif num_coul == "12" :
+        return "#007852"
+
+    elif num_coul == "13" and num_coul == "3b" :
+        return "#6EC4E8"
+
+    elif num_coul == "14" :
+        return "#62259D"
 
 #Creation de la fonction graphique (Faire une classe graphique?)
 #Focntion trop longue la découper?
@@ -212,12 +255,13 @@ def graphique():
                 x2 = chgX(testx2)
                 testy2 = G.sommets[cmptSommets][2]
                 y2 = chgY(testy2)
+                couleur = chgCoul(G.sommets[cmptSommets][3])
                 cmptSommets = 0
                 break
             
             cmptSommets = cmptSommets + 1
 
-        canvas.create_line(x1, y1, x2, y2)
+        canvas.create_line(x1, y1, x2, y2, fill=couleur)
         cmptAretes = cmptAretes + 1
 
     canvas.pack()
