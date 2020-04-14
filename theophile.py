@@ -162,10 +162,16 @@ def recherche(position):
 #Création du graphique 
 
 def chgX(x):
-    return (int(x)-700)*3.5
+    return (int(x)-750)*3.5
+
+def recupX(x):
+    return int(int(x)/3.5 + 750)
 
 def chgY(y):
-    return int(y) * 1.3
+    return int(y) * 1.2
+
+def recupY(y):
+    return int(int(y) / 1.2)
 
 def chgCoul(num_coul):
     if num_coul == "01" :
@@ -211,13 +217,18 @@ def chgCoul(num_coul):
         return "#62259D"
 
 #Creation de la fonction graphique (Faire une classe graphique?)
-#Focntion trop longue la découper?
+def clic(event):
+    xb= str(recupX(event.x))
+    yb= str(recupY(event.y))
+    print ("x = {0}\t y = {1}".format(xb,yb))
+
+#Fonction trop longue la découper?
 def graphique():
     #init de la fenetre 
     fenetre = Tk()
 
     #init de la toile en 1000 par 1000
-    canvas = Canvas(fenetre, width=1000, height=1000, background='white')
+    canvas = Canvas(fenetre, width=800, height=600, background='white')
 
     r = 1
     cmptSommets = 0
@@ -262,11 +273,17 @@ def graphique():
         y = chgY(testy)
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
+    
+    canvas.bind("<Button-1> ", clic)
+    
 
     canvas.pack()
     fenetre.mainloop()
 
+
 graphique()
+
+
 
 #Fonction qui permet de recuperer la position du clic de la souris pour chosir une station
 #def selection() :
