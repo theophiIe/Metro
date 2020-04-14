@@ -221,6 +221,15 @@ def clic(event):
     xb= str(recupX(event.x))
     yb= str(recupY(event.y))
     print ("x = {0}\t y = {1}".format(xb,yb))
+    rechercheStation(xb,yb)
+
+def rechercheStation(x,y):
+    cmpt = 0
+    while (cmpt < len(G.sommets)) :
+        if (int(x) <= int((G.sommets[cmpt][1]))+1 and int(x) >= int((G.sommets[cmpt][1]))-1 and int(y) <= int((G.sommets[cmpt][2]))+1 and int(y) >= int((G.sommets[cmpt][2]))-1):
+            print ("Vous avez selectionne la station : {0}".format(G.sommets[cmpt][4]))
+            break
+        cmpt = cmpt+1
 
 #Fonction trop longue la découper?
 def graphique():
