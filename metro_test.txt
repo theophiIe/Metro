@@ -1,12 +1,12 @@
-V un
-V deux
-V trois
-V quatre
-V cinq
-V six
-V sept
-V huit
-V neuf
+V 1 un
+V 2 deux
+V 3 trois
+V 4 quatre
+V 5 cinq
+V 6 six
+V 7 sept
+V 8 huit
+V 9 neuf
 E 1 2 50
 E 1 5 20
 E 1 9 50
@@ -14,10 +14,10 @@ E 2 5 60
 E 5 9 35
 E 2 3 60
 E 5 3 100
-E 9 8 30
+E 9 8 80
 E 3 7 90
 E 3 6 30
-E 7 6 30
+E 7 6 65
 E 4 6 75
 E 3 4 45
 E 8 7 30
