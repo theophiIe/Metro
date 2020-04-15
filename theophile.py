@@ -80,20 +80,15 @@ class Graphe:
         return voisins
 		
     def from_name_to_id(self, sommet):
-		
-        fichier = open(self.fichier,"r")
-        identifiant = -1				#Si 'identifiant' garde la valeur '-1', une erreur s'est produite
-        ligne = fichier.readline()
-        while(ligne != ""):				#Signifie la fin du fichier
-            ligne = ligne.replace("\n","")
-            ligne = ligne.split(" ")
-            if(ligne[0] == "V" and ligne[2] == sommet):
-                identifiant = int(ligne[1])
+        cmpt = 0
+        while (cmpt < len(self.sommets)) :
+            if(sommet == self.sommets[cmpt][4]):
+                identifiant = self.sommets[cmpt][0]
                 break
-            ligne = fichier.readline()
-        fichier.close()
+            cmpt = cmpt+1
+
         return identifiant
-		
+        		
     def distance(self, en_cours, voisin):
 		
         distance = -1
