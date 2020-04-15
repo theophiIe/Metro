@@ -1,6 +1,28 @@
 # coding: utf-8
 from tkinter import * 
 
+def min_dist(a_traiter, dist):
+ 
+	tmp = [float("inf")] * len(dist)
+	for i in a_traiter:
+		tmp[i] = dist[i]
+	minimum = min(tmp)
+	return tmp.index(minimum)
+	
+def creer_chemin(predecesseur, depart, arrive):
+	
+	chemin = []
+	chemin.append(arrive)
+	sommet = predecesseur[arrive]
+	tmp = 0
+	while(sommet != depart):
+		chemin.append(sommet)
+		tmp = predecesseur[sommet]
+		sommet = tmp
+	chemin.append(depart)
+	
+	return chemin[::-1] 	#On renvoie la liste inversée
+
 class Graphe:
 
     sommets = []
@@ -13,39 +35,7 @@ class Graphe:
         self.aretes = []
         self.fichier = fichier
 
-    # def init_sommets(self):
-    #     file = open(self.fichier,"r")
-
-    #     for chaine in file :
-    #         if chaine[0:1] == "V" :
-    #             chaine = chaine.replace("\n","")
-    #             chaine = chaine.replace("V ","")
-            
-    #             #On sépare la chaine grâce aux espaces
-    #             infoSommet = chaine.split(" ")
-    #             #On ajoute [numSommet, numLigne, nom] à la liste des sommets
-    #             (self.sommets).append(infoSommet)
-    #     file.close()
-
-    # def init_aretes(self):
-    #     file = open(self.fichier,"r")
-
-    #     for chaine in file :
-    #         if chaine[0:1] == "E" :
-    #             chaine = chaine.replace("\n","")
-    #             chaine = chaine.replace("E ","")
-            
-    #             #On sépare la chaine grâce aux espaces
-    #             arete = chaine.split(" ")
-    #             #On ajoute [s1, s2, poid] à la liste des aretes
-    #             (self.aretes).append(arete)
-    #     file.close()
-
-    #fusion des deux fonctions du dessus pour eviter de lire plusieur fois le fichiers car lourd en execution
-    #Possible de fusionner les deux if car beaucoup d'action en commun
-    #Probleme le nom des stations de metrons ecris en plus d'un mot sont decoupe dans la liste modifications potentielle du metro.txt en mettatn un _ par exemple 
     def init_graph(self):
-        
         file = open(self.fichier,"r")
 
         for chaine in file :
@@ -73,106 +63,111 @@ class Graphe:
 
         file.close()
 
-    def dijkstra(self, start, end):
-        print ("Début de l'algo de Dikjstra")
+    def def_voisins(self, sommet):
+        fichier = open(self.fichier,"r")
+        voisins = []
+        ligne = fichier.readline()
+        while(ligne != ""):			#Fin du fichier
+            ligne = ligne.replace("\n","")
+            ligne = ligne.split(" ")
+            if( (ligne[0] == "E") and (int(ligne[1]) == sommet) ):
+                voisins.append(ligne[2])
+            elif( (ligne[0] == "E") and (int(ligne[2]) == sommet) ):
+                voisins.append(ligne[1])
+            ligne = fichier.readline()
+		
+        fichier.close()
+        return voisins
+		
+    def from_name_to_id(self, sommet):
+		
+        fichier = open(self.fichier,"r")
+        identifiant = -1				#Si 'identifiant' garde la valeur '-1', une erreur s'est produite
+        ligne = fichier.readline()
+        while(ligne != ""):				#Signifie la fin du fichier
+            ligne = ligne.replace("\n","")
+            ligne = ligne.split(" ")
+            if(ligne[0] == "V" and ligne[2] == sommet):
+                identifiant = int(ligne[1])
+                break
+            ligne = fichier.readline()
+        fichier.close()
+        return identifiant
+		
+    def distance(self, en_cours, voisin):
+		
+        distance = -1
+        fichier = open(self.fichier,"r")
+        ligne = fichier.readline()
+        while(ligne != ""):
+            ligne = ligne.replace("\n","")
+            ligne = ligne.split(" ")
+            if(ligne[0] == "E" and int(ligne[1]) == en_cours and int(ligne[2]) == voisin):
+                distance = int(ligne[3])
+                break
+            elif(ligne[0] == "E" and int(ligne[1]) == voisin and int(ligne[2]) == en_cours):
+                distance = int(ligne[3])
+                break
+            ligne = fichier.readline()
+        fichier.close()
+        return distance
+
+	#Algo de dijsktra pour trouver le plus court chemin
+    def dijsktra(self, sommet1, sommet2):
+		
+        depart = self.from_name_to_id(sommet1)
+        arrive = self.from_name_to_id(sommet2)
+		
+		### PHASE D'INITIALISATION ###
+		
+        predecesseur = [None] * (len(self.sommets) + 1)		#Car le sommet 'zéro' n'éxiste pas
+        a_traiter = []		
+        dist = [None]										#dist[0] = None car il n'y a pas de sommet 'zéro'
+        for s in range(1,len(self.sommets)+1):				#s prendra les valeurs dans l'intervalle [1,len(self.sommets)]
+            dist.append(float("inf"))
+            a_traiter.append(s)
+        dist[depart] = 0
+		
+		### PHASE DE RECHERCHE ###
+		
+        en_cours = -1
+        while(a_traiter != []):
+			
+            en_cours = min_dist(a_traiter, dist)
+            print ("en_cours = "+str(en_cours))
+            a_traiter.remove(en_cours)
+            voisins = self.def_voisins(en_cours)
+			
+            for v in voisins:
+				
+                v = int(v)
+                nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
+                if(nouvelle_dist < dist[v]):
+                    dist[v] = nouvelle_dist
+                    predecesseur[v] = en_cours
+		
+        return creer_chemin(predecesseur, depart, arrive)
+
         
-
-G = Graphe("metro.txt")
-G.init_graph()
-print (G.aretes)
-print ("\n\n\n")
-print (G.sommets)
-
-#Exemple pour lire un poid :
-print ("")
-print ("Voici les 2 premier poids : ")
-print (G.aretes[0][2])
-print (G.aretes[1][2])
-#etc,etc...
-
-
-
-#Ecrire un focntion recherche pour éviter d'écrire deux fois la meme chose 
-#Point de depart
-# cmpt = 0
-# startExit = False
-
-# while startExit != True :
-#     start = input("Station de depart : ")
-#     start = start.replace(" ","_")
-#     while (cmpt < len(G.sommets)) :
-#         if (start == (G.sommets[cmpt][1])):
-#             print ("Le sommet {0} exite".format(start))
-#             startExit = True
-#             break
-#         cmpt = cmpt+1
-
-# #Point d'arrivee
-# cmpt = 0
-# endExit = False
-
-# while endExit != True :
-#     end = input("Station d'arrivee : ")
-#     end = end.replace(" ","_")
-#     while (cmpt <= len(G.sommets)) :
-#         if (end == (G.sommets[cmpt][1])):
-#             print ("Le sommet {0} exite".format(end))
-#             endExit = True
-#             break
-#         cmpt = cmpt+1
-
-
-#Test de la fonction recherche
-
-def recherche(position):
-    cmpt = 0
-
-    position = position.replace(" ","_")
-    while (cmpt < len(G.sommets)) :
-        if (position == (G.sommets[cmpt][4])):
-            print ("Le sommet {0} exite".format(position))
-            return True
-        cmpt = cmpt+1
-
-    return False
-
-#Station de départ
-# while 1 :
-#     start = input("Station de depart : ")
-#     resultat = recherche(start)
-#     if resultat == True:
-#         break
-#     else:
-#         print("La station n'existe pas réessayé")
-
-# #Station d'arrivée'
-# while 1 :
-#     end = input("Station d'arrivee : ")
-#     resultat = recherche(end)
-#     if (resultat == True) and (start != end) :
-#         break
-    
-#     elif end == start:
-#         print("La station d'arrivé doit être différente de la stion de départ")
-
-#     else:
-#         print("La station n'existe pas réessayé")
-
-
 #Création du graphique 
 
+#Coordonées x pour l'affichage sur le graphe
 def chgX(x):
     return (int(x)-750)*3.5
 
+#Récupération des coordonnées x après un clic sur le graphe
 def recupX(x):
     return int(int(x)/3.5 + 750)
 
+#Coordonées y pour l'affichage sur le graphe
 def chgY(y):
     return int(y) * 1.2
 
+#Récupération des coordonnées y après un clic sur le graphe
 def recupY(y):
     return int(int(y) / 1.2)
 
+#Couleur des arêtes du graphe
 def chgCoul(num_coul):
     if num_coul == "01" :
         return "#FFCD00"
@@ -223,6 +218,7 @@ def clic(event):
     print ("x = {0}\t y = {1}".format(xb,yb))
     rechercheStation(xb,yb)
 
+#Recherche la station selectionné sur la graphe par rapport au coordonnées 
 def rechercheStation(x,y):
     cmpt = 0
     while (cmpt < len(G.sommets)) :
@@ -285,15 +281,21 @@ def graphique():
     
     canvas.bind("<Button-1> ", clic)
     
-
     canvas.pack()
     fenetre.mainloop()
 
 
+G = Graphe("metro.txt")
+G.init_graph()
+print (G.aretes)
+print ("\n\n\n")
+print (G.sommets)
+
+#Exemple pour lire un poid :
+print ("")
+print ("Voici les 2 premier poids : ")
+print (G.aretes[0][2])
+print (G.aretes[1][2])
+#etc,etc...
 graphique()
-
-
-
-#Fonction qui permet de recuperer la position du clic de la souris pour chosir une station
-#def selection() :
 
