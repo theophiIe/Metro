@@ -2,7 +2,6 @@
 from tkinter import * 
 
 def min_dist(a_traiter, dist):
- 
 	tmp = [float("inf")] * len(dist)
 	for i in a_traiter:
 		tmp[i] = dist[i]
@@ -10,7 +9,6 @@ def min_dist(a_traiter, dist):
 	return tmp.index(minimum)
 	
 def creer_chemin(predecesseur, depart, arrive):
-	
 	chemin = []
 	chemin.append(arrive)
 	sommet = predecesseur[arrive]
@@ -69,10 +67,10 @@ class Graphe:
 
         while(cmpt < len(self.aretes)):
             if(sommet == self.aretes[cmpt][0]):
-                voisins.append(self.aretes[cmpt][0])
+                voisins.append(int(self.aretes[cmpt][1]))
 
             elif(sommet == self.aretes[cmpt][1]):
-                voisins.append(self.aretes[cmpt][1])
+                voisins.append(int(self.aretes[cmpt][0]))
             cmpt = cmpt+1
 
         return voisins
@@ -81,7 +79,7 @@ class Graphe:
         cmpt = 0
         while (cmpt < len(self.sommets)) :
             if(sommet == self.sommets[cmpt][4]):
-                identifiant = self.sommets[cmpt][0]
+                identifiant = int(self.sommets[cmpt][0])
                 break
             cmpt = cmpt+1
 
@@ -92,12 +90,12 @@ class Graphe:
         cmpt = 0
 
         while(cmpt < len(self.aretes)):
-            if(en_cours == int(self.aretes[cmpt][1]) and voisin == int(self.aretes[cmpt][2])):
-                distance = int(self.aretes[cmpt][3])
+            if(en_cours == int(self.aretes[cmpt][0]) and voisin == int(self.aretes[cmpt][1])):
+                distance = int(self.aretes[cmpt][2])
                 break
 
-            elif(voisin == int(self.aretes[cmpt][1]) and en_cours == int(self.aretes[cmpt][2])):
-                distance = int(self.aretes[cmpt][3])
+            elif(voisin == int(self.aretes[cmpt][0]) and en_cours == int(self.aretes[cmpt][1])):
+                distance = int(self.aretes[cmpt][2])
                 break
 
             cmpt = cmpt+1
@@ -203,12 +201,15 @@ def chgCoul(num_coul):
     elif num_coul == "14" :
         return "#62259D"
 
+
 #Creation de la fonction graphique (Faire une classe graphique?)
 def clic(event):
     xb= str(recupX(event.x))
     yb= str(recupY(event.y))
     print ("x = {0}\t y = {1}".format(xb,yb))
+    
     rechercheStation(xb,yb)
+    
 
 #Recherche la station selectionné sur la graphe par rapport au coordonnées 
 def rechercheStation(x,y):
@@ -289,5 +290,9 @@ print ("Voici les 2 premier poids : ")
 print (G.aretes[0][2])
 print (G.aretes[1][2])
 #etc,etc...
+start = input("Station de depart : ")
+end = input("Station d'arrivee : ")
+print(G.dijsktra(start,end))
+
 graphique()
 
