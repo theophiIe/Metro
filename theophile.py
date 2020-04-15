@@ -88,22 +88,20 @@ class Graphe:
         return identifiant
         		
     def distance(self, en_cours, voisin):
-		
-        #Fonction Vincent
-        distance = -1
-        fichier = open(self.fichier,"r")
-        ligne = fichier.readline()
-        while(ligne != ""):
-            ligne = ligne.replace("\n","")
-            ligne = ligne.split(" ")
-            if(ligne[0] == "E" and int(ligne[1]) == en_cours and int(ligne[2]) == voisin):
-                distance = int(ligne[3])
+        distance = 0
+        cmpt = 0
+
+        while(cmpt < len(self.aretes)):
+            if(en_cours == int(self.aretes[cmpt][1]) and voisin == int(self.aretes[cmpt][2])):
+                distance = int(self.aretes[cmpt][3])
                 break
-            elif(ligne[0] == "E" and int(ligne[1]) == voisin and int(ligne[2]) == en_cours):
-                distance = int(ligne[3])
+
+            elif(voisin == int(self.aretes[cmpt][1]) and en_cours == int(self.aretes[cmpt][2])):
+                distance = int(self.aretes[cmpt][3])
                 break
-            ligne = fichier.readline()
-        fichier.close()
+
+            cmpt = cmpt+1
+        
         return distance
 
 	#Algo de dijsktra pour trouver le plus court chemin
