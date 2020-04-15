@@ -64,19 +64,17 @@ class Graphe:
         file.close()
 
     def def_voisins(self, sommet):
-        fichier = open(self.fichier,"r")
         voisins = []
-        ligne = fichier.readline()
-        while(ligne != ""):			#Fin du fichier
-            ligne = ligne.replace("\n","")
-            ligne = ligne.split(" ")
-            if( (ligne[0] == "E") and (int(ligne[1]) == sommet) ):
-                voisins.append(ligne[2])
-            elif( (ligne[0] == "E") and (int(ligne[2]) == sommet) ):
-                voisins.append(ligne[1])
-            ligne = fichier.readline()
-		
-        fichier.close()
+        cmpt = 0
+
+        while(cmpt < len(self.aretes)):
+            if(sommet == self.aretes[cmpt][0]):
+                voisins.append(self.aretes[cmpt][0])
+
+            elif(sommet == self.aretes[cmpt][1]):
+                voisins.append(self.aretes[cmpt][1])
+            cmpt = cmpt+1
+
         return voisins
 		
     def from_name_to_id(self, sommet):
@@ -91,6 +89,7 @@ class Graphe:
         		
     def distance(self, en_cours, voisin):
 		
+        #Fonction Vincent
         distance = -1
         fichier = open(self.fichier,"r")
         ligne = fichier.readline()
