@@ -1,5 +1,6 @@
 # coding: utf-8
 from tkinter import * 
+import sys
 
 def min_dist(a_traiter, dist):
 	tmp = [float("inf")] * len(dist)
@@ -203,22 +204,57 @@ def chgCoul(num_coul):
 
 
 #Creation de la fonction graphique (Faire une classe graphique?)
+
+#Evenement apres un clic gauche
 def clic(event):
     xb= str(recupX(event.x))
     yb= str(recupY(event.y))
     print ("x = {0}\t y = {1}".format(xb,yb))
     
-    rechercheStation(xb,yb)
+    global nbreClic
+    global stationDebut
+    global stationFin
     
+    if(nbreClic == 0):
+        stationDebut = rechercheStation(xb,yb)
+        if(stationDebut != ""):
+            print("La station de depart est : " + stationDebut)
+            increGlobal()
+
+    elif(nbreClic == 1):
+        stationFin = rechercheStation(xb,yb)
+        if(stationFin != ""):
+            print("La station d'arrivée est : " + stationFin)
+            increGlobal()
+
+#Evenement apres une touche pressé
+def clavier(event):
+    global nbreClic
+
+    touche = event.keysym
+    print(touche)
+    if(touche == "r"):
+        nbreClic = 0
+    elif(touche == "q"):
+        sys.exit(0)
+    
+#Incrementation de la varible global nbreClic
+def increGlobal():
+    global nbreClic
+    nbreClic = nbreClic +1
 
 #Recherche la station selectionné sur la graphe par rapport au coordonnées 
 def rechercheStation(x,y):
     cmpt = 0
     while (cmpt < len(G.sommets)) :
         if (int(x) <= int((G.sommets[cmpt][1]))+1 and int(x) >= int((G.sommets[cmpt][1]))-1 and int(y) <= int((G.sommets[cmpt][2]))+1 and int(y) >= int((G.sommets[cmpt][2]))-1):
-            print ("Vous avez selectionne la station : {0}".format(G.sommets[cmpt][4]))
-            break
+            return G.sommets[cmpt][4]
+            # print ("Vous avez selectionne la station : {0}".format(G.sommets[cmpt][4]))
+            # break
         cmpt = cmpt+1
+
+    null = ""
+    return null
 
 #Fonction trop longue la découper?
 def graphique():
@@ -272,7 +308,13 @@ def graphique():
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
     
+
     canvas.bind("<Button-1> ", clic)
+    
+    canvas.focus_set()
+    canvas.bind("<Key>", clavier)
+    
+    
     
     canvas.pack()
     fenetre.mainloop()
@@ -290,9 +332,15 @@ print ("Voici les 2 premier poids : ")
 print (G.aretes[0][2])
 print (G.aretes[1][2])
 #etc,etc...
-start = input("Station de depart : ")
-end = input("Station d'arrivee : ")
-print(G.dijsktra(start,end))
+# start = input("Station de depart : ")
+# end = input("Station d'arrivee : ")
+
+#print(G.dijsktra(start,end))
+
+#init des variables globales
+stationDebut = ""
+stationFin = ""
+nbreClic = 0
 
 graphique()
 
