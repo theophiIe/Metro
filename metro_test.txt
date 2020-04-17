@@ -1,3 +1,4 @@
+V 0 zero
 V 1 un
 V 2 deux
 V 3 trois
@@ -7,6 +8,7 @@ V 6 six
 V 7 sept
 V 8 huit
 V 9 neuf
+E 0 1 15
 E 1 2 50
 E 1 5 20
 E 1 9 50

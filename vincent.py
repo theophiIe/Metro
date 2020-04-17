@@ -20,7 +20,7 @@ def creer_chemin(predecesseur, depart, arrive):
 		sommet = tmp
 	chemin.append(depart)
 	
-	return chemin[::-1] 	#On renvoie la liste inversée
+	return chemin[::-1]		#retourne la liste 'chemin' inversée
 	
 class Graphe:
 
@@ -153,11 +153,10 @@ class Graphe:
 		arrive = self.from_name_to_id(sommet2)
 		
 		### PHASE D'INITIALISATION ###
-		
-		predecesseur = [None] * (len(self.sommets) + 1)		#Car le sommet 'zéro' n'éxiste pas
+		predecesseur = [None] * (len(self.sommets))		###
 		a_traiter = []		
-		dist = [None]										#dist[0] = None car il n'y a pas de sommet 'zéro'
-		for s in range(1,len(self.sommets)+1):				#s prendra les valeurs dans l'intervalle [1,len(self.sommets)]
+		dist = []				###
+		for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets	###
 			dist.append(float("inf"))
 			a_traiter.append(s)
 		dist[depart] = 0
