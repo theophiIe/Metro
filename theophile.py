@@ -1,11 +1,12 @@
 # coding: utf-8
-from tkinter import * 
+from tkinter import *
 import sys
 
 def min_dist(a_traiter, dist):
 	tmp = [float("inf")] * len(dist)
 	for i in a_traiter:
 		tmp[i] = dist[i]
+
 	minimum = min(tmp)
 	return tmp.index(minimum)
 	
@@ -18,20 +19,20 @@ def creer_chemin(predecesseur, depart, arrive):
 		chemin.append(sommet)
 		tmp = predecesseur[sommet]
 		sommet = tmp
+
 	chemin.append(depart)
-	
 	return chemin[::-1] 	#On renvoie la liste inversée
 
 class Graphe:
 
     sommets = []
-    aretes = []
+    aretes  = []
     fichier = ""
 
     #'fichier' = fichier contenant les sommets et la pondération
     def __init__(self,fichier):
         self.sommets = []
-        self.aretes = []
+        self.aretes  = []
         self.fichier = fichier
 
     def init_graph(self):
@@ -67,21 +68,24 @@ class Graphe:
         cmpt = 0
 
         while(cmpt < len(self.aretes)):
-            if(sommet == self.aretes[cmpt][0]):
+            if(sommet == int(self.aretes[cmpt][0])):
                 voisins.append(int(self.aretes[cmpt][1]))
 
-            elif(sommet == self.aretes[cmpt][1]):
+            elif(sommet == int(self.aretes[cmpt][1])):
                 voisins.append(int(self.aretes[cmpt][0]))
+
             cmpt = cmpt+1
 
         return voisins
 		
     def from_name_to_id(self, sommet):
         cmpt = 0
+
         while (cmpt < len(self.sommets)) :
             if(sommet == self.sommets[cmpt][4]):
                 identifiant = int(self.sommets[cmpt][0])
                 break
+
             cmpt = cmpt+1
 
         return identifiant
@@ -110,27 +114,24 @@ class Graphe:
         arrive = self.from_name_to_id(sommet2)
 		
 		### PHASE D'INITIALISATION ###
-		
-        predecesseur = [None] * (len(self.sommets) + 1)		#Car le sommet 'zéro' n'éxiste pas
+        predecesseur = [None] * (len(self.sommets))
         a_traiter = []		
-        dist = [None]										#dist[0] = None car il n'y a pas de sommet 'zéro'
-        for s in range(1,len(self.sommets)+1):				#s prendra les valeurs dans l'intervalle [1,len(self.sommets)]
+        dist = []
+        for s in range(len(self.sommets)):
             dist.append(float("inf"))
             a_traiter.append(s)
+
         dist[depart] = 0
 		
 		### PHASE DE RECHERCHE ###
-		
         en_cours = -1
         while(a_traiter != []):
-			
             en_cours = min_dist(a_traiter, dist)
-            print ("en_cours = "+str(en_cours))
+            print ("en_cours = {0}".format(en_cours))
             a_traiter.remove(en_cours)
             voisins = self.def_voisins(en_cours)
 			
             for v in voisins:
-				
                 v = int(v)
                 nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
                 if(nouvelle_dist < dist[v]):
@@ -138,8 +139,7 @@ class Graphe:
                     predecesseur[v] = en_cours
 		
         return creer_chemin(predecesseur, depart, arrive)
-
-        
+		
 #Création du graphique 
 
 #Coordonées x pour l'affichage sur le graphe
@@ -243,10 +243,13 @@ def clavier(event):
         canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
         stationFin = ""
         canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
-        
+
     elif(touche == "q" or touche == "Escape"):
         sys.exit(0)
-    
+
+    elif(touche == "t"):
+        print(G.dijsktra(stationDebut,stationFin))
+
 #Incrementation de la varible global nbreClic
 def increGlobal():
     global nbreClic
@@ -308,6 +311,7 @@ def graphique():
         #init du rayon des cercles
     
     cmptSommets = 0
+    
     while (cmptSommets < len(G.sommets)) :
         testx = G.sommets[cmptSommets][1]
         x = chgX(testx)
@@ -316,13 +320,10 @@ def graphique():
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
 
-    titre         = canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
+    canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
 
-    
     # global stationDebut
     # global stationFin
-
-
     
     # station1 = Label(fenetre, text="Station d'épart : ", font="Arial 20 bold")
     # station1.grid(row=1, column=0)
@@ -346,25 +347,17 @@ print (G.aretes)
 print ("\n\n\n")
 print (G.sommets)
 
-#Exemple pour lire un poid :
-print ("")
-print ("Voici les 2 premier poids : ")
-print (G.aretes[0][2])
-print (G.aretes[1][2])
-#etc,etc...
-# start = input("Station de depart : ")
-# end = input("Station d'arrivee : ")
-
-#print(G.dijsktra(start,end))
-
 #init des variables globales
+
 fenetre = Tk()
 canvas = Canvas(fenetre, width=800, height=600, background='white')
+
 stationDebut = ""
 stationFin = ""
+nbreClic = 0
+
 stationStrart = canvas.create_text(25, 80, anchor = W,text="Station de départ : ", font="Arial 18 italic", fill="black")
 stationEnd    = canvas.create_text(25, 120, anchor = W, text="Station d'arrivée : ", font="Arial 18 italic", fill="black")
-nbreClic = 0
 
 graphique()
 
