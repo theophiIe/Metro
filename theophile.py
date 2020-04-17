@@ -214,16 +214,18 @@ def clic(event):
     global nbreClic
     global stationDebut
     global stationFin
-    
+
     if(nbreClic == 0):
         stationDebut = rechercheStation(xb,yb)
         if(stationDebut != ""):
             print("La station de depart est : " + stationDebut)
+            modifStart = canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
             increGlobal()
 
     elif(nbreClic == 1):
         stationFin = rechercheStation(xb,yb)
         if(stationFin != ""):
+            modifEnd = canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
             print("La station d'arrivée est : " + stationFin)
             increGlobal()
 
@@ -259,10 +261,9 @@ def rechercheStation(x,y):
 #Fonction trop longue la découper?
 def graphique():
     #init de la fenetre 
-    fenetre = Tk()
-
-    #init de la toile en 1000 par 1000
-    canvas = Canvas(fenetre, width=800, height=600, background='white')
+    
+    #init de la toile en 800 par 1000
+    global canvas
 
     r = 1
     cmptSommets = 0
@@ -307,14 +308,26 @@ def graphique():
         y = chgY(testy)
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
-    
 
+    titre         = canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
+
+    
+    # global stationDebut
+    # global stationFin
+
+
+    
+    # station1 = Label(fenetre, text="Station d'épart : ", font="Arial 20 bold")
+    # station1.grid(row=1, column=0)
+    # station2 = Label(fenetre, text="Station d'arrivée : ", font="Arial 20 bold")
+    # station2.grid(row=2, column=0)
+
+    #Gestion event
+    
     canvas.bind("<Button-1> ", clic)
-    
     canvas.focus_set()
+
     canvas.bind("<Key>", clavier)
-    
-    
     
     canvas.pack()
     fenetre.mainloop()
@@ -338,8 +351,12 @@ print (G.aretes[1][2])
 #print(G.dijsktra(start,end))
 
 #init des variables globales
+fenetre = Tk()
+canvas = Canvas(fenetre, width=800, height=600, background='white')
 stationDebut = ""
 stationFin = ""
+stationStrart = canvas.create_text(25, 80, anchor = W,text="Station de départ : ", font="Arial 18 italic", fill="black")
+stationEnd    = canvas.create_text(25, 120, anchor = W, text="Station d'arrivée : ", font="Arial 18 italic", fill="black")
 nbreClic = 0
 
 graphique()
