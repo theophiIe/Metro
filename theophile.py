@@ -219,25 +219,32 @@ def clic(event):
         stationDebut = rechercheStation(xb,yb)
         if(stationDebut != ""):
             print("La station de depart est : " + stationDebut)
-            modifStart = canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
+            canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
             increGlobal()
 
     elif(nbreClic == 1):
         stationFin = rechercheStation(xb,yb)
-        if(stationFin != ""):
-            modifEnd = canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
+        if(stationFin != "" and stationFin != stationDebut):
+            canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
             print("La station d'arrivée est : " + stationFin)
             increGlobal()
 
 #Evenement apres une touche pressé
 def clavier(event):
     global nbreClic
+    global stationDebut
+    global stationFin
 
     touche = event.keysym
     print(touche)
     if(touche == "r"):
         nbreClic = 0
-    elif(touche == "q"):
+        stationDebut = ""
+        canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
+        stationFin = ""
+        canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
+        
+    elif(touche == "q" or touche == "Escape"):
         sys.exit(0)
     
 #Incrementation de la varible global nbreClic
