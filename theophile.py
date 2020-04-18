@@ -188,6 +188,7 @@ def FindTerminus(listeTrajet):
         if(numLigne1 != numLigne2):
             idStation = listeTrajet[cmptTraj]
             idStPrecd = listeTrajet[cmptTraj-1]
+            
             while(int(terminus) != 1):
                 cmptA = 0
                 while(cmptA<len(G.aretes)):
@@ -211,10 +212,12 @@ def FindTerminus(listeTrajet):
                 nameStation = fromIdToName(idStation)
             
             #print ("Le terminus de la staion n°{0} = {1}".format(idStation,nameStation))
+            nameStation = fromIdToName(idStation)
             listeTerminus.append(nameStation)
 
         cmptTraj = cmptTraj+1
-    ### XXXXXXXXXXX Recherche pour ligne droite et derniere sorrespondance XXXXXXXXXXX ####
+
+    ### XXXXXXXXXXX Recherche pour ligne droite et derniere correspondance XXXXXXXXXXX ####
 
     idStation = listeTrajet[len(listeTrajet)-1]
     idStPrecd = listeTrajet[len(listeTrajet)-2]
@@ -243,7 +246,7 @@ def FindTerminus(listeTrajet):
     listeTerminus.append(nameStation)
 
     #Permet d'enlever les doublons
-    listeTerminus = list(set(listeTerminus))
+    #listeTerminus = list(set(listeTerminus))
 
     print(listeTerminus)
 
@@ -502,7 +505,6 @@ stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ :
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
 tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
 cheminMetro   = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
-
 
 graphique()
 

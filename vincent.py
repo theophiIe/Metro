@@ -1,4 +1,5 @@
 # coding: utf-8
+import time
 
 def min_dist(a_traiter, dist):
  
@@ -6,10 +7,16 @@ def min_dist(a_traiter, dist):
 	for i in a_traiter:
 		tmp[i] = dist[i]
 	minimum = min(tmp)
+	#~ print "dist = "+str(dist)
+	#~ print "tmp = "+str(tmp)
+	#~ print "en_cours = "+str(dist.index(minimum))
+	#~ print "minimum = "+str(minimum)
+	#~ print ""
 	return tmp.index(minimum)
 	
 def creer_chemin(predecesseur, depart, arrive):
 	
+	#print predecesseur
 	chemin = []
 	chemin.append(arrive)
 	sommet = predecesseur[arrive]
@@ -104,6 +111,7 @@ class Graphe:
 		while(ligne != ""):			#Fin du fichier
 			ligne = ligne.replace("\n","")
 			ligne = ligne.split(" ")
+			#print "ligne[0] = " + ligne[0] + " ligne[1] = " + ligne[1] + " ligne[2] = " + ligne[2]
 			if( (ligne[0] == "E") and (int(ligne[1]) == sommet) ):
 				voisins.append(ligne[2])
 			elif( (ligne[0] == "E") and (int(ligne[2]) == sommet) ):
@@ -113,19 +121,21 @@ class Graphe:
 		fichier.close()
 		return voisins
 		
-	def from_name_to_id(self, sommet):
 		
-		fichier = open(self.fichier,"r")
-		identifiant = -1				#Si 'identifiant' garde la valeur '-1', une erreur s'est produite
-		ligne = fichier.readline()
-		while(ligne != ""):				#Signifie la fin du fichier
-			ligne = ligne.replace("\n","")
-			ligne = ligne.split(" ")
-			if(ligne[0] == "V" and ligne[2] == sommet):
-				identifiant = int(ligne[1])
+	def from_name_to_id(self, sommet):
+		cmpt = 0
+		identifiant = -1
+		#~ print sommet
+		sommet = sommet.replace(" ","_")
+		while (cmpt < len(self.sommets)) :
+			if(sommet == self.sommets[cmpt][5]):
+				identifiant = int(self.sommets[cmpt][0])
+				print str(sommet)+"... Check"
 				break
-			ligne = fichier.readline()
-		fichier.close()
+			cmpt = cmpt+1
+		if(identifiant == -1):
+			print "Un problème est survenu dans la fonction 'from_name_to_id'..."
+			exit()
 		return identifiant
 		
 	def distance(self, en_cours, voisin):
@@ -149,14 +159,14 @@ class Graphe:
 		
 	def dijsktra(self, sommet1, sommet2):
 		
-		depart = self.from_name_to_id(sommet1)
-		arrive = self.from_name_to_id(sommet2)
+		depart = self.from_name_to_id(sommet1)	#Correspond au numéro du sommet de départ
+		arrive = self.from_name_to_id(sommet2)	#Correspond au numéro du sommet d'arrivé
 		
 		### PHASE D'INITIALISATION ###
-		predecesseur = [None] * (len(self.sommets))		###
+		predecesseur = [None] * (len(self.sommets))	
 		a_traiter = []		
-		dist = []				###
-		for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets	###
+		dist = []	
+		for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets
 			dist.append(float("inf"))
 			a_traiter.append(s)
 		dist[depart] = 0
@@ -167,7 +177,7 @@ class Graphe:
 		while(a_traiter != []):
 			
 			en_cours = min_dist(a_traiter, dist)
-			print "en_cours = "+str(en_cours)
+			#print "en_cours = "+str(en_cours)
 			a_traiter.remove(en_cours)
 			voisins = self.def_voisins(en_cours)
 			
@@ -175,10 +185,14 @@ class Graphe:
 				
 				v = int(v)
 				nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
+				#print "nouvelle_dist = "+str(nouvelle_dist)
 				if(nouvelle_dist < dist[v]):
 					dist[v] = nouvelle_dist
+					#~ print predecesseur
 					predecesseur[v] = en_cours
 		
+		#~ print dist
+		#~ print predecesseur
 		return creer_chemin(predecesseur, depart, arrive)
 		
 
@@ -186,17 +200,60 @@ class Graphe:
 		cmpt = 0
 		position = position.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
-			if (position == (self.sommets[cmpt][1])):
+			if (position == (self.sommets[cmpt][5])):
 				print ("Le sommet {0} exite".format(position))
 				return True
 			cmpt = cmpt+1
 
 		return False
+		
+	def cherche_num_ligne(self,num_sommet):		#Cherche le numéro de la ligne par rapport au numéro du sommet 
+		cmpt = 0
+		ligne = -1
+		while (cmpt < len(self.sommets)) :
+			if (num_sommet == int(self.sommets[cmpt][0])):	#Je récupère la ligne qui correspond au sommet
+				ligne = self.sommets[cmpt][3]
+			cmpt = cmpt+1
+		
+		if(ligne == -1):
+			print "Problème dansla fonction cherche_num_ligne..."
+			exit()
+		return ligne
+		
+			
+	def itineraire_sans_detail(self,chemin):	#Affiche les correspondances
+		depart = chemin[0]
+		correspondance = [depart]
+		ligne = self.cherche_num_ligne(depart)
+		ligne_bis = -1
+		for i in range(len(chemin)):
+			ligne_bis = self.cherche_num_ligne(chemin[i])
+			if(ligne_bis != ligne):
+				correspondance.append(chemin[i])
+				ligne = ligne_bis
+				
+		return correspondance
+		
+	def def_time(self, chemin):
+		temps = 0
+		for i in range(len(chemin)-1):
+			for cmpt in range(len(self.aretes)):
+				if( chemin[i] == int(self.aretes[cmpt][0]) and chemin[i+1] == int(self.aretes[cmpt][1]) ):
+					temps = temps + int(self.aretes[cmpt][2])
+					break
+				if( chemin[i] == int(self.aretes[cmpt][1]) and chemin[i+1] == int(self.aretes[cmpt][0]) ):
+					temps = temps + int(self.aretes[cmpt][2])
+					break
+		return temps
+		
 
-
-G = Graphe("metro_test.txt")
+G = Graphe("metro.txt")
 G.init_aretes()
 G.init_sommets()
+#~ print G.aretes
+#~ print ""
+#~ print G.sommets
+#~ print ""
 
 #Station de départ
 while 1 :
@@ -214,10 +271,20 @@ while 1 :
 	if (resultat == True) and (start != end) :
 		break
 
-	elif end == start:
-		print("La station d'arrivé doit être différente de la stion de départ")
+	elif (end == start):
+		print("La station d'arrivé doit être différente de la station de départ")
 
 	else:
 		print("La station n'existe pas réessayé")
+		
+		
+chemin = G.dijsktra(start,end)
+print "Liste des sommets par lesquels on passe : "+str(chemin)
+correspondance = G.itineraire_sans_detail(chemin)
+print "Liste des correspondance : "+str(correspondance)
 
-print G.dijsktra(start,end)
+seconds = G.def_time(chemin)
+minutes = seconds // 60
+hours = minutes // 60
+
+print "Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
