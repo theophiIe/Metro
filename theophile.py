@@ -178,27 +178,14 @@ def fromIdToNbrLine(id):
 
 def FindTerminus(listeTrajet):
     cmptTraj = 0
+    listeTerminus = []
 
     while(cmptTraj<len(listeTrajet)-1):
-        cmptS1 = 0
-        while(cmptS1<len(G.sommets)):
-            if(listeTrajet[cmptTraj] == int(G.sommets[cmptS1][0])):
-                #nameStation = G.sommets[cmptS1][5]
-                terminus    = G.sommets[cmptS1][4]
-                numLigne1   = G.sommets[cmptS1][3]
-                break
+        numLigne1 = fromIdToNbrLine(listeTrajet[cmptTraj])
+        terminus  = fromIdToTerminus(listeTrajet[cmptTraj])
+        numLigne2 = fromIdToNbrLine(listeTrajet[cmptTraj+1])
 
-            cmptS1 = cmptS1+1
-        
-        cmptS2 = 0
-        while(cmptS2<len(G.sommets)):
-            if(listeTrajet[cmptTraj+1] == int(G.sommets[cmptS2][0])):
-                numLigne2 = G.sommets[cmptS2][3]       
-                break 
-
-            cmptS2 = cmptS2+1
-
-        if(numLigne1 == numLigne2):
+        if(numLigne1 != numLigne2):
             idStation = listeTrajet[cmptTraj]
             idStPrecd = listeTrajet[cmptTraj-1]
             while(int(terminus) != 1):
@@ -223,9 +210,42 @@ def FindTerminus(listeTrajet):
                 terminus    = fromIdToTerminus(idStation) #creer la fonction
                 nameStation = fromIdToName(idStation)
             
-            print ("Le terminus de la staion n°{0} = {1}".format(idStation,nameStation))
+            #print ("Le terminus de la staion n°{0} = {1}".format(idStation,nameStation))
+            listeTerminus.append(nameStation)
 
         cmptTraj = cmptTraj+1
+    ### XXXXXXXXXXX Recherche pour ligne droite et derniere sorrespondance XXXXXXXXXXX ####
+
+    idStation = listeTrajet[len(listeTrajet)-1]
+    idStPrecd = listeTrajet[len(listeTrajet)-2]
+    while(int(terminus) != 1):
+        cmptA = 0
+        while(cmptA<len(G.aretes)):
+            if(idStation == int(G.aretes[cmptA][0]) and idStPrecd != int(G.aretes[cmptA][1])):
+                numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                if(numLine == numLigne1):
+                    idStPrecd = idStation
+                    idStation = int(G.aretes[cmptA][1])
+                    break
+
+            elif(idStation == int(G.aretes[cmptA][1]) and idStPrecd != int(G.aretes[cmptA][0])):
+                numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                if(numLine == numLigne1):
+                    idStPrecd = idStation
+                    idStation = int(G.aretes[cmptA][0])
+                    break
+
+            cmptA = cmptA+1
+
+        terminus    = fromIdToTerminus(idStation) #creer la fonction
+        nameStation = fromIdToName(idStation)
+
+    listeTerminus.append(nameStation)
+
+    #Permet d'enlever les doublons
+    listeTerminus = list(set(listeTerminus))
+
+    print(listeTerminus)
 
 
 
@@ -441,12 +461,12 @@ def graphique():
     drawLine()    
     drawStation()
 
-    #canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
-    
     canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
     
     canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
     
+    canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
+
     canvas.create_image(1320,0, anchor = NW, image = photoImport)
     #Gestion event
     
@@ -472,18 +492,17 @@ fenetre.title('Métro RATP')
 canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
 
 stationDebut = ""
-stationFin = ""
-tempsTrajet = ""
-cheminMetro = ""
-photoImport = PhotoImage(file="ratp.GIF")
+stationFin   = ""
+tempsTrajet  = ""
+cheminMetro  = ""
+photoImport  = PhotoImage(file="ratp.GIF")
 nbreClic = 0
 
-rect = canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
 stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
 tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
 cheminMetro   = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
-#photo        = canvas.create_image(1320,0, anchor = NW, image = photoImport)
+
 
 graphique()
 
