@@ -1,382 +1,382 @@
 # stations et liens du métro parisien
-# format : V num sommet lat long num_ligne nom_sommet
+# format : V num sommet lat long num_ligne terminus nom_sommet
 #          E num_sommet1 num_sommet1 temps_en_secondes
-V 0000 884 337 12 Abbesses
-V 0001 856 394 02 Alexandre_Dumas
-V 0002 864 300 09 Alma_Marceau
-V 0003 828 327 04 Alésia
-V 0004 892 285 03 Anatole_France
-V 0005 882 344 02 Anvers
-V 0006 875 290 01 Argentine
-V 0007 865 356 11 Arts_et_Métiers
-V 0008 865 356 03 Arts_et_Métiers
-V 0009 860 321 12 Assemblée_Nationale
-V 0010 903 392 07 Aubervilliers-Pantin,_Quatre_Chemins000
-V 0011 847 295 10 Avenue_Émile_Zola
-V 0012 851 398 02 Avron
-V 0013 883 349 02 Barbès_Rochechouart
-V 0014 883 349 04 Barbès_Rochechouart
-V 0015 936 359 13 Basilique_de_Saint-Denis
-V 0016 852 368 01 Bastille
-V 0017 852 368 05 Bastille
-V 0018 852 368 08 Bastille
-V 0019 841 400 06 Bel_Air
-V 0020 872 376 11 Belleville
-V 0021 872 376 02 Belleville
-V 0022 840 379 14 Bercy
-V 0023 840 379 06 Bercy
-V 0024 829 376 14 Bibliothèque_François_Mitterand 
-V 0025 831 237 09 Billancourt
-V 0026 853 289 06 Bir-Hakeim
-V 0027 883 333 02 Blanche
-V 0028 906 449 05 Bobigny,_Pablo_Picasso
-V 0029 895 425 05 Bobigny-Pantin,_Raymond_Queneau
-V 0030 867 290 06 Boissière
-V 0031 880 373 7b Bolivar
-V 0032 870 348 09 Bonne_Nouvelle
-V 0033 870 348 08 Bonne_Nouvelle
-V 0034 879 388 7b Botzaris
-V 0035 841 287 08 Boucicaut
-V 0036 841 238 10 Boulogne,_Jean_Jaurès
-V 0037 840 228 10 Boulogne,_Pont_de_Saint-Cloud,_Rond_Point_Rhin_et_Danube
-V 0038 868 341 03 Bourse
-V 0039 890 320 13 Brochant
-V 0040 856 370 05 Bréguet-Sabin
-V 0041 878 381 7b Buttes_Chaumont
-V 0042 851 401 09 Buzenval
-V 0043 845 429 01 Bérault
-V 0044 875 344 07 Cadet
-V 0045 847 302 06 Cambronne
-V 0046 835 358 05 Campo-Formio
-V 0047 846 351 10 Cardinal_Lemoine
-V 0048 919 343 13 Carrefour_Pleyel
-V 0049 840 351 07 Censier_Daubenton
-V 0050 867 313 01 Champs_Élysées,_Clémenceau
-V 0051 867 313 13 Champs_Élysées,_Clémenceau
-V 0052 845 267 10 Chardon_Lagâche
-V 0053 821 413 08 Charenton-Écoles
-V 0054 846 285 10 Charles_Michels
-V 0055 874 295 01 Charles_de_Gaulle,_Étoile
-V 0056 874 295 02 Charles_de_Gaulle,_Étoile
-V 0057 874 295 06 Charles_de_Gaulle,_Étoile
-V 0058 854 385 09 Charonne
-V 0059 872 333 07 Chaussée_d'Antin,_La_Fayette
-V 0060 872 333 09 Chaussée_d'Antin,_La_Fayette
-V 0061 857 368 08 Chemin_Vert
-V 0062 834 368 06 Chevaleret
-V 0063 878 362 07 Château_Landon
-V 0064 887 349 04 Château_Rouge
-V 0065 872 356 04 Château_d'Eau
-V 0066 844 438 01 Château_de_Vincennes
-V 0067 858 347 01 Châtelet
-V 0068 858 347 11 Châtelet
-V 0069 858 347 14 Châtelet
-V 0070 858 347 04 Châtelet
-V 0071 858 347 07 Châtelet
-V 0072 810 300 13 Châtillon-Montrouge
-V 0073 855 347 04 Cité 
-V 0074 851 344 10 Cluny,_La_Sorbonne
-V 0075 877 371 02 Colonel_Fabien
-V 0076 847 295 08 Commerce
-V 0077 866 322 01 Concorde
-V 0078 866 322 12 Concorde
-V 0079 866 322 08 Concorde
-V 0080 837 296 12 Convention
-V 0081 827 279 12 Corentin_Celton
-V 0082 894 382 07 Corentin-Cariou
-V 0083 829 350 06 Corvisart
-V 0084 833 385 14 Cour_Saint-Émilion
-V 0085 879 304 02 Courcelles
-V 0086 869 380 02 Couronnes
-V 0087 890 377 07 Crimée
-V 0088 857 435 09 Croix_de_Chavaux
-V 0089 780 460 08 Créteil-Préfecture 
-V 0090 789 450 08 Créteil-Université
-V 0091 796 449 08 Créteil-l'Echat,_Hôpital_Henri_Mondor
-V 0092 881 393 7b Danube
-V 0093 839 395 06 Daumesnil
-V 0094 839 395 08 Daumesnil
-V 0095 834 332 04 Denfert_Rochereau
-V 0096 834 332 06 Denfert_Rochereau
-V 0097 839 389 06 Dugommier
-V 0098 850 293 06 Dupleix
-V 0099 846 316 10 Duroc
-V 0100 846 316 13 Duroc
-V 0101 841 325 06 Edgar_Quinet
-V 0102 888 250 01 Esplanade_de_la_Défense
-V 0103 878 322 03 Europe
-V 0104 843 260 09 Exelmans
-V 0105 850 384 08 Faidherbe-Chaligny
-V 0106 841 308 12 Falguière
-V 0107 863 366 08 Filles_du_Calvaire
-V 0108 914 403 07 Fort_d'Aubervilliers
-V 0109 869 309 01 Franklin_D._Roosevelt
-V 0110 869 309 09 Franklin_D._Roosevelt
-V 0111 842 291 08 Félix_Faure
-V 0112 916 294 13 Gabriel_Péri,_Asnières-Gennevilliers
-V 0113 838 322 13 Gaité
-V 0114 864 415 03 Galliéni
-V 0115 864 398 03 Gambetta
-V 0116 864 398 3b Gambetta
-V 0118 840 367 05 Gare_d'Austerlitz
-V 0117 840 367 10 Gare_d'Austerlitz
-V 0119 845 372 01 Gare_de_Lyon
-V 0120 845 372 14 Gare_de_Lyon
-V 0121 876 357 04 Gare_de_l'Est
-V 0122 876 357 05 Gare_de_l'Est
-V 0123 876 357 07 Gare_de_l'Est
-V 0124 881 357 04 Gare_du_Nord
-V 0125 881 357 05 Gare_du_Nord
-V 0126 905 331 13 Garibaldi
-V 0127 872 300 01 George_V
-V 0128 831 343 06 Glacière
-V 0129 869 371 11 Goncourt
-V 0130 891 238 01 Grande_Arche_de_la_Défense
-V 0131 892 327 13 Guy_Môquet
-V 0132 873 327 03 Havre_Caumartin
-V 0133 873 327 09 Havre_Caumartin
-V 0134 891 402 05 Hoche
-V 0135 857 351 01 Hôtel_de_Ville
-V 0136 857 351 11 Hôtel_de_Ville
-V 0137 862 313 10 Invalides
-V 0138 862 313 08 Invalides
-V 0139 864 293 09 Iéna
-V 0140 871 360 05 Jacques_Bonsergent
-V 0141 852 268 09 Jasmin
-V 0142 882 370 02 Jaurès
-V 0143 882 370 05 Jaurès
-V 0144 882 370 7b Jaurès
-V 0145 846 277 10 Javel
-V 0146 875 389 11 Jourdain
-V 0147 892 344 12 Jules_Joffrin
-V 0148 845 354 10 Jussieu
-V 0149 845 354 07 Jussieu
-V 0150 871 293 06 Kléber
-V 0151 884 360 02 La_Chapelle
-V 0152 920 410 07 La_Courneuve,_8_Mai_1945
-V 0153 886 325 13 La_Fourche
-V 0154 848 298 10 La_Motte Picquet,_Grenelle
-V 0155 848 298 06 La_Motte Picquet,_Grenelle
-V 0156 848 298 08 La_Motte Picquet,_Grenelle
-V 0157 857 274 09 La_Muette
-V 0158 857 310 08 La_Tour-Maubourg
-V 0159 889 338 12 Lamarck_Caulaincourt
-V 0160 885 379 05 Laumière
-V 0161 810 362 07 Le_Kremlin-Bicêtre
-V 0162 874 340 07 Le_Peletier
-V 0163 851 376 08 Ledru_Rollin
-V 0164 835 352 07 Les_Gobelins
-V 0165 862 346 04 Les_Halles
-V 0166 880 272 01 Les_Sablons
-V 0167 826 406 08 Liberté
-V 0168 879 327 13 Liège
-V 0169 881 366 07 Louis_Blanc
-V 0170 881 366 7b Louis_Blanc
-V 0171 888 288 03 Louise_Michel
-V 0172 838 282 08 Lourmel
-V 0173 860 341 01 Louvre,_Rivoli
-V 0174 852 334 10 Mabillon
-V 0175 869 325 12 Madeleine
-V 0176 869 325 14 Madeleine
-V 0177 869 325 08 Madeleine
-V 0178 824 273 12 Mairie_d'Issy
-V 0179 810 383 07 Mairie_d'Ivry
-V 0180 903 305 13 Mairie_de_Clichy
-V 0181 862 441 09 Mairie_de_Montreuil
-V 0182 912 334 13 Mairie_de_Saint-Ouen
-V 0183 879 416 11 Mairie_des_Lilas
-V 0184 822 358 07 Maison_Blanche
-V 0185 803 445 08 Maisons-Alfort_les_Juilliottes
-V 0186 809 434 08 Maisons-Alfort,_Stade
-V 0187 822 298 13 Malakoff-Plateau_de_Vanves
-V 0188 815 296 13 Malakoff-Rue_Étienne_Dolet
-V 0189 882 309 03 Malesherbes
-V 0190 852 406 09 Maraîchers
-V 0191 891 349 12 Marcadet_Poissonniers
-V 0192 891 349 04 Marcadet_Poissonniers
-V 0193 833 243 09 Marcel_Sembat
-V 0194 890 359 12 Marx_Dormoy
-V 0195 850 348 10 Maubert_Mutualité
-V 0196 847 264 10 Michel_Ange_Auteuil
-V 0197 847 264 09 Michel_Ange_Auteuil
-V 0198 845 261 10 Michel_Ange_Molitor
-V 0199 845 261 09 Michel_Ange_Molitor
-V 0200 837 402 08 Michel_Bizot
-V 0201 846 271 10 Mirabeau
-V 0202 873 314 13 Miromesnil
-V 0203 873 314 09 Miromesnil
-V 0204 880 308 02 Monceau
-V 0205 844 390 08 Montgallet
-V 0206 842 321 12 Montparnasse_Bienvenue
-V 0207 842 321 13 Montparnasse_Bienvenue
-V 0208 842 321 04 Montparnasse_Bienvenue
-V 0209 842 321 06 Montparnasse_Bienvenue
-V 0210 831 329 04 Mouton-Duvernet
-V 0211 866 383 02 Ménilmontant
-V 0212 847 395 01 Nation
-V 0213 847 395 02 Nation
-V 0214 847 395 06 Nation
-V 0215 847 395 09 Nation
-V 0216 833 362 06 Nationale
-V 0217 875 338 12 Notre_Dame_de_Lorette
-V 0218 844 328 12 Notre-Dame-des-Champs
-V 0219 864 369 05 Oberkampf
-V 0220 864 369 09 Oberkampf
-V 0221 852 339 10 Odéon
-V 0222 852 339 04 Odéon
-V 0223 870 332 03 Opéra
-V 0224 870 332 07 Opéra
-V 0225 870 332 08 Opéra
-V 0226 887 386 05 Ourcq
-V 0227 862 336 01 Palais_Royal,_Musée_du_Louvre
-V 0228 862 336 07 Palais_Royal,_Musée_du_Louvre
-V 0229 865 379 03 Parmentier
-V 0230 857 285 06 Passy
-V 0231 842 312 12 Pasteur
-V 0232 842 312 06 Pasteur
-V 0233 868 401 3b Pelleport
-V 0234 834 318 13 Pernety
-V 0235 858 390 02 Philippe-Auguste
-V 0236 845 401 06 Picpus
-V 0237 815 377 07 Pierre_Curie
-V 0238 882 338 12 Pigalle
-V 0239 882 338 02 Pigalle
-V 0240 836 278 08 Place_Balard
-V 0241 842 352 07 Place_Monge
-V 0242 830 355 05 Place_d'Italie
-V 0243 830 355 06 Place_d'Italie
-V 0244 830 355 07 Place_d'Italie
-V 0245 883 327 13 Place_de_Clichy
-V 0246 883 327 02 Place_de_Clichy
-V 0247 876 393 11 Place_des_Fêtes
-V 0248 876 393 7b Place_des_Fêtes
-V 0249 831 314 13 Plaisance
-V 0250 877 348 07 Poissonnière
-V 0251 897 280 03 Pont_de_Levallois,_Bécon
-V 0252 884 261 01 Pont_de_Neuilly
-V 0253 829 230 09 Pont_de_Sèvres
-V 0254 853 356 07 Pont-Marie
-V 0255 858 341 07 Pont-Neuf
-V 0256 871 277 02 Porte_Dauphine
-V 0257 835 406 08 Porte_Dorée
-V 0258 877 281 01 Porte_Maillot
-V 0259 847 258 10 Porte_d'Auteuil
-V 0260 819 359 07 Porte_d'Italie
-V 0261 821 370 07 Porte_d'Ivry
-V 0262 823 325 04 Porte_d'Orléans
-V 0263 863 408 03 Porte_de_Bagnolet
-V 0264 885 293 03 Porte_de_Champerret
-V 0265 832 399 08 Porte_de_Charenton
-V 0266 820 364 07 Porte_de_Choisy
-V 0267 894 314 13 Porte_de_Clichy
-V 0268 897 344 04 Porte_de_Clignancourt
-V 0269 853 410 09 Porte_de_Montreuil
-V 0270 888 392 05 Porte_de_Pantin
-V 0271 837 256 09 Porte_de_Saint-Cloud
-V 0272 897 328 13 Porte_de_Saint-Ouen
-V 0273 827 306 13 Porte_de_Vanves
-V 0274 832 287 12 Porte_de_Versailles
-V 0275 847 408 01 Porte_de_Vincennes
-V 0276 898 358 12 Porte_de_la_Chapelle
-V 0277 897 386 07 Porte_de_la_Villette
-V 0278 876 406 11 Porte_des_Lilas
-V 0279 876 406 3b Porte_des_Lilas
-V 0280 879 399 7b Pré-Saint-Gervais
-V 0281 865 334 14 Pyramides
-V 0282 865 334 07 Pyramides
-V 0283 873 385 11 Pyrénées
-V 0284 862 387 02 Père_Lachaise
-V 0285 862 387 03 Père_Lachaise
-V 0286 884 298 03 Péreire
-V 0287 837 372 06 Quai_de_la_Gare
-V 0288 846 365 05 Quai_de_la_Rapée
-V 0289 869 335 03 Quatre_Septembre
-V 0290 861 353 11 Rambuteau
-V 0291 855 270 09 Ranelagh
-V 0292 838 330 04 Raspail
-V 0293 838 330 06 Raspail
-V 0294 848 327 12 Rennes
-V 0295 847 386 01 Reuilly_Diderot
-V 0296 847 386 08 Reuilly_Diderot
-V 0297 860 372 05 Richard_Lenoir
-V 0298 871 339 08 Richelieu_Drouot
-V 0299 871 339 09 Richelieu_Drouot
-V 0300 888 374 07 Riquet
-V 0301 855 423 09 Robespierre
-V 0302 882 321 02 Rome
-V 0303 871 343 09 Rue_Montmartre,_Grands_Boulevards
-V 0304 871 343 08 Rue_Montmartre,_Grands_Boulevards
-V 0305 864 379 03 Rue_Saint-Maur
-V 0306 864 278 09 Rue_de_la_Pompe
-V 0307 852 388 09 Rue_des_Boulets
-V 0308 855 325 12 Rue_du_Bac
-V 0309 866 352 03 Réaumur_Sébastopol
-V 0310 866 352 04 Réaumur_Sébastopol
-V 0311 868 365 11 République
-V 0312 868 365 03 République
-V 0313 868 365 05 République
-V 0314 868 365 08 République
-V 0315 868 365 09 République
-V 0316 861 374 09 Saint-Ambroise
-V 0317 874 321 09 Saint-Augustin
-V 0318 929 356 13 Saint-Denis-Porte_de_Paris
-V 0319 945 364 13 Saint-Denis-Université
-V 0320 871 404 3b Saint-Fargeau
-V 0321 851 314 13 Saint-Francois_Xavier
-V 0322 878 337 12 Saint-Georges
-V 0323 853 334 04 Saint-Germain-des-Prés
-V 0324 833 336 06 Saint-Jacques
-V 0325 875 324 12 Saint-Lazare
-V 0326 875 324 13 Saint-Lazare
-V 0327 875 324 03 Saint-Lazare
-V 0328 846 418 01 Saint-Mandé,_Tourelle
-V 0329 838 360 05 Saint-Marcel
-V 0330 853 343 04 Saint-Michel
-V 0331 855 360 01 Saint-Paul,_Le_Marais
-V 0332 872 310 09 Saint-Philippe_du_Roule
-V 0333 847 327 04 Saint-Placide
-V 0334 851 330 04 Saint-Sulpice
-V 0335 861 367 08 Saint-Sébastien-Froissart
-V 0336 867 345 03 Sentier
-V 0337 893 347 04 Simplon
-V 0338 858 322 12 Solférino
-V 0339 884 367 02 Stalingrad
-V 0340 884 367 05 Stalingrad
-V 0341 884 367 07 Stalingrad
-V 0342 869 354 04 Strasbourg_Saint-Denis
-V 0343 869 354 09 Strasbourg_Saint-Denis
-V 0344 869 354 08 Strasbourg_Saint-Denis
-V 0345 851 361 07 Sully_Morland
-V 0346 851 326 10 Sèvres_Babylone
-V 0347 851 326 12 Sèvres_Babylone
-V 0348 845 309 06 Sèvres_Lecourbe
-V 0349 847 307 10 Ségur
-V 0350 866 360 03 Temple
-V 0351 878 299 02 Ternes
-V 0352 826 357 07 Tolbiac
-V 0353 876 332 12 Trinité_d'Estienne_d'Orves
-V 0354 863 287 06 Trocadéro
-V 0355 863 287 09 Trocadéro
-V 0356 864 330 01 Tuileries
-V 0357 875 399 11 Télégraphe
-V 0358 849 321 10 Vaneau
-V 0359 851 314 13 Varenne
-V 0360 839 301 12 Vaugirard
-V 0361 842 329 04 Vavin
-V 0362 869 286 02 Victor_Hugo
-V 0363 786 367 07 Villejuif,_Louis_Aragon
-V 0364 805 363 07 Villejuif,_Léo_Lagrange
-V 0365 796 368 07 Villejuif,_P._Vaillant_Couturier
-V 0366 881 314 02 Villiers
-V 0367 881 314 03 Villiers
-V 0368 841 308 12 Volontaires
-V 0369 858 379 09 Voltaire
-V 0370 884 303 03 Wagram
-V 0371 854 306 08 École_Militaire
-V 0372 815 421 08 École_Vétérinaire_de_Maisons-Alfort
-V 0373 847 268 10 Église_d'Auteuil
-V 0374 893 413 05 Église_de_Pantin
-V 0375 863 349 04 Étienne_Marcel
+V 0000 884 337 12 0 Abbesses
+V 0001 856 394 02 0 Alexandre_Dumas
+V 0002 864 300 09 0 Alma_Marceau
+V 0003 828 327 04 0 Alésia
+V 0004 892 285 03 0 Anatole_France
+V 0005 882 344 02 0 Anvers
+V 0006 875 290 01 0 Argentine
+V 0007 865 356 11 0 Arts_et_Métiers
+V 0008 865 356 03 0 Arts_et_Métiers
+V 0009 860 321 12 0 Assemblée_Nationale
+V 0010 903 392 07 0 Aubervilliers-Pantin,_Quatre_Chemins000
+V 0011 847 295 10 0 Avenue_Émile_Zola
+V 0012 851 398 02 0 Avron
+V 0013 883 349 02 0 Barbès_Rochechouart
+V 0014 883 349 04 0 Barbès_Rochechouart
+V 0015 936 359 13 0 Basilique_de_Saint-Denis
+V 0016 852 368 01 0 Bastille
+V 0017 852 368 05 0 Bastille
+V 0018 852 368 08 0 Bastille
+V 0019 841 400 06 0 Bel_Air
+V 0020 872 376 11 0 Belleville
+V 0021 872 376 02 0 Belleville
+V 0022 840 379 14 0 Bercy
+V 0023 840 379 06 0 Bercy
+V 0024 829 376 14 1 Bibliothèque_François_Mitterand 
+V 0025 831 237 09 0 Billancourt
+V 0026 853 289 06 0 Bir-Hakeim
+V 0027 883 333 02 0 Blanche
+V 0028 906 449 05 1 Bobigny,_Pablo_Picasso
+V 0029 895 425 05 0 Bobigny-Pantin,_Raymond_Queneau
+V 0030 867 290 06 0 Boissière
+V 0031 880 373 7b 0 Bolivar
+V 0032 870 348 09 0 Bonne_Nouvelle
+V 0033 870 348 08 0 Bonne_Nouvelle
+V 0034 879 388 7b 0 Botzaris
+V 0035 841 287 08 0 Boucicaut
+V 0036 841 238 10 0 Boulogne,_Jean_Jaurès
+V 0037 840 228 10 1 Boulogne,_Pont_de_Saint-Cloud,_Rond_Point_Rhin_et_Danube
+V 0038 868 341 03 0 Bourse
+V 0039 890 320 13 0 Brochant
+V 0040 856 370 05 0 Bréguet-Sabin
+V 0041 878 381 7b 0 Buttes_Chaumont
+V 0042 851 401 09 0 Buzenval
+V 0043 845 429 01 0 Bérault
+V 0044 875 344 07 0 Cadet
+V 0045 847 302 06 0 Cambronne
+V 0046 835 358 05 0 Campo-Formio
+V 0047 846 351 10 0 Cardinal_Lemoine
+V 0048 919 343 13 0 Carrefour_Pleyel
+V 0049 840 351 07 0 Censier_Daubenton
+V 0050 867 313 01 0 Champs_Élysées,_Clémenceau
+V 0051 867 313 13 0 Champs_Élysées,_Clémenceau
+V 0052 845 267 10 0 Chardon_Lagâche
+V 0053 821 413 08 0 Charenton-Écoles
+V 0054 846 285 10 0 Charles_Michels
+V 0055 874 295 01 0 Charles_de_Gaulle,_Étoile
+V 0056 874 295 02 0 Charles_de_Gaulle,_Étoile
+V 0057 874 295 06 1 Charles_de_Gaulle,_Étoile
+V 0058 854 385 09 0 Charonne
+V 0059 872 333 07 0 Chaussée_d'Antin,_La_Fayette
+V 0060 872 333 09 0 Chaussée_d'Antin,_La_Fayette
+V 0061 857 368 08 0 Chemin_Vert
+V 0062 834 368 06 0 Chevaleret
+V 0063 878 362 07 0 Château_Landon
+V 0064 887 349 04 0 Château_Rouge
+V 0065 872 356 04 0 Château_d'Eau
+V 0066 844 438 01 1 Château_de_Vincennes
+V 0067 858 347 01 0 Châtelet
+V 0068 858 347 11 1 Châtelet
+V 0069 858 347 14 0 Châtelet
+V 0070 858 347 04 0 Châtelet
+V 0071 858 347 07 0 Châtelet
+V 0072 810 300 13 1 Châtillon-Montrouge
+V 0073 855 347 04 0 Cité 
+V 0074 851 344 10 0 Cluny,_La_Sorbonne
+V 0075 877 371 02 0 Colonel_Fabien
+V 0076 847 295 08 0 Commerce
+V 0077 866 322 01 0 Concorde
+V 0078 866 322 12 0 Concorde
+V 0079 866 322 08 0 Concorde
+V 0080 837 296 12 0 Convention
+V 0081 827 279 12 0 Corentin_Celton
+V 0082 894 382 07 0 Corentin-Cariou
+V 0083 829 350 06 0 Corvisart
+V 0084 833 385 14 0 Cour_Saint-Émilion
+V 0085 879 304 02 0 Courcelles
+V 0086 869 380 02 0 Couronnes
+V 0087 890 377 07 0 Crimée
+V 0088 857 435 09 0 Croix_de_Chavaux
+V 0089 780 460 08 1 Créteil-Préfecture 
+V 0090 789 450 08 0 Créteil-Université
+V 0091 796 449 08 0 Créteil-l'Echat,_Hôpital_Henri_Mondor
+V 0092 881 393 7b 0 Danube
+V 0093 839 395 06 0 Daumesnil
+V 0094 839 395 08 0 Daumesnil
+V 0095 834 332 04 0 Denfert_Rochereau
+V 0096 834 332 06 0 Denfert_Rochereau
+V 0097 839 389 06 0 Dugommier
+V 0098 850 293 06 0 Dupleix
+V 0099 846 316 10 0 Duroc
+V 0100 846 316 13 0 Duroc
+V 0101 841 325 06 0 Edgar_Quinet
+V 0102 888 250 01 0 Esplanade_de_la_Défense
+V 0103 878 322 03 0 Europe
+V 0104 843 260 09 0 Exelmans
+V 0105 850 384 08 0 Faidherbe-Chaligny
+V 0106 841 308 12 0 Falguière
+V 0107 863 366 08 0 Filles_du_Calvaire
+V 0108 914 403 07 0 Fort_d'Aubervilliers
+V 0109 869 309 01 0 Franklin_D._Roosevelt
+V 0110 869 309 09 0 Franklin_D._Roosevelt
+V 0111 842 291 08 0 Félix_Faure
+V 0112 916 294 13 1 Gabriel_Péri,_Asnières-Gennevilliers
+V 0113 838 322 13 0 Gaité
+V 0114 864 415 03 1 Galliéni
+V 0115 864 398 03 0 Gambetta
+V 0116 864 398 3b 1 Gambetta
+V 0118 840 367 05 0 Gare_d'Austerlitz
+V 0117 840 367 10 1 Gare_d'Austerlitz
+V 0119 845 372 01 0 Gare_de_Lyon
+V 0120 845 372 14 0 Gare_de_Lyon
+V 0121 876 357 04 0 Gare_de_l'Est
+V 0122 876 357 05 0 Gare_de_l'Est
+V 0123 876 357 07 0 Gare_de_l'Est
+V 0124 881 357 04 0 Gare_du_Nord
+V 0125 881 357 05 0 Gare_du_Nord
+V 0126 905 331 13 0 Garibaldi
+V 0127 872 300 01 0 George_V
+V 0128 831 343 06 0 Glacière
+V 0129 869 371 11 0 Goncourt
+V 0130 891 238 01 1 Grande_Arche_de_la_Défense
+V 0131 892 327 13 0 Guy_Môquet
+V 0132 873 327 03 0 Havre_Caumartin
+V 0133 873 327 09 0 Havre_Caumartin
+V 0134 891 402 05 0 Hoche
+V 0135 857 351 01 0 Hôtel_de_Ville
+V 0136 857 351 11 0 Hôtel_de_Ville
+V 0137 862 313 10 0 Invalides
+V 0138 862 313 08 0 Invalides
+V 0139 864 293 09 0 Iéna
+V 0140 871 360 05 0 Jacques_Bonsergent
+V 0141 852 268 09 0 Jasmin
+V 0142 882 370 02 0 Jaurès
+V 0143 882 370 05 0 Jaurès
+V 0144 882 370 7b 0 Jaurès
+V 0145 846 277 10 0 Javel
+V 0146 875 389 11 0 Jourdain
+V 0147 892 344 12 0 Jules_Joffrin
+V 0148 845 354 10 0 Jussieu
+V 0149 845 354 07 0 Jussieu
+V 0150 871 293 06 0 Kléber
+V 0151 884 360 02 0 La_Chapelle
+V 0152 920 410 07 1 La_Courneuve,_8_Mai_1945
+V 0153 886 325 13 0 La_Fourche
+V 0154 848 298 10 0 La_Motte Picquet,_Grenelle
+V 0155 848 298 06 0 La_Motte Picquet,_Grenelle
+V 0156 848 298 08 0 La_Motte Picquet,_Grenelle
+V 0157 857 274 09 0 La_Muette
+V 0158 857 310 08 0 La_Tour-Maubourg
+V 0159 889 338 12 0 Lamarck_Caulaincourt
+V 0160 885 379 05 0 Laumière
+V 0161 810 362 07 0 Le_Kremlin-Bicêtre
+V 0162 874 340 07 0 Le_Peletier
+V 0163 851 376 08 0 Ledru_Rollin
+V 0164 835 352 07 0 Les_Gobelins
+V 0165 862 346 04 0 Les_Halles
+V 0166 880 272 01 0 Les_Sablons
+V 0167 826 406 08 0 Liberté
+V 0168 879 327 13 0 Liège
+V 0169 881 366 07 0 Louis_Blanc
+V 0170 881 366 7b 1 Louis_Blanc
+V 0171 888 288 03 0 Louise_Michel
+V 0172 838 282 08 0 Lourmel
+V 0173 860 341 01 0 Louvre,_Rivoli
+V 0174 852 334 10 0 Mabillon
+V 0175 869 325 12 0 Madeleine
+V 0176 869 325 14 1 Madeleine
+V 0177 869 325 08 0 Madeleine
+V 0178 824 273 12 1 Mairie_d'Issy
+V 0179 810 383 07 1 Mairie_d'Ivry
+V 0180 903 305 13 0 Mairie_de_Clichy
+V 0181 862 441 09 1 Mairie_de_Montreuil
+V 0182 912 334 13 0 Mairie_de_Saint-Ouen
+V 0183 879 416 11 1 Mairie_des_Lilas
+V 0184 822 358 07 0 Maison_Blanche
+V 0185 803 445 08 0 Maisons-Alfort_les_Juilliottes
+V 0186 809 434 08 0 Maisons-Alfort,_Stade
+V 0187 822 298 13 0 Malakoff-Plateau_de_Vanves
+V 0188 815 296 13 0 Malakoff-Rue_Étienne_Dolet
+V 0189 882 309 03 0 Malesherbes
+V 0190 852 406 09 0 Maraîchers
+V 0191 891 349 12 0 Marcadet_Poissonniers
+V 0192 891 349 04 0 Marcadet_Poissonniers
+V 0193 833 243 09 0 Marcel_Sembat
+V 0194 890 359 12 0 Marx_Dormoy
+V 0195 850 348 10 0 Maubert_Mutualité
+V 0196 847 264 10 0 Michel_Ange_Auteuil
+V 0197 847 264 09 0 Michel_Ange_Auteuil
+V 0198 845 261 10 0 Michel_Ange_Molitor
+V 0199 845 261 09 0 Michel_Ange_Molitor
+V 0200 837 402 08 0 Michel_Bizot
+V 0201 846 271 10 0 Mirabeau
+V 0202 873 314 13 0 Miromesnil
+V 0203 873 314 09 0 Miromesnil
+V 0204 880 308 02 0 Monceau
+V 0205 844 390 08 0 Montgallet
+V 0206 842 321 12 0 Montparnasse_Bienvenue
+V 0207 842 321 13 0 Montparnasse_Bienvenue
+V 0208 842 321 04 0 Montparnasse_Bienvenue
+V 0209 842 321 06 0 Montparnasse_Bienvenue
+V 0210 831 329 04 0 Mouton-Duvernet
+V 0211 866 383 02 0 Ménilmontant
+V 0212 847 395 01 0 Nation
+V 0213 847 395 02 1 Nation
+V 0214 847 395 06 1 Nation
+V 0215 847 395 09 0 Nation
+V 0216 833 362 06 0 Nationale
+V 0217 875 338 12 0 Notre_Dame_de_Lorette
+V 0218 844 328 12 0 Notre-Dame-des-Champs
+V 0219 864 369 05 0 Oberkampf
+V 0220 864 369 09 0 Oberkampf
+V 0221 852 339 10 0 Odéon
+V 0222 852 339 04 0 Odéon
+V 0223 870 332 03 0 Opéra
+V 0224 870 332 07 0 Opéra
+V 0225 870 332 08 0 Opéra
+V 0226 887 386 05 0 Ourcq
+V 0227 862 336 01 0 Palais_Royal,_Musée_du_Louvre
+V 0228 862 336 07 0 Palais_Royal,_Musée_du_Louvre
+V 0229 865 379 03 0 Parmentier
+V 0230 857 285 06 0 Passy
+V 0231 842 312 12 0 Pasteur
+V 0232 842 312 06 0 Pasteur
+V 0233 868 401 3b 0 Pelleport
+V 0234 834 318 13 0 Pernety
+V 0235 858 390 02 0 Philippe-Auguste
+V 0236 845 401 06 0 Picpus
+V 0237 815 377 07 0 Pierre_Curie
+V 0238 882 338 12 0 Pigalle
+V 0239 882 338 02 0 Pigalle
+V 0240 836 278 08 1 Place_Balard
+V 0241 842 352 07 0 Place_Monge
+V 0242 830 355 05 1 Place_d'Italie
+V 0243 830 355 06 0 Place_d'Italie
+V 0244 830 355 07 0 Place_d'Italie
+V 0245 883 327 13 0 Place_de_Clichy
+V 0246 883 327 02 0 Place_de_Clichy
+V 0247 876 393 11 0 Place_des_Fêtes
+V 0248 876 393 7b 0 Place_des_Fêtes
+V 0249 831 314 13 0 Plaisance
+V 0250 877 348 07 0 Poissonnière
+V 0251 897 280 03 1 Pont_de_Levallois,_Bécon
+V 0252 884 261 01 0 Pont_de_Neuilly
+V 0253 829 230 09 1 Pont_de_Sèvres
+V 0254 853 356 07 0 Pont-Marie
+V 0255 858 341 07 0 Pont-Neuf
+V 0256 871 277 02 1 Porte_Dauphine
+V 0257 835 406 08 0 Porte_Dorée
+V 0258 877 281 01 0 Porte_Maillot
+V 0259 847 258 10 0 Porte_d'Auteuil
+V 0260 819 359 07 0 Porte_d'Italie
+V 0261 821 370 07 0 Porte_d'Ivry
+V 0262 823 325 04 1 Porte_d'Orléans
+V 0263 863 408 03 0 Porte_de_Bagnolet
+V 0264 885 293 03 0 Porte_de_Champerret
+V 0265 832 399 08 0 Porte_de_Charenton
+V 0266 820 364 07 0 Porte_de_Choisy
+V 0267 894 314 13 0 Porte_de_Clichy
+V 0268 897 344 04 1 Porte_de_Clignancourt
+V 0269 853 410 09 0 Porte_de_Montreuil
+V 0270 888 392 05 0 Porte_de_Pantin
+V 0271 837 256 09 0 Porte_de_Saint-Cloud
+V 0272 897 328 13 0 Porte_de_Saint-Ouen
+V 0273 827 306 13 0 Porte_de_Vanves
+V 0274 832 287 12 0 Porte_de_Versailles
+V 0275 847 408 01 0 Porte_de_Vincennes
+V 0276 898 358 12 1 Porte_de_la_Chapelle
+V 0277 897 386 07 0 Porte_de_la_Villette
+V 0278 876 406 11 0 Porte_des_Lilas
+V 0279 876 406 3b 1 Porte_des_Lilas
+V 0280 879 399 7b 1 Pré-Saint-Gervais
+V 0281 865 334 14 0 Pyramides
+V 0282 865 334 07 0 Pyramides
+V 0283 873 385 11 0 Pyrénées
+V 0284 862 387 02 0 Père_Lachaise
+V 0285 862 387 03 0 Père_Lachaise
+V 0286 884 298 03 0 Péreire
+V 0287 837 372 06 0 Quai_de_la_Gare
+V 0288 846 365 05 0 Quai_de_la_Rapée
+V 0289 869 335 03 0 Quatre_Septembre
+V 0290 861 353 11 0 Rambuteau
+V 0291 855 270 09 0 Ranelagh
+V 0292 838 330 04 0 Raspail
+V 0293 838 330 06 0 Raspail
+V 0294 848 327 12 0 Rennes
+V 0295 847 386 01 0 Reuilly_Diderot
+V 0296 847 386 08 0 Reuilly_Diderot
+V 0297 860 372 05 0 Richard_Lenoir
+V 0298 871 339 08 0 Richelieu_Drouot
+V 0299 871 339 09 0 Richelieu_Drouot
+V 0300 888 374 07 0 Riquet
+V 0301 855 423 09 0 Robespierre
+V 0302 882 321 02 0 Rome
+V 0303 871 343 09 0 Rue_Montmartre,_Grands_Boulevards
+V 0304 871 343 08 0 Rue_Montmartre,_Grands_Boulevards
+V 0305 864 379 03 0 Rue_Saint-Maur
+V 0306 864 278 09 0 Rue_de_la_Pompe
+V 0307 852 388 09 0 Rue_des_Boulets
+V 0308 855 325 12 0 Rue_du_Bac
+V 0309 866 352 03 0 Réaumur_Sébastopol
+V 0310 866 352 04 0 Réaumur_Sébastopol
+V 0311 868 365 11 0 République
+V 0312 868 365 03 0 République
+V 0313 868 365 05 0 République
+V 0314 868 365 08 0 République
+V 0315 868 365 09 0 République
+V 0316 861 374 09 0 Saint-Ambroise
+V 0317 874 321 09 0 Saint-Augustin
+V 0318 929 356 13 0 Saint-Denis-Porte_de_Paris
+V 0319 945 364 13 1 Saint-Denis-Université
+V 0320 871 404 3b 0 Saint-Fargeau
+V 0321 851 314 13 0 Saint-Francois_Xavier
+V 0322 878 337 12 0 Saint-Georges
+V 0323 853 334 04 0 Saint-Germain-des-Prés
+V 0324 833 336 06 0 Saint-Jacques
+V 0325 875 324 12 0 Saint-Lazare
+V 0326 875 324 13 0 Saint-Lazare
+V 0327 875 324 03 0 Saint-Lazare
+V 0328 846 418 01 0 Saint-Mandé,_Tourelle
+V 0329 838 360 05 0 Saint-Marcel
+V 0330 853 343 04 0 Saint-Michel
+V 0331 855 360 01 0 Saint-Paul,_Le_Marais
+V 0332 872 310 09 0 Saint-Philippe_du_Roule
+V 0333 847 327 04 0 Saint-Placide
+V 0334 851 330 04 0 Saint-Sulpice
+V 0335 861 367 08 0 Saint-Sébastien-Froissart
+V 0336 867 345 03 0 Sentier
+V 0337 893 347 04 0 Simplon
+V 0338 858 322 12 0 Solférino
+V 0339 884 367 02 0 Stalingrad
+V 0340 884 367 05 0 Stalingrad
+V 0341 884 367 07 0 Stalingrad
+V 0342 869 354 04 0 Strasbourg_Saint-Denis
+V 0343 869 354 09 0 Strasbourg_Saint-Denis
+V 0344 869 354 08 0 Strasbourg_Saint-Denis
+V 0345 851 361 07 0 Sully_Morland
+V 0346 851 326 10 0 Sèvres_Babylone
+V 0347 851 326 12 0 Sèvres_Babylone
+V 0348 845 309 06 0 Sèvres_Lecourbe
+V 0349 847 307 10 0 Ségur
+V 0350 866 360 03 0 Temple
+V 0351 878 299 02 0 Ternes
+V 0352 826 357 07 0 Tolbiac
+V 0353 876 332 12 0 Trinité_d'Estienne_d'Orves
+V 0354 863 287 06 0 Trocadéro
+V 0355 863 287 09 0 Trocadéro
+V 0356 864 330 01 0 Tuileries
+V 0357 875 399 11 0 Télégraphe
+V 0358 849 321 10 0 Vaneau
+V 0359 851 314 13 0 Varenne
+V 0360 839 301 12 0 Vaugirard
+V 0361 842 329 04 0 Vavin
+V 0362 869 286 02 0 Victor_Hugo
+V 0363 786 367 07 1 Villejuif,_Louis_Aragon
+V 0364 805 363 07 0 Villejuif,_Léo_Lagrange
+V 0365 796 368 07 0 Villejuif,_P._Vaillant_Couturier
+V 0366 881 314 02 0 Villiers
+V 0367 881 314 03 0 Villiers
+V 0368 841 308 12 0 Volontaires
+V 0369 858 379 09 0 Voltaire
+V 0370 884 303 03 0 Wagram
+V 0371 854 306 08 0 École_Militaire
+V 0372 815 421 08 0 École_Vétérinaire_de_Maisons-Alfort
+V 0373 847 268 10 0 Église_d'Auteuil
+V 0374 893 413 05 0 Église_de_Pantin
+V 0375 863 349 04 0 Étienne_Marcel
 E 0000 0238 041
 E 0000 0159 046
 E 0001 0012 036

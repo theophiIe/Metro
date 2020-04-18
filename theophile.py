@@ -82,14 +82,14 @@ class Graphe:
         cmpt = 0
 
         while (cmpt < len(self.sommets)) :
-            if(sommet == self.sommets[cmpt][4]):
+            if(sommet == self.sommets[cmpt][5]):
                 identifiant = int(self.sommets[cmpt][0])
                 break
 
             cmpt = cmpt+1
 
         return identifiant
-        		
+    
     def distance(self, en_cours, voisin):
         distance = 0
         cmpt = 0
@@ -139,7 +139,116 @@ class Graphe:
                     predecesseur[v] = en_cours
 		
         return creer_chemin(predecesseur, depart, arrive)
-		
+
+def fromIdToName(id):
+    cmpt = 0
+
+    while (cmpt < len(G.sommets)):
+        if(id == int(G.sommets[cmpt][0])):
+            name = G.sommets[cmpt][5]
+            break
+
+        cmpt = cmpt+1
+
+    return name
+
+def fromIdToTerminus(id):
+    cmpt = 0
+
+    while (cmpt < len(G.sommets)):
+        if(id == int(G.sommets[cmpt][0])):
+            terminus = G.sommets[cmpt][4]
+            break
+
+        cmpt = cmpt+1
+
+    return terminus
+
+def fromIdToNbrLine(id):
+    cmpt = 0
+
+    while (cmpt < len(G.sommets)):
+        if(id == int(G.sommets[cmpt][0])):
+            nbreLine = G.sommets[cmpt][3]
+            break
+
+        cmpt = cmpt+1
+
+    return nbreLine
+
+def FindTerminus(listeTrajet):
+    cmptTraj = 0
+    listeTerminus = []
+
+    while(cmptTraj<len(listeTrajet)-1):
+        numLigne1 = fromIdToNbrLine(listeTrajet[cmptTraj])
+        terminus  = fromIdToTerminus(listeTrajet[cmptTraj])
+        numLigne2 = fromIdToNbrLine(listeTrajet[cmptTraj+1])
+
+        if(numLigne1 != numLigne2):
+            idStation = listeTrajet[cmptTraj]
+            idStPrecd = listeTrajet[cmptTraj-1]
+            while(int(terminus) != 1):
+                cmptA = 0
+                while(cmptA<len(G.aretes)):
+                    if(idStation == int(G.aretes[cmptA][0]) and idStPrecd != int(G.aretes[cmptA][1])):
+                        numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                        if(numLine == numLigne1):
+                            idStPrecd = idStation
+                            idStation = int(G.aretes[cmptA][1])
+                            break
+
+                    elif(idStation == int(G.aretes[cmptA][1]) and idStPrecd != int(G.aretes[cmptA][0])):
+                        numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                        if(numLine == numLigne1):
+                            idStPrecd = idStation
+                            idStation = int(G.aretes[cmptA][0])
+                            break
+
+                    cmptA = cmptA+1
+
+                terminus    = fromIdToTerminus(idStation) #creer la fonction
+                nameStation = fromIdToName(idStation)
+            
+            #print ("Le terminus de la staion n°{0} = {1}".format(idStation,nameStation))
+            listeTerminus.append(nameStation)
+
+        cmptTraj = cmptTraj+1
+    ### XXXXXXXXXXX Recherche pour ligne droite et derniere sorrespondance XXXXXXXXXXX ####
+
+    idStation = listeTrajet[len(listeTrajet)-1]
+    idStPrecd = listeTrajet[len(listeTrajet)-2]
+    while(int(terminus) != 1):
+        cmptA = 0
+        while(cmptA<len(G.aretes)):
+            if(idStation == int(G.aretes[cmptA][0]) and idStPrecd != int(G.aretes[cmptA][1])):
+                numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                if(numLine == numLigne1):
+                    idStPrecd = idStation
+                    idStation = int(G.aretes[cmptA][1])
+                    break
+
+            elif(idStation == int(G.aretes[cmptA][1]) and idStPrecd != int(G.aretes[cmptA][0])):
+                numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                if(numLine == numLigne1):
+                    idStPrecd = idStation
+                    idStation = int(G.aretes[cmptA][0])
+                    break
+
+            cmptA = cmptA+1
+
+        terminus    = fromIdToTerminus(idStation) #creer la fonction
+        nameStation = fromIdToName(idStation)
+
+    listeTerminus.append(nameStation)
+
+    #Permet d'enlever les doublons
+    listeTerminus = list(set(listeTerminus))
+
+    print(listeTerminus)
+
+
+
 #Création du graphique 
 
 #Coordonées x pour l'affichage sur le graphe
@@ -218,7 +327,7 @@ def clic(event):
     if(nbreClic == 0):
         stationDebut = rechercheStation(xb,yb)
         if(stationDebut != ""):
-            print("La station de depart est : " + stationDebut)
+            print("La station de depart est : {0}".format(stationDebut))
             canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
             increGlobal()
 
@@ -226,7 +335,7 @@ def clic(event):
         stationFin = rechercheStation(xb,yb)
         if(stationFin != "" and stationFin != stationDebut):
             canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
-            print("La station d'arrivée est : " + stationFin)
+            print("La station d'arrivée est : {0}".format(stationFin))
             increGlobal()
 
 #Evenement apres une touche pressé
@@ -234,6 +343,7 @@ def clavier(event):
     global nbreClic
     global stationDebut
     global stationFin
+    global canvas
 
     touche = event.keysym
     print(touche)
@@ -243,6 +353,10 @@ def clavier(event):
         canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
         stationFin = ""
         canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
+        
+        canvas.delete(ALL)
+        graphique()
+        
 
     elif(touche == "q" or touche == "Escape"):
         sys.exit(0)
@@ -251,6 +365,7 @@ def clavier(event):
         listeTrajet = G.dijsktra(stationDebut,stationFin)
         print(listeTrajet)
         trajet(listeTrajet)
+        FindTerminus(listeTrajet)
 
 def trajet(liste):
     global canvas
@@ -280,7 +395,6 @@ def trajet(liste):
         cmptL = cmptL + 1
 
         canvas.create_line(x1, y1, x2, y2, fill="#FF0000")
-        
 
 #Incrementation de la varible global nbreClic
 def increGlobal():
@@ -292,21 +406,14 @@ def rechercheStation(x,y):
     cmpt = 0
     while (cmpt < len(G.sommets)) :
         if (int(x) <= int((G.sommets[cmpt][1]))+1 and int(x) >= int((G.sommets[cmpt][1]))-1 and int(y) <= int((G.sommets[cmpt][2]))+1 and int(y) >= int((G.sommets[cmpt][2]))-1):
-            return G.sommets[cmpt][4]
+            return G.sommets[cmpt][5]
             
         cmpt = cmpt+1
 
     null = ""
     return null
 
-#Fonction trop longue la découper?
-def graphique():
-    #init de la fenetre 
-    
-    #init de la toile en 1280 par 720
-    global canvas
-
-    r = 1
+def drawLine():
     cmptSommets = 0
     cmptAretes = 0
 
@@ -315,10 +422,8 @@ def graphique():
         sommet2 = G.aretes[cmptAretes][1]
         while (cmptSommets < len(G.sommets)) :
             if sommet1 == G.sommets[cmptSommets][0] :
-                testx1 = G.sommets[cmptSommets][1]
-                x1 = chgX(testx1)
-                testy1 = G.sommets[cmptSommets][2]
-                y1 = chgY(testy1)
+                x1 = chgX(G.sommets[cmptSommets][1])
+                y1 = chgY(G.sommets[cmptSommets][2])
                 cmptSommets = 0
                 break
 
@@ -326,10 +431,8 @@ def graphique():
 
         while (cmptSommets < len(G.sommets)) :
             if sommet2 == G.sommets[cmptSommets][0] :
-                testx2 = G.sommets[cmptSommets][1]
-                x2 = chgX(testx2)
-                testy2 = G.sommets[cmptSommets][2]
-                y2 = chgY(testy2)
+                x2 = chgX(G.sommets[cmptSommets][1])
+                y2 = chgY(G.sommets[cmptSommets][2])
                 couleur = chgCoul(G.sommets[cmptSommets][3])
                 cmptSommets = 0
                 break
@@ -339,10 +442,10 @@ def graphique():
         canvas.create_line(x1, y1, x2, y2, fill=couleur)
         cmptAretes = cmptAretes + 1
 
-        #init du rayon des cercles
-    
+def drawStation():
     cmptSommets = 0
-    
+    r = 1
+
     while (cmptSommets < len(G.sommets)) :
         testx = G.sommets[cmptSommets][1]
         x = chgX(testx)
@@ -351,8 +454,20 @@ def graphique():
         canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
         cmptSommets = cmptSommets + 1
 
-   
+#Fonction trop longue la découper?
+def graphique():
+    global canvas
 
+    drawLine()    
+    drawStation()
+
+    canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
+    
+    canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
+    
+    canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
+
+    canvas.create_image(1320,0, anchor = NW, image = photoImport)
     #Gestion event
     
     canvas.bind("<Button-1> ", clic)
@@ -377,18 +492,17 @@ fenetre.title('Métro RATP')
 canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
 
 stationDebut = ""
-stationFin = ""
-tempsTrajet = ""
-cheminMetro = ""
-photoImport = PhotoImage(file="ratp.GIF")
+stationFin   = ""
+tempsTrajet  = ""
+cheminMetro  = ""
+photoImport  = PhotoImage(file="ratp.GIF")
 nbreClic = 0
 
-rect = canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
 stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
-tempsTrajet = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
-cheminMetro = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
-photo = canvas.create_image(1320,0,anchor = NW, image = photoImport)
+tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
+cheminMetro   = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
+
 
 graphique()
 
