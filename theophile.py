@@ -1,5 +1,6 @@
 # coding: utf-8
 from tkinter import *
+import time
 import sys
 
 def min_dist(a_traiter, dist):
@@ -140,6 +141,32 @@ class Graphe:
 		
         return creer_chemin(predecesseur, depart, arrive)
 
+    def itineraire_sans_detail(self,chemin):	#Affiche les correspondances
+        depart = chemin[0]
+        correspondance = [depart]
+        ligne = fromIdToNbrLine(depart)
+        ligne_bis = -1
+        for i in range(len(chemin)):
+            ligne_bis = fromIdToNbrLine(chemin[i])
+            if(ligne_bis != ligne):
+                correspondance.append(chemin[i])
+                ligne = ligne_bis
+				
+        return correspondance
+		
+    def def_time(self, chemin):
+        temps = 0
+        for i in range(len(chemin)-1):
+            for cmpt in range(len(self.aretes)):
+                if( chemin[i] == int(self.aretes[cmpt][0]) and chemin[i+1] == int(self.aretes[cmpt][1]) ):
+                    temps = temps + int(self.aretes[cmpt][2])
+                    break
+                if( chemin[i] == int(self.aretes[cmpt][1]) and chemin[i+1] == int(self.aretes[cmpt][0]) ):
+                    temps = temps + int(self.aretes[cmpt][2])
+                    break
+        return temps
+		
+
 def fromIdToName(id):
     cmpt = 0
 
@@ -249,8 +276,6 @@ def FindTerminus(listeTrajet):
     #listeTerminus = list(set(listeTerminus))
 
     print(listeTerminus)
-
-
 
 #Création du graphique 
 
@@ -369,6 +394,16 @@ def clavier(event):
         print(listeTrajet)
         trajet(listeTrajet)
         FindTerminus(listeTrajet)
+
+        correspondance = G.itineraire_sans_detail(listeTrajet)
+        print("Liste des correspondance : {0}".format(correspondance))
+   
+        seconds = G.def_time(listeTrajet)
+        minutes = seconds // 60
+        hours = minutes // 60
+
+        print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
+
 
 def trajet(liste):
     global canvas
