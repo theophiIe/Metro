@@ -90,7 +90,7 @@ V 0085 879 304 02 0 Courcelles
 V 0086 869 380 02 0 Couronnes
 V 0087 890 377 07 0 Crimée
 V 0088 857 435 09 0 Croix_de_Chavaux
-V 0089 780 460 08 0 Créteil-Préfecture 
+V 0089 780 460 08 1 Créteil-Préfecture 
 V 0090 789 450 08 0 Créteil-Université
 V 0091 796 449 08 0 Créteil-l'Echat,_Hôpital_Henri_Mondor
 V 0092 881 393 7b 0 Danube
@@ -113,7 +113,7 @@ V 0108 914 403 07 0 Fort_d'Aubervilliers
 V 0109 869 309 01 0 Franklin_D._Roosevelt
 V 0110 869 309 09 0 Franklin_D._Roosevelt
 V 0111 842 291 08 0 Félix_Faure
-V 0112 916 294 13 0 Gabriel_Péri,_Asnières-Gennevilliers
+V 0112 916 294 13 1 Gabriel_Péri,_Asnières-Gennevilliers
 V 0113 838 322 13 0 Gaité
 V 0114 864 415 03 1 Galliéni
 V 0115 864 398 03 0 Gambetta
