@@ -248,7 +248,39 @@ def clavier(event):
         sys.exit(0)
 
     elif(touche == "t"):
-        print(G.dijsktra(stationDebut,stationFin))
+        listeTrajet = G.dijsktra(stationDebut,stationFin)
+        print(listeTrajet)
+        trajet(listeTrajet)
+
+def trajet(liste):
+    global canvas
+    cmptL = 0
+    cmptS = 0
+
+    while(cmptL<len(liste)-1):
+        while(cmptS<len(G.sommets)):
+            if(liste[cmptL] == int(G.sommets[cmptS][0])):
+                x1 = chgX(G.sommets[cmptS][1])
+                y1 = chgY(G.sommets[cmptS][2])
+                break
+
+            cmptS = cmptS+1
+        
+        cmptS = 0
+        
+        while(cmptS<len(G.sommets)):
+            if(liste[cmptL + 1] == int(G.sommets[cmptS][0])):
+                x2 = chgX(G.sommets[cmptS][1])
+                y2 = chgY(G.sommets[cmptS][2])
+                break
+
+            cmptS = cmptS+1
+
+        cmptS = 0
+        cmptL = cmptL + 1
+
+        canvas.create_line(x1, y1, x2, y2, fill="#FF0000")
+        
 
 #Incrementation de la varible global nbreClic
 def increGlobal():
@@ -261,8 +293,7 @@ def rechercheStation(x,y):
     while (cmpt < len(G.sommets)) :
         if (int(x) <= int((G.sommets[cmpt][1]))+1 and int(x) >= int((G.sommets[cmpt][1]))-1 and int(y) <= int((G.sommets[cmpt][2]))+1 and int(y) >= int((G.sommets[cmpt][2]))-1):
             return G.sommets[cmpt][4]
-            # print ("Vous avez selectionne la station : {0}".format(G.sommets[cmpt][4]))
-            # break
+            
         cmpt = cmpt+1
 
     null = ""
@@ -321,14 +352,6 @@ def graphique():
         cmptSommets = cmptSommets + 1
 
    
-
-    # global stationDebut
-    # global stationFin
-    
-    # station1 = Label(fenetre, text="Station d'épart : ", font="Arial 20 bold")
-    # station1.grid(row=1, column=0)
-    # station2 = Label(fenetre, text="Station d'arrivée : ", font="Arial 20 bold")
-    # station2.grid(row=2, column=0)
 
     #Gestion event
     
