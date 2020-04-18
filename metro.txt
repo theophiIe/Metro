@@ -33,8 +33,8 @@ V 0028 906 449 05 1 Bobigny,_Pablo_Picasso
 V 0029 895 425 05 0 Bobigny-Pantin,_Raymond_Queneau
 V 0030 867 290 06 0 Boissière
 V 0031 880 373 7b 0 Bolivar
-V 0032 870 348 09 0 Bonne_Nouvelle
-V 0033 870 348 08 0 Bonne_Nouvelle
+V 0032 870 348 08 0 Bonne_Nouvelle
+V 0033 870 348 09 0 Bonne_Nouvelle
 V 0034 879 388 7b 0 Botzaris
 V 0035 841 287 08 0 Boucicaut
 V 0036 841 238 10 0 Boulogne,_Jean_Jaurès
@@ -138,7 +138,7 @@ V 0133 873 327 09 0 Havre_Caumartin
 V 0134 891 402 05 0 Hoche
 V 0135 857 351 01 0 Hôtel_de_Ville
 V 0136 857 351 11 0 Hôtel_de_Ville
-V 0137 862 313 10 0 Invalides
+V 0137 862 313 13 0 Invalides
 V 0138 862 313 08 0 Invalides
 V 0139 864 293 09 0 Iéna
 V 0140 871 360 05 0 Jacques_Bonsergent
@@ -155,9 +155,9 @@ V 0150 871 293 06 0 Kléber
 V 0151 884 360 02 0 La_Chapelle
 V 0152 920 410 07 1 La_Courneuve,_8_Mai_1945
 V 0153 886 325 13 0 La_Fourche
-V 0154 848 298 10 0 La_Motte Picquet,_Grenelle
-V 0155 848 298 06 0 La_Motte Picquet,_Grenelle
-V 0156 848 298 08 0 La_Motte Picquet,_Grenelle
+V 0154 848 298 10 0 La_Motte_Picquet,_Grenelle
+V 0155 848 298 06 0 La_Motte_Picquet,_Grenelle
+V 0156 848 298 08 0 La_Motte_Picquet,_Grenelle
 V 0157 857 274 09 0 La_Muette
 V 0158 857 310 08 0 La_Tour-Maubourg
 V 0159 889 338 12 0 Lamarck_Caulaincourt
@@ -304,8 +304,8 @@ V 0299 871 339 09 0 Richelieu_Drouot
 V 0300 888 374 07 0 Riquet
 V 0301 855 423 09 0 Robespierre
 V 0302 882 321 02 0 Rome
-V 0303 871 343 09 0 Rue_Montmartre,_Grands_Boulevards
-V 0304 871 343 08 0 Rue_Montmartre,_Grands_Boulevards
+V 0303 871 343 08 0 Rue_Montmartre,_Grands_Boulevards
+V 0304 871 343 09 0 Rue_Montmartre,_Grands_Boulevards
 V 0305 864 379 03 0 Rue_Saint-Maur
 V 0306 864 278 09 0 Rue_de_la_Pompe
 V 0307 852 388 09 0 Rue_des_Boulets
@@ -344,8 +344,8 @@ V 0339 884 367 02 0 Stalingrad
 V 0340 884 367 05 0 Stalingrad
 V 0341 884 367 07 0 Stalingrad
 V 0342 869 354 04 0 Strasbourg_Saint-Denis
-V 0343 869 354 09 0 Strasbourg_Saint-Denis
-V 0344 869 354 08 0 Strasbourg_Saint-Denis
+V 0343 869 354 08 0 Strasbourg_Saint-Denis
+V 0344 869 354 09 0 Strasbourg_Saint-Denis
 V 0345 851 361 07 0 Sully_Morland
 V 0346 851 326 10 0 Sèvres_Babylone
 V 0347 851 326 12 0 Sèvres_Babylone

@@ -220,14 +220,14 @@ def FindTerminus(listeTrajet):
                 cmptA = 0
                 while(cmptA<len(G.aretes)):
                     if(idStation == int(G.aretes[cmptA][0]) and idStPrecd != int(G.aretes[cmptA][1])):
-                        numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                        numLine = fromIdToNbrLine(int(G.aretes[cmptA][0]))
                         if(numLine == numLigne1):
                             idStPrecd = idStation
                             idStation = int(G.aretes[cmptA][1])
                             break
 
                     elif(idStation == int(G.aretes[cmptA][1]) and idStPrecd != int(G.aretes[cmptA][0])):
-                        numLine   = fromIdToNbrLine(int(G.aretes[cmptA][1]))
+                        numLine = fromIdToNbrLine(int(G.aretes[cmptA][1]))
                         if(numLine == numLigne1):
                             idStPrecd = idStation
                             idStation = int(G.aretes[cmptA][0])
@@ -356,13 +356,13 @@ def clic(event):
         stationDebut = rechercheStation(xb,yb)
         if(stationDebut != ""):
             print("La station de depart est : {0}".format(stationDebut))
-            canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
+            canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut.replace("_"," "))
             increGlobal()
 
     elif(nbreClic == 1):
         stationFin = rechercheStation(xb,yb)
         if(stationFin != "" and stationFin != stationDebut):
-            canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
+            canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin.replace("_"," "))
             print("La station d'arrivée est : {0}".format(stationFin))
             increGlobal()
 
@@ -385,7 +385,6 @@ def clavier(event):
         canvas.delete(ALL)
         graphique()
         
-
     elif(touche == "q" or touche == "Escape"):
         sys.exit(0)
 
@@ -393,7 +392,6 @@ def clavier(event):
         listeTrajet = G.dijsktra(stationDebut,stationFin)
         print(listeTrajet)
         trajet(listeTrajet)
-        FindTerminus(listeTrajet)
 
         correspondance = G.itineraire_sans_detail(listeTrajet)
         print("Liste des correspondance : {0}".format(correspondance))
@@ -403,7 +401,9 @@ def clavier(event):
         hours = minutes // 60
 
         print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
-
+        canvas.itemconfigure(tempsTrajet, text="Durée du trajet : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
+        
+        FindTerminus(listeTrajet)
 
 def trajet(liste):
     global canvas
@@ -519,9 +519,6 @@ def graphique():
 
 G = Graphe("metro.txt")
 G.init_graph()
-print (G.aretes)
-print ("\n\n\n")
-print (G.sommets)
 
 #init des variables globales
 
