@@ -233,19 +233,19 @@ def FindTerminus(listeTrajet):
 
 #Coordonées x pour l'affichage sur le graphe
 def chgX(x):
-    return (int(x)-750)*3.5
+    return (int(x)-750)*5.55
 
 #Récupération des coordonnées x après un clic sur le graphe
 def recupX(x):
-    return int(int(x)/3.5 + 750)
+    return int(int(x)/5.55 + 750)
 
 #Coordonées y pour l'affichage sur le graphe
 def chgY(y):
-    return int(y) * 1.2
+    return (int(y)-120) * 2.0
 
 #Récupération des coordonnées y après un clic sur le graphe
 def recupY(y):
-    return int(int(y) / 1.2)
+    return int(int(y) / 2.0 + 120)
 
 #Couleur des arêtes du graphe
 def chgCoul(num_coul):
@@ -441,12 +441,13 @@ def graphique():
     drawLine()    
     drawStation()
 
-    canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
+    #canvas.create_text(400, 30, text="Metro parisien", font="Arial 22 italic", fill="blue")
     
     canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
     
     canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
     
+    canvas.create_image(1320,0, anchor = NW, image = photoImport)
     #Gestion event
     
     canvas.bind("<Button-1> ", clic)
@@ -467,14 +468,22 @@ print (G.sommets)
 #init des variables globales
 
 fenetre = Tk()
-canvas = Canvas(fenetre, width=800, height=600, background='white')
+fenetre.title('Métro RATP')
+canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
 
 stationDebut = ""
 stationFin = ""
+tempsTrajet = ""
+cheminMetro = ""
+photoImport = PhotoImage(file="ratp.GIF")
 nbreClic = 0
 
-stationStrart = canvas.create_text(25, 80, anchor = W,text="", font="Arial 18 italic", fill="black")
-stationEnd    = canvas.create_text(25, 120, anchor = W, text="", font="Arial 18 italic", fill="black")
+rect = canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
+stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
+stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
+tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
+cheminMetro   = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
+#photo        = canvas.create_image(1320,0, anchor = NW, image = photoImport)
 
 graphique()
 
