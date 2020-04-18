@@ -128,7 +128,7 @@ class Graphe:
 		#~ print sommet
 		sommet = sommet.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
-			if(sommet == self.sommets[cmpt][4]):
+			if(sommet == self.sommets[cmpt][5]):
 				identifiant = int(self.sommets[cmpt][0])
 				print str(sommet)+"... Check"
 				break
@@ -200,7 +200,7 @@ class Graphe:
 		cmpt = 0
 		position = position.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
-			if (position == (self.sommets[cmpt][4])):
+			if (position == (self.sommets[cmpt][5])):
 				print ("Le sommet {0} exite".format(position))
 				return True
 			cmpt = cmpt+1
