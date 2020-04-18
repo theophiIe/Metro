@@ -288,3 +288,5 @@ minutes = seconds // 60
 hours = minutes // 60
 
 print "Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
+
+
