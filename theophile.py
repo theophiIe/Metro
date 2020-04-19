@@ -402,7 +402,7 @@ def clavier(event):
         hours = minutes // 60
 
         print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
-        canvas.itemconfigure(tempsTrajet, text="Durée du trajet : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
+        #canvas.itemconfigure(tempsTrajet, text="Durée du trajet : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
         
         listeTerminus = FindTerminus(listeTrajet)
 
@@ -411,10 +411,10 @@ def clavier(event):
         
         cmpt = 1
         while(cmpt < len(listeTerminus)):
-            chemin = chemin + ", A " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
+            chemin = chemin + "\nA " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
             cmpt = cmpt+1
 
-        chemin = chemin + "\nVous devriez arriver à " + stationFin.replace("_"," ")
+        chemin = chemin + "\nVous devriez arriver à " + stationFin.replace("_"," ") + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
         canvas.itemconfigure(cheminMetro, text=chemin)
         
 
@@ -549,8 +549,8 @@ nbreClic = 0
 
 stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
-tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
-cheminMetro   = canvas.create_text(25, 160, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
+#tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
+cheminMetro   = canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
 
 graphique()
 
