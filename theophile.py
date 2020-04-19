@@ -276,6 +276,7 @@ def FindTerminus(listeTrajet):
     #listeTerminus = list(set(listeTerminus))
 
     print(listeTerminus)
+    return listeTerminus
 
 #Création du graphique 
 
@@ -403,7 +404,20 @@ def clavier(event):
         print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
         canvas.itemconfigure(tempsTrajet, text="Durée du trajet : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
         
-        FindTerminus(listeTrajet)
+        listeTerminus = FindTerminus(listeTrajet)
+
+        chemin = "Vous êtes à " + stationDebut.replace("_"," ")
+        chemin = chemin + ", Prendre la ligne " + fromIdToNbrLine(listeTrajet[0]) + " direction " + listeTerminus[0].replace("_"," ")
+        
+        cmpt = 1
+        while(cmpt < len(listeTerminus)):
+            chemin = chemin + ", A " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
+            cmpt = cmpt+1
+
+        chemin = chemin + "\nVous devriez arriver à " + stationFin.replace("_"," ")
+        canvas.itemconfigure(cheminMetro, text=chemin)
+        
+
 
 def trajet(liste):
     global canvas
