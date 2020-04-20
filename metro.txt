@@ -118,8 +118,8 @@ V 0113 838 322 13 0 Gaité
 V 0114 864 415 03 1 Galliéni
 V 0115 864 398 03 0 Gambetta
 V 0116 864 398 3b 1 Gambetta
-V 0118 840 367 05 0 Gare_d'Austerlitz
 V 0117 840 367 10 1 Gare_d'Austerlitz
+V 0118 840 367 05 0 Gare_d'Austerlitz
 V 0119 845 372 01 0 Gare_de_Lyon
 V 0120 845 372 14 0 Gare_de_Lyon
 V 0121 876 357 04 0 Gare_de_l'Est
