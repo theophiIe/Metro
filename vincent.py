@@ -14,21 +14,6 @@ def min_dist(a_traiter, dist):
 	#~ print ""
 	return tmp.index(minimum)
 	
-def creer_chemin(predecesseur, depart, arrive):
-	
-	#print predecesseur
-	chemin = []
-	chemin.append(arrive)
-	sommet = predecesseur[arrive]
-	tmp = 0
-	while(sommet != depart):
-		chemin.append(sommet)
-		tmp = predecesseur[sommet]
-		sommet = tmp
-	chemin.append(depart)
-	
-	return chemin[::-1]		#retourne la liste 'chemin' inversée
-	
 class Graphe:
 
 	sommets = []
@@ -193,7 +178,7 @@ class Graphe:
 		
 		#~ print dist
 		#~ print predecesseur
-		return creer_chemin(predecesseur, depart, arrive)
+		return self.creer_chemin(predecesseur, depart, arrive)
 		
 
 	def recherche(self, position):
@@ -232,7 +217,30 @@ class Graphe:
 				correspondance.append(chemin[i])
 				ligne = ligne_bis
 				
+		print "Vous avez "+str(len(correspondance))+ " ligne(s) à prendre"
+				
 		return correspondance
+		
+	def creer_chemin(self, predecesseur, depart, arrive):
+	
+		#print predecesseur
+		chemin = []
+		chemin.append(arrive)
+		sommet = predecesseur[arrive]
+		tmp = 0
+		while(sommet != depart):
+			chemin.append(sommet)
+			tmp = predecesseur[sommet]
+			sommet = tmp
+		chemin.append(depart)
+		
+		chemin[:] = chemin[::-1]
+		
+		#Pour éviter de prendre en compte un changement de ligne de la station de départ
+		if(self.sommets[chemin[0]][5] == self.sommets[chemin[1]][5]):	#Si la 1ère station a le même nom que la 2ème...
+			chemin.pop(0)
+		
+		return chemin		#retourne la liste 'chemin' inversée
 		
 	def def_time(self, chemin):
 		temps = 0
