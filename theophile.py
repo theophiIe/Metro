@@ -382,8 +382,6 @@ def clavier(event):
     global stationDebut
     global stationFin
     global canvas
-    global tabLigne
-    global tabPoint
     
     touche = event.keysym
     print(touche)
@@ -397,17 +395,9 @@ def clavier(event):
         chemin = "Métro emprunté : "
         canvas.itemconfigure(cheminMetro, text=chemin)
         
-        cmpt = 0
-        while(cmpt < len(tabLigne)):
-            canvas.delete(tabLigne[cmpt])
-            cmpt = cmpt+1
+        suppLine()
+        suppStation()
 
-        cmpt = 0
-        while(cmpt < len(tabPoint)):
-            canvas.delete(tabPoint[cmpt])
-            cmpt = cmpt+1
-
-        #canvas.delete(ALL)
         graphique()
         
     elif(touche == "q" or touche == "Escape"):
@@ -517,6 +507,16 @@ def drawLine():
         tabLigne.append(canvas.create_line(x1, y1, x2, y2, fill=couleur))
         cmptAretes = cmptAretes + 1
 
+def suppLine():
+    global tabLigne
+
+    cmpt = 0
+    while(cmpt < len(tabLigne)):
+        canvas.delete(tabLigne[cmpt])
+        cmpt = cmpt+1
+
+    tabPoint.clear()
+
 def drawStation():
     global tabPoint
     cmptSommets = 0
@@ -529,6 +529,16 @@ def drawStation():
         y = chgY(testy)
         tabPoint.append(canvas.create_oval(x-r, y-r, x+r, y+r, fill="black"))
         cmptSommets = cmptSommets + 1
+
+def suppStation():
+    global tabPoint
+    
+    cmpt = 0
+    while(cmpt < len(tabPoint)):
+        canvas.delete(tabPoint[cmpt])
+        cmpt = cmpt+1
+
+    tabPoint.clear()
 
 #Fonction trop longue la découper?
 def legende():
