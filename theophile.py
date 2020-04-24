@@ -255,6 +255,7 @@ def FindTerminus(listeTrajet):
 
     idStation = listeTrajet[len(listeTrajet)-1]
     idStPrecd = listeTrajet[len(listeTrajet)-2]
+    terminus = 0
     while(int(terminus) != 1):
         cmptA = 0
         while(cmptA<len(G.aretes)):
@@ -277,6 +278,7 @@ def FindTerminus(listeTrajet):
         terminus    = fromIdToTerminus(idStation) #creer la fonction
         nameStation = fromIdToName(idStation)
 
+    nameStation = fromIdToName(idStation)
     listeTerminus.append(nameStation)
 
     #Permet d'enlever les doublons
