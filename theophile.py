@@ -426,8 +426,6 @@ def clavier(event):
         chemin = chemin + "\nVous devriez arriver à " + stationFin.replace("_"," ") + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
         canvas.itemconfigure(cheminMetro, text=chemin)
         
-
-
 def trajet(liste):
     global canvas
     cmptL = 0
@@ -516,11 +514,58 @@ def drawStation():
         cmptSommets = cmptSommets + 1
 
 #Fonction trop longue la découper?
+def legende():
+    canvas.create_text(1150,350, anchor = W,text="Ligne de Métro: ", font="Arial 16 italic", fill="black")
+
+    canvas.create_text(1200,385, anchor = W,text="M1", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,380,1180,390,fill="#FFCD00") 
+
+    canvas.create_text(1200,415, anchor = W,text="M2", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,410,1180,420,fill="#003CA6")
+
+    canvas.create_text(1200,445, anchor = W,text="M3", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,440,1180,450,fill="#837902")
+
+    canvas.create_text(1200,475, anchor = W,text="M4", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,470,1180,480,fill="#CF009E")
+
+    canvas.create_text(1200,505, anchor = W,text="M5", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,500,1180,510,fill="#FF7E2E")
+
+    canvas.create_text(1190,535, anchor = W,text="M6 / 7b", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,530,1180,540,fill="#6ECA97")
+
+    canvas.create_text(1200,565, anchor = W,text="M7", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1150,560,1180,570,fill="#FA9ABA")
+
+    canvas.create_text(1310,385, anchor = W,text="M8", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,380,1290,390,fill="#E19BDF")
+
+    canvas.create_text(1310,415, anchor = W,text="M9", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,410,1290,420,fill="#B6BD00")
+
+    canvas.create_text(1310,445, anchor = W,text="M10", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,440,1290,450,fill="#C9910D")
+
+    canvas.create_text(1310,475, anchor = W,text="M11", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,470,1290,480,fill="#704B1C")
+
+    canvas.create_text(1310,505, anchor = W,text="M12", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,500,1290,510,fill="#007852")
+
+    canvas.create_text(1300,535, anchor = W,text="M13 / 3b", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,530,1290,540,fill="#6EC4E8")
+
+    canvas.create_text(1310,565, anchor = W,text="M14", font="Arial 14 italic", fill="black")
+    canvas.create_rectangle(1260,560,1290,570,fill="#62259D")
+
+
 def graphique():
     global canvas
 
     drawLine()    
     drawStation()
+    legende()
 
     canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
     
@@ -560,67 +605,6 @@ stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ :
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
 #tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
 cheminMetro   = canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
-
-#Légende
-Legende = ""
-m1 = ""
-m2 = ""
-m3 = ""
-m4 = ""
-m5 = ""
-m6 = ""
-m7 = ""
-m8 = ""
-m9 = ""
-m10 = ""
-m11 = ""
-m12 = ""
-m13 = ""
-m14 = ""
-
-Legende = canvas.create_text(1150,350, anchor = W,text="Ligne de Métro: ", font="Arial 16 italic", fill="black")
-
-m1 = canvas.create_text(1200,385, anchor = W,text="M1", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,380,1180,390,fill="#FFCD00") 
-
-m2 = canvas.create_text(1200,415, anchor = W,text="M2", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,410,1180,420,fill="#003CA6")
-
-m3 = canvas.create_text(1200,445, anchor = W,text="M3", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,440,1180,450,fill="#837902")
-
-m4 = canvas.create_text(1200,475, anchor = W,text="M4", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,470,1180,480,fill="#CF009E")
-
-m5 = canvas.create_text(1200,505, anchor = W,text="M5", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,500,1180,510,fill="#FF7E2E")
-
-m6 = canvas.create_text(1190,535, anchor = W,text="M6 / 7b", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,530,1180,540,fill="#6ECA97")
-
-m7 = canvas.create_text(1200,565, anchor = W,text="M7", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1150,560,1180,570,fill="#FA9ABA")
-
-m8 = canvas.create_text(1310,385, anchor = W,text="M8", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,380,1290,390,fill="#E19BDF")
-
-m9 = canvas.create_text(1310,415, anchor = W,text="M9", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,410,1290,420,fill="#B6BD00")
-
-m10 = canvas.create_text(1310,445, anchor = W,text="M10", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,440,1290,450,fill="#C9910D")
-
-m11 = canvas.create_text(1310,475, anchor = W,text="M11", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,470,1290,480,fill="#704B1C")
-
-m12 = canvas.create_text(1310,505, anchor = W,text="M12", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,500,1290,510,fill="#007852")
-
-m13 = canvas.create_text(1300,535, anchor = W,text="M13 / 3b", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,530,1290,540,fill="#6EC4E8")
-
-m14 = canvas.create_text(1310,565, anchor = W,text="M14", font="Arial 14 italic", fill="black")
-canvas.create_rectangle(1260,560,1290,570,fill="#62259D")
 
 graphique()
 
