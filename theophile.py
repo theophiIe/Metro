@@ -382,7 +382,9 @@ def clavier(event):
     global stationDebut
     global stationFin
     global canvas
-
+    global tabLigne
+    global tabPoint
+    
     touche = event.keysym
     print(touche)
     if(touche == "r"):
@@ -392,7 +394,20 @@ def clavier(event):
         stationFin = ""
         canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
         
-        canvas.delete(ALL)
+        chemin = "Métro emprunté : "
+        canvas.itemconfigure(cheminMetro, text=chemin)
+        
+        cmpt = 0
+        while(cmpt < len(tabLigne)):
+            canvas.delete(tabLigne[cmpt])
+            cmpt = cmpt+1
+
+        cmpt = 0
+        while(cmpt < len(tabPoint)):
+            canvas.delete(tabPoint[cmpt])
+            cmpt = cmpt+1
+
+        #canvas.delete(ALL)
         graphique()
         
     elif(touche == "q" or touche == "Escape"):
@@ -473,6 +488,7 @@ def rechercheStation(x,y):
     return null
 
 def drawLine():
+    global tabLigne
     cmptSommets = 0
     cmptAretes = 0
 
@@ -497,11 +513,12 @@ def drawLine():
                 break
             
             cmptSommets = cmptSommets + 1
-
-        canvas.create_line(x1, y1, x2, y2, fill=couleur)
+        
+        tabLigne.append(canvas.create_line(x1, y1, x2, y2, fill=couleur))
         cmptAretes = cmptAretes + 1
 
 def drawStation():
+    global tabPoint
     cmptSommets = 0
     r = 1
 
@@ -510,7 +527,7 @@ def drawStation():
         x = chgX(testx)
         testy = G.sommets[cmptSommets][2]
         y = chgY(testy)
-        canvas.create_oval(x-r, y-r, x+r, y+r, fill="black")
+        tabPoint.append(canvas.create_oval(x-r, y-r, x+r, y+r, fill="black"))
         cmptSommets = cmptSommets + 1
 
 #Fonction trop longue la découper?
@@ -594,6 +611,9 @@ fenetre = Tk()
 fenetre.title('Métro RATP')
 canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
 
+tabLigne = []
+tabPoint = []
+
 stationDebut = ""
 stationFin   = ""
 tempsTrajet  = ""
@@ -603,7 +623,6 @@ nbreClic = 0
 
 stationStrart = canvas.create_text(25, 40, anchor = W,text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
 stationEnd    = canvas.create_text(25, 80, anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
-#tempsTrajet   = canvas.create_text(25, 120, anchor = W, text="Durée du trajet : ", font="Arial 16 italic", fill="#050D9E")
 cheminMetro   = canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ", font="Arial 16 italic", fill="#050D9E")
 
 graphique()
