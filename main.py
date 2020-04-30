@@ -4,17 +4,17 @@ import sys
 
 class Graphe:
 
-	sommets = []
-	aretes  = []
-	fichier = ""
+	sommets = []		#On stocke les sommets du graphe
+	aretes  = []		#On stocke les arêtes du graphe
+	fichier = ""		#On stocke le nom du fichiers qui définit le graphe
 
-	#'fichier' = fichier contenant les sommets et la pondération
-	def __init__(self,fichier):
+	#'fichier' est le fichier contenant les sommets et la pondération
+	def __init__(self,fichier):			#C'est le constructeur de la classe 'Graphe'. 
 		self.sommets = []
 		self.aretes  = []
 		self.fichier = fichier
 
-	def init_graph(self):
+	def init_graph(self):				#Initialisation d'un objet de la classe 'Graphe', en chargeant les données du fichier
 		file = open(self.fichier,"r")
 
 		for chaine in file :
@@ -42,7 +42,7 @@ class Graphe:
 
 		file.close()
 
-	def creer_chemin(self, predecesseur, depart, arrive):
+	def creer_chemin(self, predecesseur, depart, arrive):	#Retourne le chemin le plus court entre le départ et l'arrivée
 		chemin = []
 		chemin.append(arrive)
 		sommet = predecesseur[arrive]
@@ -61,7 +61,7 @@ class Graphe:
 
 		return chemin		#retourne la liste 'chemin' inversée
 
-	def def_voisins(self, sommet):
+	def def_voisins(self, sommet):		#Cherche les voisins du sommet entré en paramètre
 		voisins = []
 		cmpt = 0
 
@@ -76,7 +76,7 @@ class Graphe:
 
 		return voisins
 		
-	def from_name_to_id(self, sommet):
+	def from_name_to_id(self, sommet):		#Permet de trouver le numéro correspondant au sommet entré en paramètre 
 		cmpt = 0
 
 		while (cmpt < len(self.sommets)) :
@@ -88,11 +88,13 @@ class Graphe:
 
 		return identifiant
     
-	def distance(self, en_cours, voisin):
+	def distance(self, en_cours, voisin):		#Cherche la disance entre 'en_cours' et 'voisin'
 		distance = 0
 		cmpt = 0
 
-		while(cmpt < len(self.aretes)):
+		#Nous avons deux conditions pour prendre en compte les deux cas possible :
+		#dans le tableau, on peut avoir [ 'en_cours', 'voisin', 'distance' ] OU [ 'voisin', 'en_cours', 'distance' ] 
+		while(cmpt < len(self.aretes)):	
 			if(en_cours == int(self.aretes[cmpt][0]) and voisin == int(self.aretes[cmpt][1])):
 				distance = int(self.aretes[cmpt][2])
 				break
@@ -112,33 +114,33 @@ class Graphe:
 		arrive = self.from_name_to_id(sommet2)
 		
 		### PHASE D'INITIALISATION ###
-		predecesseur = [None] * (len(self.sommets))
+		predecesseur = [None] * (len(self.sommets))		#Création d'une liste aussi grande que le nombre de sommets, que l'on rempli de 'None'
 		a_traiter = []		
 		dist = []
 		for s in range(len(self.sommets)):
 			dist.append(float("inf"))
-			a_traiter.append(s)
+			a_traiter.append(s)			#On ajoute tous les sommets dans la liste des sommets à traiter
 
-		dist[depart] = 0
+		dist[depart] = 0				#La distance entre le point de départ et le point de départ est de 0
 		
 		### PHASE DE RECHERCHE ###
 		en_cours = -1
 		while(a_traiter != []):
-			en_cours = min_dist(a_traiter, dist)
+			en_cours = min_dist(a_traiter, dist)		#Le prochain sommet de la liste 'a_traiter' que l'on traite est celui qui, pour l'instant, est le plus proche du départ
 			print ("en_cours = {0}".format(en_cours))
-			a_traiter.remove(en_cours)
+			a_traiter.remove(en_cours)					#Le sommet que l'on traite ne fait plus partie de la liste 'a_traiter'
 			voisins = self.def_voisins(en_cours)
 			
-			for v in voisins:
+			for v in voisins:		#Dans cette boucle, on met à jour la liste des distances et des prédécesseurs, en fonction des voisins du sommet 'en_cours'
 				v = int(v)
 				nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
 				if(nouvelle_dist < dist[v]):
 					dist[v] = nouvelle_dist
 					predecesseur[v] = en_cours
 		
-		return self.creer_chemin(predecesseur, depart, arrive)
+		return self.creer_chemin(predecesseur, depart, arrive)	#Grâce a la liste des prédécesseurs, on peut établir le chemin le plus court
 
-	def itineraire_sans_detail(self,chemin):	#Affiche les correspondances
+	def itineraire_sans_detail(self,chemin):	#Retourne les correspondances
 		depart = chemin[0]
 		correspondance = [depart]
 		ligne = fromIdToNbrLine(depart)
@@ -151,7 +153,7 @@ class Graphe:
 				
 		return correspondance
 		
-	def def_time(self, chemin):
+	def def_time(self, chemin):		#Calcul le temps du trajet en métro
 		temps = 0
 		for i in range(len(chemin)-1):
 			for cmpt in range(len(self.aretes)):
@@ -204,6 +206,7 @@ def fromIdToNbrLine(id):
 
 	return nbreLine	
 
+#Retourne le sommet de la liste 'a_traiter' ayant la plus petite distance avec le point de départ (à l'itération actuelle)
 def min_dist(a_traiter, dist):
 	tmp = [float("inf")] * len(dist)
 	for i in a_traiter:
@@ -614,7 +617,7 @@ def graphique():
 
 # Main
 G = Graphe("metro.txt")
-G.init_graph()
+G.init_graph()		#L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
 
 #init des variables globales
 fenetre = Tk()
