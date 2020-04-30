@@ -1,0 +1,19 @@
+
+Pourquoi avons nous choisi l'algorithme de Dijkstra ?
+
+L'algorithme de Dijkstra est adapté à ce type de graphe, car nous n'avons pas de pondération négative.
+L'algorithme de Ford-Bellman pourrait lui aussi résoudre le problème du plus court chemin, cependant,
+il prend en compte la pondération négative alors que nous n'avons pas, et sa compléxité est supérieur à
+celle de l'algorithme de Dijkstra : 
+
+	- Dijkstra : 		O( ( |V|+|E|) x log(|V|) )
+	- Ford-Bellman :	O( |V| x |E| )
+	
+	Avec |E| le nombre d'arêtes, et |V| le nombre de sommets
+	
+Dans le fichier metro.txt, nous avons 376 sommets et 473 arêtes.
+Avec ces simples calculs, on remarque que dans le pire des cas, l'algorithme de Ford-Bellman effectue
+environs 177 848 opérations, alors que l'algorithme de Dijkstra en effectue seulement 2 187 (Ces chiffres
+correspondent aux pires des cas). Ces chiffres s'expliquent assez facilement, en effet, l'algorithme de Dijkstra
+ne traite qu'UNE seule fois tous les sommets du graphe. Avec l'algorithme de Ford-Bellman, un sommet peut être
+traité PLUSIEURS fois. Nous avons donc choisis l'algorithme de Dijkstra pour un meilleur temps d'éxecution.
