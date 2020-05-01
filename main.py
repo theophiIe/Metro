@@ -71,6 +71,20 @@ class Graphe:
 
 			elif(sommet == int(self.aretes[cmpt][1])):
 				voisins.append(int(self.aretes[cmpt][0]))
+			
+			#Liste des stations à sens unique
+			if  (sommet  ==  34  and voisins.count(92)  != 0): voisins.remove(92)
+			elif(sommet  ==  248 and voisins.count(34)  != 0): voisins.remove(34)
+			elif(sommet  ==  280 and voisins.count(248) != 0): voisins.remove(248)
+			elif(sommet  ==  92  and voisins.count(280) != 0): voisins.remove(280)
+			elif(sommet  ==  145 and voisins.count(201) != 0): voisins.remove(201)
+			elif(sommet  ==  373 and voisins.count(196) != 0): voisins.remove(196)
+			elif(sommet  ==  196 and voisins.count(373) != 0): voisins.remove(373)
+			elif(sommet  ==  259 and voisins.count(196) != 0): voisins.remove(196)
+			elif(sommet  ==  36  and voisins.count(259) != 0): voisins.remove(259)
+			elif(sommet  ==  198 and voisins.count(36)  != 0): voisins.remove(36)
+			elif(sommet  ==  52  and voisins.count(198) != 0): voisins.remove(198)
+			elif(sommet  ==  201 and voisins.count(52)  != 0): voisins.remove(52)
 
 			cmpt = cmpt+1
 
