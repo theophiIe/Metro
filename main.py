@@ -398,8 +398,7 @@ def clavier(event):
 		chemin = "Métro emprunté : "
 		canvas.itemconfigure(cheminMetro, text=chemin)
         
-		suppLine()
-		suppStation()
+		suppTrajet()
 		
 		graphique()
     
@@ -485,17 +484,6 @@ def drawLine():
 		tabLigne.append(canvas.create_line(x1, y1, x2, y2, fill=couleur))
 		cmptAretes = cmptAretes + 1
 
-# Fonction permettant de supprimer les arêtes dessinés sur le graphe
-def suppLine():
-	global tabLigne
-
-	cmpt = 0
-	while(cmpt < len(tabLigne)):
-		canvas.delete(tabLigne[cmpt])
-		cmpt = cmpt+1
-
-	tabPoint.clear()
-
 # Dessine les stations 
 def drawStation():
 	global tabPoint
@@ -509,17 +497,6 @@ def drawStation():
 		y = chgY(testy)
 		tabPoint.append(canvas.create_oval(x-r, y-r, x+r, y+r, fill="black"))
 		cmptSommets = cmptSommets + 1
-
-# Supprime les stations dessinés sur le graphe
-def suppStation():
-	global tabPoint
-    
-	cmpt = 0
-	while(cmpt < len(tabPoint)):
-		canvas.delete(tabPoint[cmpt])
-		cmpt = cmpt+1
-
-	tabPoint.clear()
 
 # Dessine la légende du graphe 
 def legende():
@@ -570,6 +547,7 @@ def legende():
 # Dessin du parcours à prendre sur le graphe
 def trajet(liste):
 	global canvas
+	global tabTrajet
 	cmptL = 0
 	cmptS = 0
 
@@ -595,13 +573,20 @@ def trajet(liste):
 		cmptS = 0
 		cmptL = cmptL + 1
 
-		canvas.create_line(x1, y1, x2, y2, fill="#FF0000")
+		tabTrajet.append(canvas.create_line(x1, y1, x2, y2, fill="#FF0000"))
+
+def suppTrajet():
+	global tabTrajet
+    
+	cmpt = 0
+	while(cmpt < len(tabTrajet)):
+		canvas.delete(tabTrajet[cmpt])
+		cmpt = cmpt+1
+
+	tabTrajet.clear()
 
 def graphique():
 	global canvas
-
-	drawLine()    
-	drawStation()
 
 	canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
 	canvas.itemconfigure(stationEnd,    text="Station d'arrivée : " + stationFin)
@@ -615,18 +600,25 @@ def graphique():
 	canvas.pack()
 	fenetre.mainloop()
 
-# Main
-G = Graphe("metro.txt")
-G.init_graph()		#L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
+def main():
+	G.init_graph()
+	legende()
+	drawLine()    
+	drawStation()
+	graphique()
 
-#init des variables globales
+#L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
+G = Graphe("metro.txt")
+
+#init des variables globales pour la partie graphique
 fenetre = Tk()
 fenetre.title('Métro RATP')
 canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
-canvas.create_rectangle(95,200,1125,700,outline="#050D9E",width=2,dash=(3,5))
+canvas.create_rectangle(95, 200, 1125, 700, outline="#050D9E", width=2, dash=(3,5))
 
-tabLigne   = []
-tabPoint   = []
+tabLigne  = []
+tabPoint  = []
+tabTrajet = []
 
 stationDebut = ""
 stationFin   = ""
@@ -635,11 +627,10 @@ cheminMetro  = ""
 nbreClic = 0
 
 photoImport  = PhotoImage(file="ratp.GIF")
-canvas.create_image(1320,0, anchor = NW, image = photoImport)
+canvas.create_image(1320, 0, anchor = NW, image = photoImport)
 
 stationStrart = canvas.create_text(25, 40,  anchor = W, text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
 stationEnd    = canvas.create_text(25, 80,  anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
 cheminMetro   = canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ",    font="Arial 16 italic", fill="#050D9E")
 
-legende()
-graphique()
+main()
