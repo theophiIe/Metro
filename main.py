@@ -183,42 +183,53 @@ class Graphe:
 
 # Return le un nom de station à partir de son id
 def fromIdToName(id):
-	cmpt = 0
+	if(id == int(G.sommets[id][0])):
+		name = G.sommets[id][5]
+		return name	
 
-	while (cmpt < len(G.sommets)):
-		if(id == int(G.sommets[cmpt][0])):
-			name = G.sommets[cmpt][5]
-			break
+	else:
+		cmpt = 0
+		while (cmpt < len(G.sommets)):
+			if(id == int(G.sommets[cmpt][0])):
+				name = G.sommets[cmpt][5]
+				break
 
-		cmpt = cmpt+1
+			cmpt = cmpt+1
 
-	return name
-
+		return name	
+		
 # Retourn la valeur de terminus (0 ou 1) d'une station à partir de son id
 def fromIdToTerminus(id):
-	cmpt = 0
+	if(id == int(G.sommets[id][0])):
+		terminus = G.sommets[id][4]
+		return terminus	
 
-	while (cmpt < len(G.sommets)):
-		if(id == int(G.sommets[cmpt][0])):
-			terminus = G.sommets[cmpt][4]
-			break
+	else:
+		cmpt = 0
+		while (cmpt < len(G.sommets)):
+			if(id == int(G.sommets[cmpt][0])):
+				terminus = G.sommets[cmpt][4]
+				break
 
-		cmpt = cmpt+1
+			cmpt = cmpt+1
 
-	return terminus
+		return terminus	
 
-# Return le numéro de ligne d'une station à partir de son id
 def fromIdToNbrLine(id):
-	cmpt = 0
+	if(id == int(G.sommets[id][0])):
+		nbreLine = G.sommets[id][3]
+		return nbreLine	
 
-	while (cmpt < len(G.sommets)):
-		if(id == int(G.sommets[cmpt][0])):
-			nbreLine = G.sommets[cmpt][3]
-			break
+	else:
+		cmpt = 0
+		while (cmpt < len(G.sommets)):
+			if(id == int(G.sommets[cmpt][0])):
+				nbreLine = G.sommets[cmpt][3]
+				break
 
-		cmpt = cmpt+1
+			cmpt = cmpt+1
 
-	return nbreLine	
+		return nbreLine	
 
 #Retourne le sommet de la liste 'a_traiter' ayant la plus petite distance avec le point de départ (à l'itération actuelle)
 def min_dist(a_traiter, dist):
