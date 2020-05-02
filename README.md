@@ -17,7 +17,7 @@ Version de python :
 python3 main.py
 ````
 
-## Fonctionnalité
+## Fonctionnalitées
 
 - touche r : reset le choix des stations et le trajet
 - touche t : permet d'excuter la recherche de plus court chemin
