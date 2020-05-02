@@ -198,7 +198,7 @@ def fromIdToName(id):
 
 		return name	
 		
-# Retourn la valeur de terminus (0 ou 1) d'une station à partir de son id
+# Return la valeur de terminus (0 ou 1) d'une station à partir de son id
 def fromIdToTerminus(id):
 	if(id == int(G.sommets[id][0])):
 		terminus = G.sommets[id][4]
@@ -215,6 +215,7 @@ def fromIdToTerminus(id):
 
 		return terminus	
 
+# Return la valeur le numéro de ligne à partir de l'id de la station
 def fromIdToNbrLine(id):
 	if(id == int(G.sommets[id][0])):
 		nbreLine = G.sommets[id][3]
@@ -240,19 +241,22 @@ def min_dist(a_traiter, dist):
 	minimum = min(tmp)
 	return tmp.index(minimum)
 
+#Fonction de recherche de terminus
 def FindTerminus(listeTrajet):
 	cmptTraj = 0
 	listeTerminus = []
 
 	while(cmptTraj<len(listeTrajet)-1):
 		numLigne1 = fromIdToNbrLine(listeTrajet[cmptTraj])
-		terminus  = fromIdToTerminus(listeTrajet[cmptTraj])
 		numLigne2 = fromIdToNbrLine(listeTrajet[cmptTraj+1])
+		terminus  = fromIdToTerminus(listeTrajet[cmptTraj])
 
+		# Si les numéros de ligne sont differents
 		if(numLigne1 != numLigne2):
 			idStation = listeTrajet[cmptTraj]
 			idStPrecd = listeTrajet[cmptTraj-1]
             
+			# On boucle tant qu'on ne trouve pas de terminus
 			while(int(terminus) != 1):
 				cmptA = 0
 				while(cmptA<len(G.aretes)):
@@ -280,11 +284,13 @@ def FindTerminus(listeTrajet):
 
 		cmptTraj = cmptTraj+1
 
-    ### XXXXXXXXXXX Recherche pour ligne droite et derniere correspondance XXXXXXXXXXX ####
+    ### XXXXXXXXXXX Recherche du terminus pour les lignes droites et la derniere correspondance XXXXXXXXXXX ####
 
-	idStation = listeTrajet[len(listeTrajet)-1]
-	idStPrecd = listeTrajet[len(listeTrajet)-2]
+	idStation = listeTrajet[len(listeTrajet)-1] # derniere station de la liste listeTrajet
+	idStPrecd = listeTrajet[len(listeTrajet)-2] # avant derniere station de la liste listeTrajet
 	terminus = 0
+
+	# On boucle tant qu'on n'a pas trouvé le terminus
 	while(int(terminus) != 1):
 		cmptA = 0
 		while(cmptA<len(G.aretes)):
@@ -385,6 +391,7 @@ def clic(event):
 	global stationDebut
 	global stationFin
 
+	# Initialisation de la station de départ 
 	if(nbreClic == 0):
 		stationDebut = rechercheStation(xb,yb)
 		if(stationDebut != ""):
@@ -392,6 +399,7 @@ def clic(event):
 			canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut.replace("_"," "))
 			increGlobal()
 
+	# Initialisation de la station d'arrivé
 	elif(nbreClic == 1):
 		stationFin = rechercheStation(xb,yb)
 		if(stationFin != "" and stationFin != stationDebut):
@@ -410,10 +418,9 @@ def clavier(event):
 	
 	# Reset de la partie graphique
 	if(touche == "r"):
-		print("Reset")
-		
 		nbreClic = 0
 		
+		print("Reset")
 		stationDebut = ""
 		canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
 		
@@ -424,7 +431,6 @@ def clavier(event):
 		canvas.itemconfigure(cheminMetro, text=chemin)
         
 		suppTrajet()
-		
 		graphique()
     
 	# Arret du programme
@@ -434,6 +440,7 @@ def clavier(event):
 	
 	# Lancement de la recherche de trajet
 	elif(touche == "t" and stationDebut != "" and stationFin != ""):
+		#Recherche du trajet le plus court
 		print("Recherche du trajet entre {0} et {1}".format(stationDebut, stationFin))
 		listeTrajet = G.dijsktra(stationDebut,stationFin)
 		print(listeTrajet)
@@ -442,12 +449,13 @@ def clavier(event):
 		correspondance = G.itineraire_sans_detail(listeTrajet)
 		print("Liste des correspondance : {0}".format(correspondance))
    
+		# Durée du trajet
 		seconds = G.def_time(listeTrajet)
 		minutes = seconds // 60
 		hours = minutes // 60
-
 		print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
         
+		#Recherche des terminus + affichage du trajet
 		listeTerminus = FindTerminus(listeTrajet)
 
 		chemin = "Vous êtes à " + stationDebut.replace("_"," ")
