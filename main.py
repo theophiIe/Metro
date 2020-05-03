@@ -141,7 +141,7 @@ class Graphe:
 		en_cours = -1
 		while(a_traiter != []):
 			en_cours = min_dist(a_traiter, dist)		#Le prochain sommet de la liste 'a_traiter' que l'on traite est celui qui, pour l'instant, est le plus proche du départ
-			print ("en_cours = {0}".format(en_cours))
+			#print ("en_cours = {0}".format(en_cours))
 			a_traiter.remove(en_cours)					#Le sommet que l'on traite ne fait plus partie de la liste 'a_traiter'
 			voisins = self.def_voisins(en_cours)
 			
@@ -180,6 +180,17 @@ class Graphe:
 					break
 		
 		return temps
+
+	def recherche(self, position):	#Vérivie si la station choisie existe
+		cmpt = 0
+		position = position.replace(" ","_")
+		while (cmpt < len(self.sommets)) :
+			if (position == (self.sommets[cmpt][5])):
+				print ("Le sommet {0} exite".format(position))
+				return True
+			cmpt = cmpt+1
+
+		return False
 
 # Return le un nom de station à partir de son id
 def fromIdToName(id):
@@ -288,7 +299,7 @@ def FindTerminus(listeTrajet):
 
 	idStation = listeTrajet[len(listeTrajet)-1] # derniere station de la liste listeTrajet
 	idStPrecd = listeTrajet[len(listeTrajet)-2] # avant derniere station de la liste listeTrajet
-	terminus = 0
+	terminus = fromIdToTerminus(idStation)		# on initialise terminus avec la valeur de terminus de idStation pour ne pas tester si c'est déjà un terminus
 
 	# On boucle tant qu'on n'a pas trouvé le terminus
 	while(int(terminus) != 1):
@@ -381,93 +392,260 @@ def chgCoul(num_coul):
 	elif num_coul == "14" :
 		return "#62259D"
 
-#Evenement apres un clic gauche
-def clic(event):
-	xb= str(recupX(event.x))
-	yb= str(recupY(event.y))
-	print ("x = {0}\t y = {1}".format(xb,yb))
-    
-	global nbreClic
-	global stationDebut
-	global stationFin
+class Application:
+	tabLigne  = []
+	tabPoint  = []
+	tabTrajet = []
 
-	# Initialisation de la station de départ 
-	if(nbreClic == 0):
-		stationDebut = rechercheStation(xb,yb)
-		if(stationDebut != ""):
-			print("La station de depart est : {0}".format(stationDebut))
-			canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut.replace("_"," "))
-			increGlobal()
+	stationDebut = ""
+	stationFin   = ""
+	tempsTrajet  = ""
+	nbreClic = 0
 
-	# Initialisation de la station d'arrivé
-	elif(nbreClic == 1):
-		stationFin = rechercheStation(xb,yb)
-		if(stationFin != "" and stationFin != stationDebut):
-			canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin.replace("_"," "))
-			print("La station d'arrivée est : {0}".format(stationFin))
-			increGlobal()
+	def __init__(self):
+		self.fenetre = Tk()
+		self.fenetre.title('Métro RATP')
+		self.canvas = Canvas(self.fenetre, width=1440, height=720, background='#F5F5DC')
+		self.canvas.create_rectangle(95, 200, 1125, 700, outline="#050D9E", width=2, dash=(3,5))
+		self.photoImport  = PhotoImage(file="ratp.GIF")
+		self.canvas.create_image(1320, 0, anchor = NW, image = self.photoImport)
 
-#Evenement apres une touche pressé
-def clavier(event):
-	global nbreClic
-	global stationDebut
-	global stationFin
-	global canvas
-    
-	touche = event.keysym
-	
-	# Reset de la partie graphique
-	if(touche == "r"):
-		nbreClic = 0
+		self.stationStrart = self.canvas.create_text(25, 40,  anchor = W, text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
+		self.stationEnd    = self.canvas.create_text(25, 80,  anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
+		self.cheminMetro   = self.canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ",    font="Arial 16 italic", fill="#050D9E")
+
+		self.tabLigne  = []
+		self.tabPoint  = []
+		self.tabTrajet = []
+
+		self.stationDebut = ""
+		self.stationFin   = ""
+		self.tempsTrajet  = ""
+		self.nbreClic = 0
+
+	#Evenement apres un clic gauche
+	def clic(self, event):
+		xb= str(recupX(event.x))
+		yb= str(recupY(event.y))
+		print ("x = {0}\t y = {1}".format(xb,yb))
 		
-		print("Reset")
-		stationDebut = ""
-		canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
+		# Initialisation de la station de départ 
+		if(self.nbreClic == 0):
+			self.stationDebut = rechercheStation(xb,yb)
+			if(self.stationDebut != ""):
+				print("La station de depart est : {0}".format(self.stationDebut))
+				self.canvas.itemconfigure(self.stationStrart, text="Station de départ : " + self.stationDebut.replace("_"," "))
+				self.nbreClic = self.nbreClic +1
+
+		# Initialisation de la station d'arrivé
+		elif(self.nbreClic == 1):
+			self.stationFin = rechercheStation(xb,yb)
+			if(self.stationFin != "" and self.stationFin != self.stationDebut):
+				self.canvas.itemconfigure(self.stationEnd, text="Station d'arrivée : " + self.stationFin.replace("_"," "))
+				print("La station d'arrivée est : {0}".format(self.stationFin))
+				self.nbreClic = self.nbreClic +1
+
+	#Evenement apres une touche pressé
+	def clavier(self, event):
+		touche = event.keysym
 		
-		stationFin = ""
-		canvas.itemconfigure(stationEnd, text="Station d'arrivée : " + stationFin)
-        
-		chemin = "Métro emprunté : "
-		canvas.itemconfigure(cheminMetro, text=chemin)
-        
-		suppTrajet()
-		graphique()
-    
-	# Arret du programme
-	elif(touche == "q" or touche == "Escape"):
-		print("Arrêt du programme")
-		sys.exit(0)
+		# Reset de la partie graphique
+		if(touche == "r"):
+			self.nbreClic = 0
+			
+			print("Reset")
+			self.stationDebut = ""
+			self.canvas.itemconfigure(self.stationStrart, text="Station de départ : " + self.stationDebut)
+			
+			self.stationFin = ""
+			self.canvas.itemconfigure(self.stationEnd, text="Station d'arrivée : " + self.stationFin)
+			
+			chemin = "Métro emprunté : "
+			self.canvas.itemconfigure(self.cheminMetro, text=chemin)
+			
+			A.suppTrajet()
+			graphique()
+		
+		# Arret du programme
+		elif(touche == "q" or touche == "Escape"):
+			print("Arrêt du programme")
+			sys.exit(0)
+		
+		# Lancement de la recherche de trajet
+		elif(touche == "t" and self.stationDebut != "" and self.stationFin != ""):
+			#Recherche du trajet le plus court
+			print("Recherche du trajet entre {0} et {1}".format(self.stationDebut, self.stationFin))
+			listeTrajet = G.dijsktra(self.stationDebut,self.stationFin)
+			
+			#On retire le dernier élement de la liste si c'est la même station
+			if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
+				listeTrajet.remove(listeTrajet[ len(listeTrajet) - 1 ])
+			
+			print(listeTrajet)
+			A.trajet(listeTrajet)
+
+			correspondance = G.itineraire_sans_detail(listeTrajet)
+			print("Liste des correspondance : {0}".format(correspondance))
 	
-	# Lancement de la recherche de trajet
-	elif(touche == "t" and stationDebut != "" and stationFin != ""):
-		#Recherche du trajet le plus court
-		print("Recherche du trajet entre {0} et {1}".format(stationDebut, stationFin))
-		listeTrajet = G.dijsktra(stationDebut,stationFin)
-		print(listeTrajet)
-		trajet(listeTrajet)
+			# Durée du trajet
+			seconds = G.def_time(listeTrajet)
+			minutes = seconds // 60
+			hours = minutes // 60
+			print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
+			
+			#Recherche des terminus + affichage du trajet
+			listeTerminus = FindTerminus(listeTrajet)
 
-		correspondance = G.itineraire_sans_detail(listeTrajet)
-		print("Liste des correspondance : {0}".format(correspondance))
-   
-		# Durée du trajet
-		seconds = G.def_time(listeTrajet)
-		minutes = seconds // 60
-		hours = minutes // 60
-		print("Votre temps de transports : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60))
-        
-		#Recherche des terminus + affichage du trajet
-		listeTerminus = FindTerminus(listeTrajet)
+			chemin = "Vous êtes à " + self.stationDebut.replace("_"," ")
+			chemin = chemin + ", Prendre la ligne " + fromIdToNbrLine(listeTrajet[0]) + " direction " + listeTerminus[0].replace("_"," ")
+			
+			cmpt = 1
+			while(cmpt < len(listeTerminus)):
+				chemin = chemin + "\nA " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
+				cmpt = cmpt+1
 
-		chemin = "Vous êtes à " + stationDebut.replace("_"," ")
-		chemin = chemin + ", Prendre la ligne " + fromIdToNbrLine(listeTrajet[0]) + " direction " + listeTerminus[0].replace("_"," ")
-        
-		cmpt = 1
-		while(cmpt < len(listeTerminus)):
-			chemin = chemin + "\nA " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
+			chemin = chemin + "\nVous devriez arriver à " + self.stationFin.replace("_"," ") + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
+			self.canvas.itemconfigure(self.cheminMetro, text=chemin)
+
+	# Dessine les arêtes entre les stations
+	def drawLine(self):
+		cmptSommets = 0
+		cmptAretes = 0
+
+		while (cmptAretes < len(G.aretes)) :
+			sommet1 = G.aretes[cmptAretes][0]
+			sommet2 = G.aretes[cmptAretes][1]
+			while (cmptSommets < len(G.sommets)) :
+				if sommet1 == G.sommets[cmptSommets][0] :
+					x1 = chgX(G.sommets[cmptSommets][1])
+					y1 = chgY(G.sommets[cmptSommets][2])
+					cmptSommets = 0
+					break
+
+				cmptSommets = cmptSommets + 1
+
+			while (cmptSommets < len(G.sommets)) :
+				if sommet2 == G.sommets[cmptSommets][0] :
+					x2 = chgX(G.sommets[cmptSommets][1])
+					y2 = chgY(G.sommets[cmptSommets][2])
+					couleur = chgCoul(G.sommets[cmptSommets][3])
+					cmptSommets = 0
+					break
+				
+				cmptSommets = cmptSommets + 1
+			
+			self.tabLigne.append(self.canvas.create_line(x1, y1, x2, y2, fill=couleur))
+			cmptAretes = cmptAretes + 1
+
+	# Dessine les stations 
+	def drawStation(self):
+		cmptSommets = 0
+		r = 1
+
+		while (cmptSommets < len(G.sommets)) :
+			testx = G.sommets[cmptSommets][1]
+			x = chgX(testx)
+			testy = G.sommets[cmptSommets][2]
+			y = chgY(testy)
+			self.tabPoint.append(self.canvas.create_oval(x-r, y-r, x+r, y+r, fill="black"))
+			cmptSommets = cmptSommets + 1
+
+	# Dessine la légende du graphe 
+	def legende(self):
+		self.canvas.create_text(1150,350, anchor = W,text="Ligne de Métro: ", font="Arial 16 italic", fill="black")
+
+		self.canvas.create_text(1200,385, anchor = W,text="M1", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,380,1180,390,fill="#FFCD00") 
+
+		self.canvas.create_text(1200,415, anchor = W,text="M2", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,410,1180,420,fill="#003CA6")
+
+		self.canvas.create_text(1200,445, anchor = W,text="M3", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,440,1180,450,fill="#837902")
+
+		self.canvas.create_text(1200,475, anchor = W,text="M4", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,470,1180,480,fill="#CF009E")
+
+		self.canvas.create_text(1200,505, anchor = W,text="M5", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,500,1180,510,fill="#FF7E2E")
+
+		self.canvas.create_text(1190,535, anchor = W,text="M6 / 7b", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,530,1180,540,fill="#6ECA97")
+
+		self.canvas.create_text(1200,565, anchor = W,text="M7", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1150,560,1180,570,fill="#FA9ABA")
+
+		self.canvas.create_text(1310,385, anchor = W,text="M8", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,380,1290,390,fill="#E19BDF")
+
+		self.canvas.create_text(1310,415, anchor = W,text="M9", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,410,1290,420,fill="#B6BD00")
+
+		self.canvas.create_text(1310,445, anchor = W,text="M10", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,440,1290,450,fill="#C9910D")
+
+		self.canvas.create_text(1310,475, anchor = W,text="M11", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,470,1290,480,fill="#704B1C")
+
+		self.canvas.create_text(1310,505, anchor = W,text="M12", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,500,1290,510,fill="#007852")
+
+		self.canvas.create_text(1300,535, anchor = W,text="M13 / 3b", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,530,1290,540,fill="#6EC4E8")
+
+		self.canvas.create_text(1310,565, anchor = W,text="M14", font="Arial 14 italic", fill="black")
+		self.canvas.create_rectangle(1260,560,1290,570,fill="#62259D")
+
+	# Dessin du parcours à prendre sur le graphe
+	def trajet(self, liste):
+		cmptL = 0
+		cmptS = 0
+
+		while(cmptL<len(liste)-1):
+			while(cmptS<len(G.sommets)):
+				if(liste[cmptL] == int(G.sommets[cmptS][0])):
+					x1 = chgX(G.sommets[cmptS][1])
+					y1 = chgY(G.sommets[cmptS][2])
+					break
+
+				cmptS = cmptS+1
+			
+			cmptS = 0
+			
+			while(cmptS<len(G.sommets)):
+				if(liste[cmptL + 1] == int(G.sommets[cmptS][0])):
+					x2 = chgX(G.sommets[cmptS][1])
+					y2 = chgY(G.sommets[cmptS][2])
+					break
+
+				cmptS = cmptS+1
+
+			cmptS = 0
+			cmptL = cmptL + 1
+
+			self.tabTrajet.append(self.canvas.create_line(x1, y1, x2, y2, fill="#FF0000"))
+
+	def suppTrajet(self):
+		cmpt = 0
+		while(cmpt < len(self.tabTrajet)):
+			self.canvas.delete(self.tabTrajet[cmpt])
 			cmpt = cmpt+1
 
-		chemin = chemin + "\nVous devriez arriver à " + stationFin.replace("_"," ") + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
-		canvas.itemconfigure(cheminMetro, text=chemin)
+		self.tabTrajet.clear()
+
+def graphique():
+
+	A.canvas.itemconfigure(A.stationStrart, text="Station de départ : " + A.stationDebut)
+	A.canvas.itemconfigure(A.stationEnd,    text="Station d'arrivée : " + A.stationFin)
+	
+	#Gestion event
+	A.canvas.bind("<Button-1> ", A.clic)
+	A.canvas.focus_set()
+
+	A.canvas.bind("<Key>", A.clavier)
+	
+	A.canvas.pack()
+	A.fenetre.mainloop()
 
 #Recherche la station selectionné sur la graphe par rapport au coordonnées 
 def rechercheStation(x,y):
@@ -481,189 +659,93 @@ def rechercheStation(x,y):
 	null = ""
 	return null
 
-#Incrementation de la varible global nbreClic
-def increGlobal():
-	global nbreClic
-	nbreClic = nbreClic +1
+# XXXXXXXXXXXX Version textuelle XXXXXXXXXXXX #
 
-# Dessine les arêtes entre les stations
-def drawLine():
-	global tabLigne
-	cmptSommets = 0
-	cmptAretes = 0
+def stationDepart():
+	start = ""
 
-	while (cmptAretes < len(G.aretes)) :
-		sommet1 = G.aretes[cmptAretes][0]
-		sommet2 = G.aretes[cmptAretes][1]
-		while (cmptSommets < len(G.sommets)) :
-			if sommet1 == G.sommets[cmptSommets][0] :
-				x1 = chgX(G.sommets[cmptSommets][1])
-				y1 = chgY(G.sommets[cmptSommets][2])
-				cmptSommets = 0
-				break
+	while 1 :
+		start = input("Station de depart : ")
+		resultat = G.recherche(start)
+		if resultat == True:
+			return start
+		
+		else:
+			print("La station n'existe pas réessayé")
 
-			cmptSommets = cmptSommets + 1
+def stationArrivee(start):
+	end = ""
 
-		while (cmptSommets < len(G.sommets)) :
-			if sommet2 == G.sommets[cmptSommets][0] :
-				x2 = chgX(G.sommets[cmptSommets][1])
-				y2 = chgY(G.sommets[cmptSommets][2])
-				couleur = chgCoul(G.sommets[cmptSommets][3])
-				cmptSommets = 0
-				break
-            
-			cmptSommets = cmptSommets + 1
-        
-		tabLigne.append(canvas.create_line(x1, y1, x2, y2, fill=couleur))
-		cmptAretes = cmptAretes + 1
+	while 1 :
+		end = input("Station d'arrivée : ")
+		resultat = G.recherche(end)
+		if (resultat == True) and (start != end) :
+			return end
 
-# Dessine les stations 
-def drawStation():
-	global tabPoint
-	cmptSommets = 0
-	r = 1
+		elif (end == start):
+			print("La station d'arrivé doit être différente de la station de départ")
 
-	while (cmptSommets < len(G.sommets)) :
-		testx = G.sommets[cmptSommets][1]
-		x = chgX(testx)
-		testy = G.sommets[cmptSommets][2]
-		y = chgY(testy)
-		tabPoint.append(canvas.create_oval(x-r, y-r, x+r, y+r, fill="black"))
-		cmptSommets = cmptSommets + 1
+		else:
+			print("La station n'existe pas réessayé")
 
-# Dessine la légende du graphe 
-def legende():
-	canvas.create_text(1150,350, anchor = W,text="Ligne de Métro: ", font="Arial 16 italic", fill="black")
+def Afftrajet(start, end):
+	start = start.replace(" ","_")
+	end   = end.replace(" ","_")
+	print("Recherche du trajet entre {0} et {1}".format(start, end))
+	listeTrajet = G.dijsktra(start,end)
 
-	canvas.create_text(1200,385, anchor = W,text="M1", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,380,1180,390,fill="#FFCD00") 
+	#On retire le dernier élement de la liste si c'est la même station
+	if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
+		listeTrajet.remove(listeTrajet[ len(listeTrajet) - 1 ])
 
-	canvas.create_text(1200,415, anchor = W,text="M2", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,410,1180,420,fill="#003CA6")
+	print(listeTrajet)
+	
+	correspondance = G.itineraire_sans_detail(listeTrajet)
+	print("Liste des correspondance : {0}".format(correspondance))
+	
+	#Recherche des terminus + affichage du trajet
+	listeTerminus = FindTerminus(listeTrajet)
 
-	canvas.create_text(1200,445, anchor = W,text="M3", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,440,1180,450,fill="#837902")
-
-	canvas.create_text(1200,475, anchor = W,text="M4", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,470,1180,480,fill="#CF009E")
-
-	canvas.create_text(1200,505, anchor = W,text="M5", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,500,1180,510,fill="#FF7E2E")
-
-	canvas.create_text(1190,535, anchor = W,text="M6 / 7b", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,530,1180,540,fill="#6ECA97")
-
-	canvas.create_text(1200,565, anchor = W,text="M7", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1150,560,1180,570,fill="#FA9ABA")
-
-	canvas.create_text(1310,385, anchor = W,text="M8", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,380,1290,390,fill="#E19BDF")
-
-	canvas.create_text(1310,415, anchor = W,text="M9", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,410,1290,420,fill="#B6BD00")
-
-	canvas.create_text(1310,445, anchor = W,text="M10", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,440,1290,450,fill="#C9910D")
-
-	canvas.create_text(1310,475, anchor = W,text="M11", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,470,1290,480,fill="#704B1C")
-
-	canvas.create_text(1310,505, anchor = W,text="M12", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,500,1290,510,fill="#007852")
-
-	canvas.create_text(1300,535, anchor = W,text="M13 / 3b", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,530,1290,540,fill="#6EC4E8")
-
-	canvas.create_text(1310,565, anchor = W,text="M14", font="Arial 14 italic", fill="black")
-	canvas.create_rectangle(1260,560,1290,570,fill="#62259D")
-
-# Dessin du parcours à prendre sur le graphe
-def trajet(liste):
-	global canvas
-	global tabTrajet
-	cmptL = 0
-	cmptS = 0
-
-	while(cmptL<len(liste)-1):
-		while(cmptS<len(G.sommets)):
-			if(liste[cmptL] == int(G.sommets[cmptS][0])):
-				x1 = chgX(G.sommets[cmptS][1])
-				y1 = chgY(G.sommets[cmptS][2])
-				break
-
-			cmptS = cmptS+1
-        
-		cmptS = 0
-        
-		while(cmptS<len(G.sommets)):
-			if(liste[cmptL + 1] == int(G.sommets[cmptS][0])):
-				x2 = chgX(G.sommets[cmptS][1])
-				y2 = chgY(G.sommets[cmptS][2])
-				break
-
-			cmptS = cmptS+1
-
-		cmptS = 0
-		cmptL = cmptL + 1
-
-		tabTrajet.append(canvas.create_line(x1, y1, x2, y2, fill="#FF0000"))
-
-def suppTrajet():
-	global tabTrajet
-    
-	cmpt = 0
-	while(cmpt < len(tabTrajet)):
-		canvas.delete(tabTrajet[cmpt])
+	chemin = "Vous êtes à " + start
+	chemin = chemin + ", Prendre la ligne " + fromIdToNbrLine(listeTrajet[0]) + " direction " + listeTerminus[0].replace("_"," ")
+	
+	cmpt = 1
+	while(cmpt < len(listeTerminus)):
+		chemin = chemin + "\nA " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
 		cmpt = cmpt+1
 
-	tabTrajet.clear()
+	# Durée du trajet
+	seconds = G.def_time(listeTrajet)
+	minutes = seconds // 60
+	hours = minutes // 60
 
-def graphique():
-	global canvas
+	chemin = chemin + "\nVous devriez arriver à " + end + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
+	print(chemin)
 
-	canvas.itemconfigure(stationStrart, text="Station de départ : " + stationDebut)
-	canvas.itemconfigure(stationEnd,    text="Station d'arrivée : " + stationFin)
-    
-	#Gestion event
-	canvas.bind("<Button-1> ", clic)
-	canvas.focus_set()
+def question():
+	while(TRUE):
+		rep = input("Voulez-vous utiliser la partie graphique? [y/n] : ")
+		if(rep == "y" or rep == "n"):
+			return rep
 
-	canvas.bind("<Key>", clavier)
-    
-	canvas.pack()
-	fenetre.mainloop()
+def main(rep):
+	if(rep == 'y'):
+		A.legende()
+		A.drawLine()    
+		A.drawStation()
+		graphique()
 
-def main():
-	G.init_graph()
-	legende()
-	drawLine()    
-	drawStation()
-	graphique()
+	elif(rep == 'n'):
+		start = stationDepart()
+		end   = stationArrivee(start)
+		Afftrajet(start, end)
 
 #L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
 G = Graphe("metro.txt")
+G.init_graph()
 
-#init des variables globales pour la partie graphique
-fenetre = Tk()
-fenetre.title('Métro RATP')
-canvas = Canvas(fenetre, width=1440, height=720, background='#F5F5DC')
-canvas.create_rectangle(95, 200, 1125, 700, outline="#050D9E", width=2, dash=(3,5))
+rep = question()
+if(rep == 'y'):
+	A = Application() 
 
-tabLigne  = []
-tabPoint  = []
-tabTrajet = []
-
-stationDebut = ""
-stationFin   = ""
-tempsTrajet  = ""
-cheminMetro  = ""
-nbreClic = 0
-
-photoImport  = PhotoImage(file="ratp.GIF")
-canvas.create_image(1320, 0, anchor = NW, image = photoImport)
-
-stationStrart = canvas.create_text(25, 40,  anchor = W, text="Station de départ : ", font="Arial 16 italic", fill="#050D9E")
-stationEnd    = canvas.create_text(25, 80,  anchor = W, text="Station d'arrivée : ", font="Arial 16 italic", fill="#050D9E")
-cheminMetro   = canvas.create_text(25, 130, anchor = W, text="Métro emprunté : ",    font="Arial 16 italic", fill="#050D9E")
-
-main()
+main(rep)
