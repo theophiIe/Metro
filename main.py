@@ -93,13 +93,13 @@ class Graphe:
 	def from_name_to_id(self, sommet):		#Permet de trouver le numéro correspondant au sommet entré en paramètre 
 		cmpt = 0
 		identifiant = []
-		#~ print sommet
+		
 		sommet = sommet.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
 			if(sommet == self.sommets[cmpt][5]):
 				while (sommet == self.sommets[cmpt][5]):
 					identifiant.append( int(self.sommets[cmpt][0]) )
-					print (self.sommets[cmpt][5] + self.sommets[cmpt][3] + "... Check")
+					print (self.sommets[cmpt][5] + "\t" + self.sommets[cmpt][3] + "..." + colors.LightGreen + "\tCheck" + colors.ResetAll)
 					cmpt = cmpt+1
 				break						#On prend en compte toutes les lignes, et on évite de parcourir les reste de la liste
 			cmpt = cmpt+1
@@ -129,7 +129,7 @@ class Graphe:
 		return distance
 	
 	#Algo de dijsktra pour trouver le plus court chemin
-	def dijsktra(self, sommet1, sommet2):		### MODIFIE ###
+	def dijsktra(self, sommet1, sommet2):
 		depart = self.from_name_to_id(sommet1)	#Correspond au numéro du sommet de départ
 		arrive = self.from_name_to_id(sommet2)	#Correspond au numéro du sommet d'arrivé
 		chemins = []
@@ -167,9 +167,8 @@ class Graphe:
 				
 		#On cherche le chemin le plus court de tous ceux qu'on a obtenus
 		chemin_plus_court = self.def_temps_chemins(chemins)
-		#~ print str(chemins)
-		
 		return chemins[ chemin_plus_court ]
+
 	def itineraire_sans_detail(self,chemin):	#Retourne les correspondances
 		depart = chemin[0]
 		correspondance = [depart]
@@ -183,7 +182,7 @@ class Graphe:
 				
 		return correspondance
 	
-	def def_temps_chemins(self, chemin):			### MODIFIE ###
+	def def_temps_chemins(self, chemin):
 		temps_chemin = []
 		for j in range(len(chemin)):
 			temps = 0
@@ -192,12 +191,14 @@ class Graphe:
 					if( chemin[j][i] == int(self.aretes[cmpt][0]) and chemin[j][i+1] == int(self.aretes[cmpt][1]) ):
 						temps = temps + int(self.aretes[cmpt][2])
 						break
+
 					if( chemin[j][i] == int(self.aretes[cmpt][1]) and chemin[j][i+1] == int(self.aretes[cmpt][0]) ):
 						temps = temps + int(self.aretes[cmpt][2])
 						break
+
 			temps_chemin.append( temps )
+
 		minimum = min(temps_chemin)
-		#~ print "Tout les temps : " + str(temps_chemin) + " le minimum : " + str(minimum)
 		return temps_chemin.index( minimum )
 
 	def def_time(self, chemin):		#Calcul le temps du trajet en métro
@@ -219,8 +220,8 @@ class Graphe:
 		position = position.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
 			if (position == (self.sommets[cmpt][5])):
-				print ("Le sommet {0} exite".format(position))
 				return True
+
 			cmpt = cmpt+1
 
 		return False
@@ -360,7 +361,6 @@ def FindTerminus(listeTrajet):
 	nameStation = fromIdToName(idStation)
 	listeTerminus.append(nameStation)
 
-	print(listeTerminus)
 	return listeTerminus
 
 # XXXXXXXXXXXX PARTIE GRAPHIQUE XXXXXXXXXXXX #
@@ -460,6 +460,7 @@ class Application:
 	def clic(self, event):
 		xb= str(recupX(event.x))
 		yb= str(recupY(event.y))
+		
 		print ("x = {0}\t y = {1}".format(xb,yb))
 		
 		# Initialisation de la station de départ 
@@ -484,9 +485,10 @@ class Application:
 		
 		# Reset de la partie graphique
 		if(touche == "r"):
-			self.nbreClic = 0
-			
 			print("Reset")
+
+			self.nbreClic = 0
+
 			self.stationDebut = ""
 			self.canvas.itemconfigure(self.stationStrart, text="Station de départ : " + self.stationDebut)
 			
@@ -695,37 +697,45 @@ def rechercheStation(x,y):
 
 # XXXXXXXXXXXX Version textuelle XXXXXXXXXXXX #
 
+class colors:
+	ResetAll   = "\033[0m"
+	Bold       = "\033[1m"
+	LightRed   = "\033[91m"
+	LightGreen = "\033[92m"
+	LightBlue  = "\033[94m"
+
 def stationDepart():
 	start = ""
 
 	while 1 :
-		start = input("Station de depart : ")
+		start = input(colors.LightBlue + "\nStation de depart : " + colors.ResetAll) 
 		resultat = G.recherche(start)
 		if resultat == True:
 			return start
 		
 		else:
-			print("La station n'existe pas réessayé")
+			print(colors.Bold + colors.LightRed + "La station n'existe pas, réessayez" + colors.ResetAll) 
 
 def stationArrivee(start):
 	end = ""
 
 	while 1 :
-		end = input("Station d'arrivée : ")
+		end = input(colors.LightBlue + "Station d'arrivée : " + colors.ResetAll)
 		resultat = G.recherche(end)
 		if (resultat == True) and (start != end) :
 			return end
 
 		elif (end == start):
-			print("La station d'arrivé doit être différente de la station de départ")
+			print(colors.Bold + colors.LightRed + "La station d'arrivé doit être différente de la station de départ" + colors.ResetAll)
 
 		else:
-			print("La station n'existe pas réessayé")
+			print(colors.Bold + colors.LightRed + "La station n'existe pas, réessayez" + colors.ResetAll)
 
 def Afftrajet(start, end):
 	start = start.replace(" ","_")
 	end   = end.replace(" ","_")
-	print("Recherche du trajet entre {0} et {1}".format(start, end))
+	
+	print("\nRecherche du trajet entre " + colors.Bold + colors.LightBlue + start + colors.ResetAll + " et " + colors.Bold + colors.LightBlue + end + colors.ResetAll + ": \n")
 
 	listeTrajet = G.dijsktra(start, end)
 
@@ -733,33 +743,32 @@ def Afftrajet(start, end):
 	if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
 		listeTrajet.remove(listeTrajet[ len(listeTrajet) - 1 ])
 
-	print(listeTrajet)
+	print("\nLe trajet est :", listeTrajet,"\n")
 	
 	correspondance = G.itineraire_sans_detail(listeTrajet)
-	print("Liste des correspondance : {0}".format(correspondance))
 	
 	#Recherche des terminus + affichage du trajet
 	listeTerminus = FindTerminus(listeTrajet)
 
-	chemin = "Vous êtes à " + start
-	chemin = chemin + ", Prendre la ligne " + fromIdToNbrLine(listeTrajet[0]) + " direction " + listeTerminus[0].replace("_"," ")
+	chemin = "Vous êtes à " + colors.Bold + colors.LightBlue + start + colors.ResetAll
+	chemin = chemin + ", Prendre la ligne " + colors.Bold + colors.LightBlue + fromIdToNbrLine(listeTrajet[0]) + colors.ResetAll + " direction " + colors.Bold + colors.LightBlue + listeTerminus[0].replace("_"," ") + colors.ResetAll
 	
 	cmpt = 1
 	while(cmpt < len(listeTerminus)):
-		chemin = chemin + "\nA " + fromIdToName(correspondance[cmpt]).replace("_"," ") + ", prenez la ligne " + fromIdToNbrLine(correspondance[cmpt]) + " direction " + listeTerminus[cmpt].replace("_"," ")
+		chemin = chemin + "\nA " + colors.Bold + colors.LightBlue + fromIdToName(correspondance[cmpt]).replace("_"," ") + colors.ResetAll + ", prenez la ligne " + colors.Bold + colors.LightBlue + fromIdToNbrLine(correspondance[cmpt]) + colors.ResetAll + " direction " + colors.Bold + colors.LightBlue + listeTerminus[cmpt].replace("_"," ") + colors.ResetAll
 		cmpt = cmpt+1
 
 	# Durée du trajet
 	seconds = G.def_time(listeTrajet)
 	minutes = seconds // 60
-	hours = minutes // 60
+	hours   = minutes // 60
 
-	chemin = chemin + "\nVous devriez arriver à " + end + " dans : %02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60)
+	chemin = chemin + "\nVous devriez arriver à " + colors.Bold + colors.LightBlue + end + colors.ResetAll + " dans : " + colors.Bold + colors.LightBlue + "%02d h %02d min %02d sec" % (hours, minutes % 60, seconds % 60) + colors.ResetAll
 	print(chemin)
 
 def question():
 	while(TRUE):
-		rep = input("Voulez-vous utiliser la partie graphique? [y/n] : ")
+		rep = input(colors.Bold + "Voulez-vous utiliser la partie graphique? [y/n] : " + colors.ResetAll)
 		if(rep == "y" or rep == "n"):
 			return rep
 
@@ -776,7 +785,7 @@ def main(rep):
 		Afftrajet(start, end)
 		
 		while(TRUE):
-			restart = input("Voulez-vous recommencer? [y/n] : ")
+			restart = input(colors.Bold + "\nVoulez-vous recommencer? [y/n] : " + colors.ResetAll)
 			if(restart == 'y'):
 				main('n')
 			
