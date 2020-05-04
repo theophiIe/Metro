@@ -188,6 +188,61 @@ class Graphe:
 
 		return False
 
+def listStationDepart(stationDebut):
+	stationDépart = [] 
+	cmpt = 0
+	while (cmpt < len(G.sommets)):
+		if(stationDebut == G.sommets[cmpt][5]):
+			stationDépart.append(int(G.sommets[cmpt][0]))
+			
+		cmpt = cmpt+1
+	
+	return stationDépart
+
+def listStationArrivee(stationFin):
+	stationArr = [] 
+	cmpt = 0
+	while (cmpt < len(G.sommets)):
+		if(stationFin == G.sommets[cmpt][5]):
+			stationArr.append(int(G.sommets[cmpt][0]))
+			
+		cmpt = cmpt+1
+	
+	return stationArr
+
+def FindSameLine(stationDépart, stationArr):
+	cmptD = 0
+	stationCo = []
+	while (cmptD < len(stationDépart)):
+		cmptA = 0
+		while (cmptA < len(stationArr)):
+			if(fromIdToNbrLine(stationDépart[cmptD]) == fromIdToNbrLine(stationArr[cmptA])):
+				stationCo.append(stationDépart[cmptD])
+				stationCo.append(stationArr[cmptA])
+			cmptA = cmptA + 1
+		cmptD = cmptD + 1
+
+	return stationCo
+
+def FindTrajet(stationCo, stationDebut, stationFin):
+	cmpt = 0
+	sec = 9999
+	if(len(stationCo) != 0):
+		while(cmpt < len(stationCo)):
+			listeTest = G.dijsktra(stationCo[cmpt], stationCo[cmpt+1])
+			seconds = G.def_time(listeTest)
+			if(seconds < sec):
+				sec = seconds
+				listeTrajet = [i for i in listeTest]
+			cmpt = cmpt + 2
+	
+	else:
+		depart = G.from_name_to_id(stationDebut)
+		arrive = G.from_name_to_id(stationFin)
+		listeTrajet = G.dijsktra( depart, arrive)
+
+	return listeTrajet
+
 # Return le un nom de station à partir de son id
 def fromIdToName(id):
 	if(id == int(G.sommets[id][0])):
@@ -472,29 +527,18 @@ class Application:
 			#Recherche du trajet le plus court
 			print("Recherche du trajet entre {0} et {1}".format(self.stationDebut, self.stationFin))
 
-			stationDépart = [] 
+			#Station de depart
+			stationDépart = listStationDepart(self.stationDebut)
 			
-			cmpt = 0
-			while (cmpt < len(G.sommets)):
-				if(self.stationDebut == G.sommets[cmpt][5]):
-					stationDépart.append(int(G.sommets[cmpt][0]))
-					
-				cmpt = cmpt+1
+			#Station d'arrivée
+			stationArr = listStationArrivee(self.stationFin)
 
-			arrive = G.from_name_to_id(self.stationFin)
-			
-			cmpt = 0
-			temps = 999
+			#Recherche de même ligne station de depart et d'arrivee
+			stationCo = FindSameLine(stationDépart, stationArr)
 
-			while(cmpt < len(stationDépart)):
-				depart = stationDépart[cmpt]		
-				trajetTest = G.dijsktra(depart, arrive)
-				seconds = G.def_time(trajetTest)
-				if(seconds < temps):
-					temps = seconds
-					listeTrajet = trajetTest
-				cmpt = cmpt + 1
-			
+			#Récupération du trajet le plus rapide
+			listeTrajet = FindTrajet(stationCo, self.stationDebut, self.stationFin)
+
 			#On retire le dernier élement de la liste si c'est la même station
 			if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
 				listeTrajet.remove(listeTrajet[ len(listeTrajet) - 1 ])
@@ -711,10 +755,17 @@ def Afftrajet(start, end):
 	end   = end.replace(" ","_")
 	print("Recherche du trajet entre {0} et {1}".format(start, end))
 	
-	#depart = self.from_name_to_id(sommet1)
-	#arrive = self.from_name_to_id(sommet2)		
+	#Station de depart
+	stationDépart = listStationDepart(start)
+	
+	#Station d'arrivée
+	stationArr = listStationArrivee(end)
 
-	listeTrajet = G.dijsktra(start,end)
+	#Recherche de même ligne station de depart et d'arrivee
+	stationCo = FindSameLine(stationDépart, stationArr)
+
+	#Récupération du trajet le plus rapide
+	listeTrajet = FindTrajet(stationCo, start, end)
 
 	#On retire le dernier élement de la liste si c'est la même station
 	if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
