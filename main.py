@@ -1,6 +1,5 @@
 from tkinter import *
 import time
-import sys
 
 class Graphe:
 
@@ -734,7 +733,7 @@ def stationArrivee(start):
 def Afftrajet(start, end):
 	start = start.replace(" ","_")
 	end   = end.replace(" ","_")
-	
+
 	print("\nRecherche du trajet entre " + colors.Bold + colors.LightBlue + start + colors.ResetAll + " et " + colors.Bold + colors.LightBlue + end + colors.ResetAll + ": \n")
 
 	listeTrajet = G.dijsktra(start, end)
