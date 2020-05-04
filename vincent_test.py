@@ -102,18 +102,20 @@ class Graphe:
 		return voisins
 		
 		
-	def from_name_to_id(self, sommet):
+	def from_name_to_id(self, sommet):		### MODIFIE ###
 		cmpt = 0
-		identifiant = -1
+		identifiant = []
 		#~ print sommet
 		sommet = sommet.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
 			if(sommet == self.sommets[cmpt][5]):
-				identifiant = int(self.sommets[cmpt][0])
-				print str(sommet)+"... Check"
-				break
+				while (sommet == self.sommets[cmpt][5]):
+					identifiant.append( int(self.sommets[cmpt][0]) )
+					print self.sommets[cmpt][5] + self.sommets[cmpt][3] + "... Check"
+					cmpt = cmpt+1
+				break						#On prend en compte toutes les lignes, et on évite de parcourir les reste de la liste
 			cmpt = cmpt+1
-		if(identifiant == -1):
+		if(len(identifiant) == 0):
 			print "Un problème est survenu dans la fonction 'from_name_to_id'..."
 			exit()
 		return identifiant
@@ -137,38 +139,48 @@ class Graphe:
 		return distance
 
 		
-	def dijsktra(self, sommet1, sommet2):
+	def dijsktra(self, sommet1, sommet2):		### MODIFIE ###
 		
 		depart = self.from_name_to_id(sommet1)	#Correspond au numéro du sommet de départ
 		arrive = self.from_name_to_id(sommet2)	#Correspond au numéro du sommet d'arrivé
+		chemins = []
 		
-		### PHASE D'INITIALISATION ###
-		predecesseur = [None] * (len(self.sommets))	
-		a_traiter = []		
-		dist = []	
-		for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets
-			dist.append(float("inf"))
-			a_traiter.append(s)
-		dist[depart] = 0
+		for point_depart in depart:
+			for point_arrive in arrive:
 		
-		### PHASE DE RECHERCHE ###
-		
-		en_cours = -1
-		while(a_traiter != []):
-			
-			en_cours = min_dist(a_traiter, dist)
-			a_traiter.remove(en_cours)
-			voisins = self.def_voisins(en_cours)
-			
-			for v in voisins:
+				### PHASE D'INITIALISATION ###
+				predecesseur = [None] * (len(self.sommets))	
+				a_traiter = []		
+				dist = []	
+				for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets
+					dist.append(float("inf"))
+					a_traiter.append(s)
+				dist[point_depart] = 0
 				
-				v = int(v)
-				nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
-				if(nouvelle_dist < dist[v]):
-					dist[v] = nouvelle_dist
-					predecesseur[v] = en_cours
+				### PHASE DE RECHERCHE ###
+				
+				en_cours = -1
+				while(a_traiter != []):
+					
+					en_cours = min_dist(a_traiter, dist)
+					a_traiter.remove(en_cours)
+					voisins = self.def_voisins(en_cours)
+					
+					for v in voisins:
+						
+						v = int(v)
+						nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
+						if(nouvelle_dist < dist[v]):
+							dist[v] = nouvelle_dist
+							predecesseur[v] = en_cours
+							
+				chemins.append( self.creer_chemin(predecesseur, point_depart, point_arrive) )
+				
+		#On cherche le chemin le plus court de tous ceux qu'on a obtenus
+		chemin_plus_court = self.def_temps_chemins(chemins)
+		#~ print str(chemins)
 		
-		return self.creer_chemin(predecesseur, depart, arrive)
+		return chemins[ chemin_plus_court ]
 		
 
 	def recherche(self, position):
@@ -232,6 +244,24 @@ class Graphe:
 		
 		return chemin		#retourne la liste 'chemin' inversée
 		
+	def def_temps_chemins(self, chemin):			### MODIFIE ###
+		temps_chemin = []
+		for j in range(len(chemin)):
+			temps = 0
+			for i in range(len(chemin[j])-1):
+				for cmpt in range(len(self.aretes)):
+					if( chemin[j][i] == int(self.aretes[cmpt][0]) and chemin[j][i+1] == int(self.aretes[cmpt][1]) ):
+						temps = temps + int(self.aretes[cmpt][2])
+						break
+					if( chemin[j][i] == int(self.aretes[cmpt][1]) and chemin[j][i+1] == int(self.aretes[cmpt][0]) ):
+						temps = temps + int(self.aretes[cmpt][2])
+						break
+			temps_chemin.append( temps )
+		minimum = min(temps_chemin)
+		#~ print "Tout les temps : " + str(temps_chemin) + " le minimum : " + str(minimum)
+		return temps_chemin.index( minimum )
+		
+		
 	def def_time(self, chemin):
 		temps = 0
 		for i in range(len(chemin)-1):
@@ -243,7 +273,6 @@ class Graphe:
 					temps = temps + int(self.aretes[cmpt][2])
 					break
 		return temps
-		
 
 G = Graphe("metro.txt")
 G.init_aretes()
@@ -273,6 +302,7 @@ while 1 :
 		
 		
 chemin = G.dijsktra(start,end)
+#~ print "CHEMIN DANS MAIN : " + str(chemin)
 print "Liste des sommets par lesquels on passe : "+str(chemin)
 correspondance = G.itineraire_sans_detail(chemin)
 print "Liste des correspondance : "+str(correspondance)
