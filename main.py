@@ -92,13 +92,20 @@ class Graphe:
 		
 	def from_name_to_id(self, sommet):		#Permet de trouver le numéro correspondant au sommet entré en paramètre 
 		cmpt = 0
-
+		identifiant = []
+		#~ print sommet
+		sommet = sommet.replace(" ","_")
 		while (cmpt < len(self.sommets)) :
 			if(sommet == self.sommets[cmpt][5]):
-				identifiant = int(self.sommets[cmpt][0])
-				break
-
+				while (sommet == self.sommets[cmpt][5]):
+					identifiant.append( int(self.sommets[cmpt][0]) )
+					print (self.sommets[cmpt][5] + self.sommets[cmpt][3] + "... Check")
+					cmpt = cmpt+1
+				break						#On prend en compte toutes les lignes, et on évite de parcourir les reste de la liste
 			cmpt = cmpt+1
+		if(len(identifiant) == 0):
+			print ("Un problème est survenu dans la fonction 'from_name_to_id'...")
+			exit()
 
 		return identifiant
     
@@ -122,34 +129,47 @@ class Graphe:
 		return distance
 	
 	#Algo de dijsktra pour trouver le plus court chemin
-	def dijsktra(self, depart, arrive):
-		### PHASE D'INITIALISATION ###
-		predecesseur = [None] * (len(self.sommets))		#Création d'une liste aussi grande que le nombre de sommets, que l'on rempli de 'None'
-		a_traiter = []		
-		dist = []
-		for s in range(len(self.sommets)):
-			dist.append(float("inf"))
-			a_traiter.append(s)			#On ajoute tous les sommets dans la liste des sommets à traiter
-
-		dist[depart] = 0				#La distance entre le point de départ et le point de départ est de 0
+	def dijsktra(self, sommet1, sommet2):		### MODIFIE ###
+		depart = self.from_name_to_id(sommet1)	#Correspond au numéro du sommet de départ
+		arrive = self.from_name_to_id(sommet2)	#Correspond au numéro du sommet d'arrivé
+		chemins = []
 		
-		### PHASE DE RECHERCHE ###
-		en_cours = -1
-		while(a_traiter != []):
-			en_cours = min_dist(a_traiter, dist)		#Le prochain sommet de la liste 'a_traiter' que l'on traite est celui qui, pour l'instant, est le plus proche du départ
-			#print ("en_cours = {0}".format(en_cours))
-			a_traiter.remove(en_cours)					#Le sommet que l'on traite ne fait plus partie de la liste 'a_traiter'
-			voisins = self.def_voisins(en_cours)
-			
-			for v in voisins:		#Dans cette boucle, on met à jour la liste des distances et des prédécesseurs, en fonction des voisins du sommet 'en_cours'
-				v = int(v)
-				nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
-				if(nouvelle_dist < dist[v]):
-					dist[v] = nouvelle_dist
-					predecesseur[v] = en_cours
+		for point_depart in depart:
+			for point_arrive in arrive:
 		
-		return self.creer_chemin(predecesseur, depart, arrive)	#Grâce a la liste des prédécesseurs, on peut établir le chemin le plus court
-
+				### PHASE D'INITIALISATION ###
+				predecesseur = [None] * (len(self.sommets))	
+				a_traiter = []		
+				dist = []	
+				for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets
+					dist.append(float("inf"))
+					a_traiter.append(s)
+				dist[point_depart] = 0
+				
+				### PHASE DE RECHERCHE ###
+				
+				en_cours = -1
+				while(a_traiter != []):
+					
+					en_cours = min_dist(a_traiter, dist)
+					a_traiter.remove(en_cours)
+					voisins = self.def_voisins(en_cours)
+					
+					for v in voisins:
+						
+						v = int(v)
+						nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
+						if(nouvelle_dist < dist[v]):
+							dist[v] = nouvelle_dist
+							predecesseur[v] = en_cours
+							
+				chemins.append( self.creer_chemin(predecesseur, point_depart, point_arrive) )
+				
+		#On cherche le chemin le plus court de tous ceux qu'on a obtenus
+		chemin_plus_court = self.def_temps_chemins(chemins)
+		#~ print str(chemins)
+		
+		return chemins[ chemin_plus_court ]
 	def itineraire_sans_detail(self,chemin):	#Retourne les correspondances
 		depart = chemin[0]
 		correspondance = [depart]
@@ -162,7 +182,24 @@ class Graphe:
 				ligne = ligne_bis
 				
 		return correspondance
-		
+	
+	def def_temps_chemins(self, chemin):			### MODIFIE ###
+		temps_chemin = []
+		for j in range(len(chemin)):
+			temps = 0
+			for i in range(len(chemin[j])-1):
+				for cmpt in range(len(self.aretes)):
+					if( chemin[j][i] == int(self.aretes[cmpt][0]) and chemin[j][i+1] == int(self.aretes[cmpt][1]) ):
+						temps = temps + int(self.aretes[cmpt][2])
+						break
+					if( chemin[j][i] == int(self.aretes[cmpt][1]) and chemin[j][i+1] == int(self.aretes[cmpt][0]) ):
+						temps = temps + int(self.aretes[cmpt][2])
+						break
+			temps_chemin.append( temps )
+		minimum = min(temps_chemin)
+		#~ print "Tout les temps : " + str(temps_chemin) + " le minimum : " + str(minimum)
+		return temps_chemin.index( minimum )
+
 	def def_time(self, chemin):		#Calcul le temps du trajet en métro
 		temps = 0
 		for i in range(len(chemin)-1):
@@ -187,61 +224,6 @@ class Graphe:
 			cmpt = cmpt+1
 
 		return False
-
-def listStationDepart(stationDebut):
-	stationDépart = [] 
-	cmpt = 0
-	while (cmpt < len(G.sommets)):
-		if(stationDebut == G.sommets[cmpt][5]):
-			stationDépart.append(int(G.sommets[cmpt][0]))
-			
-		cmpt = cmpt+1
-	
-	return stationDépart
-
-def listStationArrivee(stationFin):
-	stationArr = [] 
-	cmpt = 0
-	while (cmpt < len(G.sommets)):
-		if(stationFin == G.sommets[cmpt][5]):
-			stationArr.append(int(G.sommets[cmpt][0]))
-			
-		cmpt = cmpt+1
-	
-	return stationArr
-
-def FindSameLine(stationDépart, stationArr):
-	cmptD = 0
-	stationCo = []
-	while (cmptD < len(stationDépart)):
-		cmptA = 0
-		while (cmptA < len(stationArr)):
-			if(fromIdToNbrLine(stationDépart[cmptD]) == fromIdToNbrLine(stationArr[cmptA])):
-				stationCo.append(stationDépart[cmptD])
-				stationCo.append(stationArr[cmptA])
-			cmptA = cmptA + 1
-		cmptD = cmptD + 1
-
-	return stationCo
-
-def FindTrajet(stationCo, stationDebut, stationFin):
-	cmpt = 0
-	sec = 9999
-	if(len(stationCo) != 0):
-		while(cmpt < len(stationCo)):
-			listeTest = G.dijsktra(stationCo[cmpt], stationCo[cmpt+1])
-			seconds = G.def_time(listeTest)
-			if(seconds < sec):
-				sec = seconds
-				listeTrajet = [i for i in listeTest]
-			cmpt = cmpt + 2
-	
-	else:
-		depart = G.from_name_to_id(stationDebut)
-		arrive = G.from_name_to_id(stationFin)
-		listeTrajet = G.dijsktra( depart, arrive)
-
-	return listeTrajet
 
 # Return le un nom de station à partir de son id
 def fromIdToName(id):
@@ -520,24 +502,14 @@ class Application:
 		# Arret du programme
 		elif(touche == "q" or touche == "Escape"):
 			print("Arrêt du programme")
-			sys.exit(0)
+			exit()
 		
 		# Lancement de la recherche de trajet
 		elif(touche == "t" and self.stationDebut != "" and self.stationFin != ""):
 			#Recherche du trajet le plus court
 			print("Recherche du trajet entre {0} et {1}".format(self.stationDebut, self.stationFin))
 
-			#Station de depart
-			stationDépart = listStationDepart(self.stationDebut)
-			
-			#Station d'arrivée
-			stationArr = listStationArrivee(self.stationFin)
-
-			#Recherche de même ligne station de depart et d'arrivee
-			stationCo = FindSameLine(stationDépart, stationArr)
-
-			#Récupération du trajet le plus rapide
-			listeTrajet = FindTrajet(stationCo, self.stationDebut, self.stationFin)
+			listeTrajet = G.dijsktra(self.stationDebut,self.stationFin)
 
 			#On retire le dernier élement de la liste si c'est la même station
 			if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
@@ -754,18 +726,8 @@ def Afftrajet(start, end):
 	start = start.replace(" ","_")
 	end   = end.replace(" ","_")
 	print("Recherche du trajet entre {0} et {1}".format(start, end))
-	
-	#Station de depart
-	stationDépart = listStationDepart(start)
-	
-	#Station d'arrivée
-	stationArr = listStationArrivee(end)
 
-	#Recherche de même ligne station de depart et d'arrivee
-	stationCo = FindSameLine(stationDépart, stationArr)
-
-	#Récupération du trajet le plus rapide
-	listeTrajet = FindTrajet(stationCo, start, end)
+	listeTrajet = G.dijsktra(start, end)
 
 	#On retire le dernier élement de la liste si c'est la même station
 	if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
@@ -819,7 +781,7 @@ def main(rep):
 				main('n')
 			
 			elif(restart == 'n'):
-				break
+				exit()
 
 #L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
 G = Graphe("metro.txt")
