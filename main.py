@@ -812,6 +812,14 @@ def main(rep):
 		start = stationDepart()
 		end   = stationArrivee(start)
 		Afftrajet(start, end)
+		
+		while(TRUE):
+			restart = input("Voulez-vous recommencer? [y/n] : ")
+			if(restart == 'y'):
+				main('n')
+			
+			elif(restart == 'n'):
+				break
 
 #L'objet 'G' est maintenant initialisé grâce aux données contenu dans le fichier "metro.txt"
 G = Graphe("metro.txt")
