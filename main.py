@@ -122,11 +122,7 @@ class Graphe:
 		return distance
 	
 	#Algo de dijsktra pour trouver le plus court chemin
-	def dijsktra(self, sommet1, sommet2):
-		
-		depart = self.from_name_to_id(sommet1)
-		arrive = self.from_name_to_id(sommet2)
-		
+	def dijsktra(self, depart, arrive):
 		### PHASE D'INITIALISATION ###
 		predecesseur = [None] * (len(self.sommets))		#Création d'une liste aussi grande que le nombre de sommets, que l'on rempli de 'None'
 		a_traiter = []		
@@ -475,7 +471,29 @@ class Application:
 		elif(touche == "t" and self.stationDebut != "" and self.stationFin != ""):
 			#Recherche du trajet le plus court
 			print("Recherche du trajet entre {0} et {1}".format(self.stationDebut, self.stationFin))
-			listeTrajet = G.dijsktra(self.stationDebut,self.stationFin)
+
+			stationDépart = [] 
+			
+			cmpt = 0
+			while (cmpt < len(G.sommets)):
+				if(self.stationDebut == G.sommets[cmpt][5]):
+					stationDépart.append(int(G.sommets[cmpt][0]))
+					
+				cmpt = cmpt+1
+
+			arrive = G.from_name_to_id(self.stationFin)
+			
+			cmpt = 0
+			temps = 999
+
+			while(cmpt < len(stationDépart)):
+				depart = stationDépart[cmpt]		
+				trajetTest = G.dijsktra(depart, arrive)
+				seconds = G.def_time(trajetTest)
+				if(seconds < temps):
+					temps = seconds
+					listeTrajet = trajetTest
+				cmpt = cmpt + 1
 			
 			#On retire le dernier élement de la liste si c'est la même station
 			if(fromIdToName( listeTrajet[ len(listeTrajet) - 1 ] ) == fromIdToName( listeTrajet[ len(listeTrajet) - 2 ])):
@@ -692,6 +710,10 @@ def Afftrajet(start, end):
 	start = start.replace(" ","_")
 	end   = end.replace(" ","_")
 	print("Recherche du trajet entre {0} et {1}".format(start, end))
+	
+	#depart = self.from_name_to_id(sommet1)
+	#arrive = self.from_name_to_id(sommet2)		
+
 	listeTrajet = G.dijsktra(start,end)
 
 	#On retire le dernier élement de la liste si c'est la même station
