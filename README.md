@@ -33,5 +33,5 @@ _https://github.com/theophiIe/Metro_
 ## Auteurs
 * **Théophile Molinatti**      _alias_ [@theophiIe](https://github.com/theophiIe)
 * **Vincent Xavier**           _alias_ [@Vince780](https://github.com/Vince780)
-* **Jhoann Ramanandraitsiory** _alias_ [@JohannRAM](https://github.com/JohannRAM)
+* **Johann Ramanandraitsiory** _alias_ [@JohannRAM](https://github.com/JohannRAM)
 
