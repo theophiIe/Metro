@@ -18,7 +18,7 @@ class Graphe:
 
 		for chaine in file :
 			#Permet d'avoir les informations sur un sommet
-			if chaine[0:1] == "V" :
+			if chaine[0] == "V" :
 				chaine = chaine.replace("\n","")
 				chaine = chaine.replace("V ","")
             
@@ -29,7 +29,7 @@ class Graphe:
 				(self.sommets).append(infoSommet)
             
 			#Permet d'avoir les informations sur les aretes
-			elif chaine[0:1] == "E" :
+			elif chaine[0] == "E" :
 				chaine = chaine.replace("\n","")
 				chaine = chaine.replace("E ","")
             
@@ -142,27 +142,27 @@ class Graphe:
 				dist = []	
 				for s in range(len(self.sommets)):		#s prend la valeur de tous les sommets
 					dist.append(float("inf"))
-					a_traiter.append(s)
-				dist[point_depart] = 0
+					a_traiter.append(s)					#On ajoute tous les sommets dans la liste des sommets à traités
+				dist[point_depart] = 0					#On part du point de départ, on met sa distance à zéro
 				
 				### PHASE DE RECHERCHE ###
 				
 				en_cours = -1
 				while(a_traiter != []):
 					
-					en_cours = min_dist(a_traiter, dist)
-					a_traiter.remove(en_cours)
-					voisins = self.def_voisins(en_cours)
+					en_cours = min_dist(a_traiter, dist)	#Le sommet que l'on va traiter est le sommet non traité avec la plus petite distance
+					a_traiter.remove(en_cours)				#On retire le sommet qu'on traite de la liste des sommets à traiter
+					voisins = self.def_voisins(en_cours)	#On recherche tous les voisins du sommet 'en_cours'
 					
-					for v in voisins:
+					for v in voisins:				#'v' prend la valeur de tous les voisins
 						
 						v = int(v)
-						nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)
+						nouvelle_dist = dist[en_cours] + self.distance(en_cours, v)		#Met à jour la distance du sommet 'en_cours'
 						if(nouvelle_dist < dist[v]):
-							dist[v] = nouvelle_dist
-							predecesseur[v] = en_cours
+							dist[v] = nouvelle_dist					#Si la distance est meilleur en passant par ce sommet, on la garde
+							predecesseur[v] = en_cours				#Défini les successeurs de chaque sommet
 							
-				chemins.append( self.creer_chemin(predecesseur, point_depart, point_arrive) )
+				chemins.append( self.creer_chemin(predecesseur, point_depart, point_arrive) )	#On ajoute les différents chemins trouvés dans la liste 'chemins'
 				
 		#On cherche le chemin le plus court de tous ceux qu'on a obtenus
 		chemin_plus_court = self.def_temps_chemins(chemins)
@@ -181,6 +181,7 @@ class Graphe:
 				
 		return correspondance
 	
+	#Calcul le temps que prendra un chemin trouvé dans la méthode 'dijsktra'
 	def def_temps_chemins(self, chemin):
 		temps_chemin = []
 		for j in range(len(chemin)):
