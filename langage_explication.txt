@@ -1,9 +1,0 @@
-
-Pourquoi avoir choisi Python comme langage de programmation ?
-
-Python est un langage "haut niveau", ce qui signifie que c'est un langage très proche du langage
-humain, ce qui l'éloigne du langage machine. C'est donc un langage parfait pour implémenter un
-algorithme écrit en pseudo-code en toute simplicité. Un autre langage de programmation aurait 
-pu rendre cette tâche plus difficile. Par ailleurs, les étudiants en informatique, dans la plupart
-des écoles, étudient l'algorithmie avec ce langage ! C'est notament le cas à l'IUT de Vélizy
-(DUT Informatique - UVSQ), nous pensons alors que choisir ce langage est cohérent.
