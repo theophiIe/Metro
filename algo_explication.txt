@@ -1,19 +1,19 @@
 
-Pourquoi avons nous choisi l'algorithme de Dijkstra ?
+	Pourquoi avons nous choisi l'algorithme de Dijkstra ?
 
 L'algorithme de Dijkstra est adapté à ce type de graphe, car nous n'avons pas de pondération négative.
 L'algorithme de Ford-Bellman pourrait lui aussi résoudre le problème du plus court chemin, cependant,
-il prend en compte la pondération négative alors que nous n'avons pas, et sa compléxité est supérieur à
-celle de l'algorithme de Dijkstra : 
-
-	- Dijkstra : 		O( ( |V|+|E|) x log(|V|) )
-	- Ford-Bellman :	O( |V| x |E| )
-	
-	Avec |E| le nombre d'arêtes, et |V| le nombre de sommets
-	
-Dans le fichier metro.txt, nous avons 376 sommets et 473 arêtes.
-Avec ces simples calculs, on remarque que dans le pire des cas, l'algorithme de Ford-Bellman effectue
-environs 177 848 opérations, alors que l'algorithme de Dijkstra en effectue seulement 2 187 (Ces chiffres
-correspondent aux pires des cas). Ces chiffres s'expliquent assez facilement, en effet, l'algorithme de Dijkstra
+il prend en compte la pondération négative, ce qui est inutile dans ce cas, et sa compléxité est supérieur à
+celle de l'algorithme de Dijkstra : en effet, l'algorithme de Dijkstra
 ne traite qu'UNE seule fois tous les sommets du graphe. Avec l'algorithme de Ford-Bellman, un sommet peut être
 traité PLUSIEURS fois. Nous avons donc choisis l'algorithme de Dijkstra pour un meilleur temps d'éxecution.
+	
+	Pourquoi le programme met-il autant de temps à s'exécuter ?
+	
+Une station peut posseder deux ou plusieurs lignes. Nous testons donc le plus court chemin entre toutes les lignes
+de la station de départ, et toutes les lignes de la station d'arrivé. Une fois que l'algorithme a fini son travail,
+on récupère le chemin le plus court parmis ceux qui ont été calculés, et le résultat est affiché à l'utilisateur.
+L'algorithme de Dijkstra se répète donc plusieurs fois, ce qui cause un temps d'exécution relativement long...
+Le nombre de fois que l'algorithme tourne est égale au nombre de ligne de la station de départ multiplié par 
+le nombre de ligne de la station d'arrivé.
+Plus il y'a de ligne sur les stations choisis, plus le temps d'exécution se rallonge.
