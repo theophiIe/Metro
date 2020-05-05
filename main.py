@@ -631,7 +631,13 @@ class Application:
 
 		self.canvas.create_text(1310,565, anchor = W,text="M14", font="Arial 14 italic", fill="black")
 		self.canvas.create_rectangle(1260,560,1290,570,fill="#62259D")
-
+	
+	# Dessine la boussole 
+		
+	canvas.create_oval(965,205,1065,305,fill='white',outline="#050D9E",width=2,dash=(3,5))
+	canvas.create_line(970,260,1030,260,fill='red',width = 5, arrow = 'last',state = 'disabled')
+	canvas.create_text(1035,260, anchor = W,text="N", font="Arial 20 italic", fill="black")
+	
 	# Dessin du parcours à prendre sur le graphe
 	def trajet(self, liste):
 		cmptL = 0
