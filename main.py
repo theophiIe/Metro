@@ -133,6 +133,8 @@ class Graphe:
 		arrive = self.from_name_to_id(sommet2)	#Correspond au numéro du sommet d'arrivé
 		chemins = []
 		
+		print(colors.Bold + colors.LightGreen + "\nVeuillez patienter, calcul de l'itinéraire en cours" + colors.ResetAll)
+
 		for point_depart in depart:
 			for point_arrive in arrive:
 		
